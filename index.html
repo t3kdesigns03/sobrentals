@@ -31,25 +31,41 @@
       line-height: 1.6;
     }
 
-    /* Logo styles – make it pop */
+    /* Refined logo styles – larger, more breathing room, perfectly balanced */
+    header {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
     header .logo-link {
       display: block;
       transition: opacity 0.3s ease;
     }
 
     header .logo-img {
-      height: 70px;
+      height: 90px;           /* Bigger presence on desktop – fills the taller header beautifully */
       width: auto;
+      max-width: 100%;        /* Prevents overflow on very wide screens */
       transition: transform 0.3s ease;
     }
 
     header .logo-img:hover {
-      transform: scale(1.08);
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 992px) {
+      header .logo-img {
+        height: 75px;         /* Slightly smaller on tablets */
+      }
     }
 
     @media (max-width: 768px) {
       header .logo-img {
-        height: 55px;
+        height: 65px;         /* Optimal for mobile – still bold without crowding buttons */
+      }
+      header {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
       }
     }
 
@@ -72,10 +88,10 @@
 <body>
 
 <header class="sticky-top bg-white shadow-sm">
-  <div class="container-fluid py-3">
+  <div class="container-fluid">
     <div class="row align-items-center">
       <div class="col">
-        <!-- Stunning image logo implementation -->
+        <!-- Enhanced logo – bigger, better spaced, more aesthetic impact -->
         <a href="index.html" class="logo-link">
           <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
         </a>
@@ -123,7 +139,7 @@
           </div>
         </a>
       </div>
-      <!-- Additional cards for other featured properties -->
+      <!-- Additional cards -->
       <div class="col">
         <a href="#" class="text-decoration-none">
           <div class="card h-100 shadow-sm property-card">
@@ -139,7 +155,6 @@
           </div>
         </a>
       </div>
-      <!-- Duplicate more cards here as you add properties -->
     </div>
   </section>
 </main>
