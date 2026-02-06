@@ -31,18 +31,15 @@
       line-height: 1.6;
     }
 
-    /* Super slim header – total height ~100px max, no excess whitespace */
+    /* Fixed slim header using Bootstrap flex – guaranteed alignment, minimal height */
     header {
-      padding: 0.75rem 1rem; /* Minimal vertical padding */
-      text-align: center;
-      position: relative;
+      padding: 0.75rem 0; /* Super tight vertical space */
       background: var(--white);
     }
 
     header .logo-img {
-      height: 80px;           /* Compact but still bold and visible */
+      height: 80px; /* Perfect visible size – bold but compact */
       width: auto;
-      max-width: 95vw;
       filter: drop-shadow(0 3px 8px rgba(0,0,0,0.1));
       transition: transform 0.3s ease;
     }
@@ -51,13 +48,9 @@
       transform: scale(1.06);
     }
 
-    /* No responsive changes needed – stays tight on all screens */
     @media (max-width: 768px) {
       header .logo-img {
         height: 70px;
-      }
-      header {
-        padding: 0.5rem 1rem;
       }
     }
 
@@ -65,24 +58,9 @@
       header .logo-img {
         height: 60px;
       }
-    }
-
-    /* Buttons top-right, vertically centered in the slim space */
-    header .header-buttons {
-      position: absolute;
-      top: 50%;
-      right: 1rem;
-      transform: translateY(-50%);
-      z-index: 10;
-    }
-
-    @media (max-width: 576px) {
-      header .header-buttons {
-        right: 0.5rem;
-      }
-      header .header-buttons .btn {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.6rem;
+      header .btn {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.75rem;
       }
     }
 
@@ -104,16 +82,22 @@
 </head>
 <body>
 
+<!-- FIXED HEADER – This is the exact block that was missing/broken -->
 <header class="sticky-top shadow-sm">
-  <!-- Slim centered logo -->
-  <a href="index.html">
-    <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
-  </a>
-
-  <!-- Top-right buttons, vertically centered */
-  <div class="header-buttons">
-    <button class="btn btn-outline-dark me-2">Sign In</button>
-    <button class="btn btn-dark">Contact Us</button>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- Centered logo -->
+      <div class="col text-center">
+        <a href="index.html">
+          <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
+        </a>
+      </div>
+      <!-- Right-aligned buttons -->
+      <div class="col-auto">
+        <button class="btn btn-outline-dark me-2">Sign In</button>
+        <button class="btn btn-dark">Contact Us</button>
+      </div>
+    </div>
   </div>
 </header>
 
