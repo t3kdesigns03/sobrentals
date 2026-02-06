@@ -31,51 +31,62 @@
       line-height: 1.6;
     }
 
-    /* Centered, much larger logo – ~2.5× previous size with balanced aesthetics */
+    /* Large centered logo – true middle placement, ~2.5× larger than original small versions */
     header {
-      padding-top: 2rem;
-      padding-bottom: 2rem;
+      padding: 3rem 1rem;
+      text-align: center;
       position: relative;
+      background: var(--white);
     }
 
     header .logo-img {
-      height: 225px;          /* ~2.5× the original 90px – bold statement size */
+      height: 240px;          /* Bold, statement size – adjust ±20px if needed */
       width: auto;
-      max-width: 90vw;        /* Never overflows on smaller screens */
+      max-width: 95vw;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.15));
       transition: transform 0.4s ease;
-      drop-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     header .logo-img:hover {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
-    /* Responsive scaling – still prominent but fits perfectly */
+    /* Responsive – stays prominent but fits all screens */
     @media (max-width: 1200px) {
-      header .logo-img {
-        height: 190px;
-      }
+      header .logo-img { height: 200px; }
+      header { padding: 2.5rem 1rem; }
     }
 
     @media (max-width: 992px) {
-      header .logo-img {
-        height: 160px;
-      }
+      header .logo-img { height: 180px; }
     }
 
     @media (max-width: 768px) {
-      header .logo-img {
-        height: 140px;
-      }
-      header {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
-      }
+      header .logo-img { height: 160px; }
+      header { padding: 2rem 1rem; }
     }
 
     @media (max-width: 576px) {
-      header .logo-img {
-        height: 120px;
+      header .logo-img { height: 140px; }
+      header { padding: 1.5rem 1rem; }
+    }
+
+    /* Buttons stay top-right, cleanly layered over the centered logo */
+    header .header-buttons {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+    }
+
+    @media (max-width: 576px) {
+      header .header-buttons {
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+      header .header-buttons .btn {
+        font-size: 0.9rem;
+        padding: 0.35rem 0.75rem;
       }
     }
 
@@ -97,20 +108,16 @@
 </head>
 <body>
 
-<header class="sticky-top bg-white shadow-sm">
-  <div class="container position-relative">
-    <!-- Centered logo -->
-    <div class="text-center">
-      <a href="index.html">
-        <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
-      </a>
-    </div>
+<header class="sticky-top shadow-sm">
+  <!-- Centered large logo -->
+  <a href="index.html">
+    <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
+  </a>
 
-    <!-- Buttons positioned top-right (visible on all screens, moves naturally on mobile) -->
-    <div class="position-absolute top-0 end-0 p-3 p-md-4">
-      <button class="btn btn-outline-dark me-2">Sign In</button>
-      <button class="btn btn-dark">Contact Us</button>
-    </div>
+  <!-- Top-right buttons (always visible, never overlap logo badly) -->
+  <div class="header-buttons">
+    <button class="btn btn-outline-dark me-2">Sign In</button>
+    <button class="btn btn-dark">Contact Us</button>
   </div>
 </header>
 
@@ -133,7 +140,6 @@
   <section class="container py-5">
     <h2 class="display-5 fw-bold text-center mb-5" style="font-family: 'Playfair Display', serif;">Featured Properties</h2>
     <div class="row row-cols-1 row-cols-md-3 g-4" id="propertyGrid">
-      <!-- Ledges 1037 Card -->
       <div class="col">
         <a href="Properties/ledges-1037.html" class="text-decoration-none">
           <div class="card h-100 shadow-sm property-card">
@@ -149,7 +155,6 @@
           </div>
         </a>
       </div>
-      <!-- Additional placeholder card -->
       <div class="col">
         <a href="#" class="text-decoration-none">
           <div class="card h-100 shadow-sm property-card">
@@ -171,7 +176,7 @@
 
 <footer class="py-5 text-center">
   <div class="container">
-    <p>© 2026 SOB Rentals · Proudly managing 65 premier vacation properties across the Lake of the Ozarks</p>
+    <p>© 2026 SOB Rentals · Proudly managing vacation properties across the Lake of the Ozarks</p>
   </div>
 </footer>
 
