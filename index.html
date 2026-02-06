@@ -19,7 +19,8 @@
       --white: #ffffff;
       --dark: #1f1f1f;
       --muted: #6b6b6b;
-      --accent: #c9a24d;
+      --accent: #c9a24d; /* Luxury gold */
+      --header-bg: #0a2a4d; /* Deep lake navy – complementary to the logo's sunset oranges */
       --soft-shadow: 0 10px 30px rgba(0,0,0,.08);
       --radius: 18px;
     }
@@ -31,16 +32,18 @@
       line-height: 1.6;
     }
 
-    /* Fixed slim header using Bootstrap flex – guaranteed alignment, minimal height */
+    /* Master color theory fix: Deep navy header creates maximum contrast */
+    /* Orange sunset in logo = complementary to blue → explosive pop */
+    /* Black palms sharp, navy text readable, gold accent for luxury CTA */
     header {
-      padding: 0.75rem 0; /* Super tight vertical space */
-      background: var(--white);
+      background: var(--header-bg);
+      padding: 1rem 0; /* Slim but comfortable */
     }
 
     header .logo-img {
-      height: 80px; /* Perfect visible size – bold but compact */
+      height: 90px; /* Slightly larger for impact on colored bg */
       width: auto;
-      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
       transition: transform 0.3s ease;
     }
 
@@ -50,18 +53,36 @@
 
     @media (max-width: 768px) {
       header .logo-img {
-        height: 70px;
+        height: 75px;
       }
     }
 
     @media (max-width: 576px) {
       header .logo-img {
-        height: 60px;
+        height: 65px;
       }
-      header .btn {
-        font-size: 0.9rem;
-        padding: 0.35rem 0.75rem;
-      }
+    }
+
+    /* Buttons pop on dark navy */
+    header .btn-outline-light {
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+    }
+
+    header .btn-outline-light:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: #fff;
+    }
+
+    header .btn-gold {
+      background: var(--accent);
+      border: none;
+      color: #000; /* Dark text on gold for readability */
+    }
+
+    header .btn-gold:hover {
+      background: #d4b065;
+      color: #000;
     }
 
     .hero {
@@ -82,20 +103,19 @@
 </head>
 <body>
 
-<!-- FIXED HEADER – This is the exact block that was missing/broken -->
 <header class="sticky-top shadow-sm">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <!-- Centered logo -->
+      <!-- Centered logo – now explodes against deep navy -->
       <div class="col text-center">
         <a href="index.html">
           <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
         </a>
       </div>
-      <!-- Right-aligned buttons -->
+      <!-- Right-aligned buttons – high contrast on navy -->
       <div class="col-auto">
-        <button class="btn btn-outline-dark me-2">Sign In</button>
-        <button class="btn btn-dark">Contact Us</button>
+        <button class="btn btn-outline-light me-2">Sign In</button>
+        <button class="btn btn-gold">Contact Us</button>
       </div>
     </div>
   </div>
