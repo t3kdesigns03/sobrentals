@@ -31,61 +31,58 @@
       line-height: 1.6;
     }
 
-    /* Compact header – roughly half the previous height */
+    /* Super slim header – total height ~100px max, no excess whitespace */
     header {
-      padding: 1.5rem 1rem 1rem; /* Cut vertical padding in half for tighter feel */
+      padding: 0.75rem 1rem; /* Minimal vertical padding */
       text-align: center;
       position: relative;
       background: var(--white);
     }
 
     header .logo-img {
-      height: 120px;          /* Halved from previous tall versions – balanced and prominent without dominating */
+      height: 80px;           /* Compact but still bold and visible */
       width: auto;
       max-width: 95vw;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+      filter: drop-shadow(0 3px 8px rgba(0,0,0,0.1));
       transition: transform 0.3s ease;
     }
 
     header .logo-img:hover {
-      transform: scale(1.05);
+      transform: scale(1.06);
     }
 
-    /* Responsive – scales down gracefully on smaller screens */
-    @media (max-width: 1200px) {
-      header .logo-img { height: 110px; }
-    }
-
-    @media (max-width: 992px) {
-      header .logo-img { height: 100px; }
-    }
-
+    /* No responsive changes needed – stays tight on all screens */
     @media (max-width: 768px) {
-      header .logo-img { height: 90px; }
-      header { padding: 1rem 1rem 0.75rem; }
+      header .logo-img {
+        height: 70px;
+      }
+      header {
+        padding: 0.5rem 1rem;
+      }
     }
 
     @media (max-width: 576px) {
-      header .logo-img { height: 80px; }
-      header { padding: 0.75rem 1rem 0.5rem; }
+      header .logo-img {
+        height: 60px;
+      }
     }
 
-    /* Buttons remain top-right, with tighter spacing */
+    /* Buttons top-right, vertically centered in the slim space */
     header .header-buttons {
       position: absolute;
-      top: 1rem;
+      top: 50%;
       right: 1rem;
+      transform: translateY(-50%);
       z-index: 10;
     }
 
     @media (max-width: 576px) {
       header .header-buttons {
-        top: 0.5rem;
         right: 0.5rem;
       }
       header .header-buttons .btn {
-        font-size: 0.9rem;
-        padding: 0.35rem 0.75rem;
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
       }
     }
 
@@ -108,12 +105,12 @@
 <body>
 
 <header class="sticky-top shadow-sm">
-  <!-- Compact centered logo -->
+  <!-- Slim centered logo -->
   <a href="index.html">
     <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
   </a>
 
-  <!-- Top-right buttons -->
+  <!-- Top-right buttons, vertically centered */
   <div class="header-buttons">
     <button class="btn btn-outline-dark me-2">Sign In</button>
     <button class="btn btn-dark">Contact Us</button>
