@@ -20,7 +20,6 @@
       --dark: #1f1f1f;
       --muted: #6b6b6b;
       --accent: #c9a24d; /* Luxury gold */
-      --header-bg: #0a2a4d; /* Deep lake navy – complementary to the logo's sunset oranges */
       --soft-shadow: 0 10px 30px rgba(0,0,0,.08);
       --radius: 18px;
     }
@@ -32,62 +31,59 @@
       line-height: 1.6;
     }
 
-    /* Master color theory fix: Deep navy header creates maximum contrast */
-    /* Orange sunset in logo = complementary to blue → explosive pop */
-    /* Black palms sharp, navy text readable, gold accent for luxury CTA */
+    /* Slim white header with larger, centered logo – clean luxury feel */
     header {
-      background: var(--header-bg);
-      padding: 1rem 0; /* Slim but comfortable */
+      padding: 1rem 0;
+      background: var(--white);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
 
     header .logo-img {
-      height: 90px; /* Slightly larger for impact on colored bg */
+      height: 120px; /* Significantly larger for impact – sunset oranges pop on white */
       width: auto;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
       transition: transform 0.3s ease;
     }
 
     header .logo-img:hover {
-      transform: scale(1.06);
+      transform: scale(1.05);
     }
 
     @media (max-width: 768px) {
       header .logo-img {
-        height: 75px;
+        height: 100px;
       }
     }
 
     @media (max-width: 576px) {
       header .logo-img {
-        height: 65px;
+        height: 85px;
       }
     }
 
-    /* Buttons pop on dark navy */
-    header .btn-outline-light {
-      border-color: rgba(255,255,255,0.6);
+    /* Hero with dark gradient overlay – fixes white-on-light contrast issue */
+    .hero {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511') center/cover no-repeat; /* Reverted to classic lake view for better contrast */
+      min-height: 90vh;
       color: #fff;
     }
 
-    header .btn-outline-light:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: #fff;
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+      z-index: 1;
     }
 
-    header .btn-gold {
-      background: var(--accent);
-      border: none;
-      color: #000; /* Dark text on gold for readability */
+    .hero .container {
+      position: relative;
+      z-index: 2;
     }
 
-    header .btn-gold:hover {
-      background: #d4b065;
-      color: #000;
-    }
-
-    .hero {
-      background: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511') center/cover no-repeat;
-      min-height: 80vh;
+    .hero h1, .hero p {
+      text-shadow: 0 2px 10px rgba(0,0,0,0.6); /* Extra pop for text */
     }
 
     .property-card:hover {
@@ -103,26 +99,24 @@
 </head>
 <body>
 
-<header class="sticky-top shadow-sm">
+<header class="sticky-top">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <!-- Centered logo – now explodes against deep navy -->
       <div class="col text-center">
         <a href="index.html">
           <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
         </a>
       </div>
-      <!-- Right-aligned buttons – high contrast on navy -->
       <div class="col-auto">
-        <button class="btn btn-outline-light me-2">Sign In</button>
-        <button class="btn btn-gold">Contact Us</button>
+        <button class="btn btn-outline-dark me-2">Sign In</button>
+        <button class="btn btn-dark">Contact Us</button>
       </div>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="hero text-center text-white d-flex align-items-center">
+  <section class="hero text-center d-flex align-items-center">
     <div class="container">
       <h1 class="display-4 fw-bold mb-3">Premier Lake of the Ozarks Getaways</h1>
       <p class="lead mb-4">65 hand-managed luxury properties for unforgettable escapes</p>
