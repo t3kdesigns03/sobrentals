@@ -31,41 +31,51 @@
       line-height: 1.6;
     }
 
-    /* Refined logo styles – larger, more breathing room, perfectly balanced */
+    /* Centered, much larger logo – ~2.5× previous size with balanced aesthetics */
     header {
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
-    }
-
-    header .logo-link {
-      display: block;
-      transition: opacity 0.3s ease;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+      position: relative;
     }
 
     header .logo-img {
-      height: 90px;           /* Bigger presence on desktop – fills the taller header beautifully */
+      height: 225px;          /* ~2.5× the original 90px – bold statement size */
       width: auto;
-      max-width: 100%;        /* Prevents overflow on very wide screens */
-      transition: transform 0.3s ease;
+      max-width: 90vw;        /* Never overflows on smaller screens */
+      transition: transform 0.4s ease;
+      drop-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     header .logo-img:hover {
-      transform: scale(1.06);
+      transform: scale(1.05);
+    }
+
+    /* Responsive scaling – still prominent but fits perfectly */
+    @media (max-width: 1200px) {
+      header .logo-img {
+        height: 190px;
+      }
     }
 
     @media (max-width: 992px) {
       header .logo-img {
-        height: 75px;         /* Slightly smaller on tablets */
+        height: 160px;
       }
     }
 
     @media (max-width: 768px) {
       header .logo-img {
-        height: 65px;         /* Optimal for mobile – still bold without crowding buttons */
+        height: 140px;
       }
       header {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      header .logo-img {
+        height: 120px;
       }
     }
 
@@ -88,18 +98,18 @@
 <body>
 
 <header class="sticky-top bg-white shadow-sm">
-  <div class="container-fluid">
-    <div class="row align-items-center">
-      <div class="col">
-        <!-- Enhanced logo – bigger, better spaced, more aesthetic impact -->
-        <a href="index.html" class="logo-link">
-          <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
-        </a>
-      </div>
-      <div class="col text-end">
-        <button class="btn btn-outline-dark me-2">Sign In</button>
-        <button class="btn btn-dark">Contact Us</button>
-      </div>
+  <div class="container position-relative">
+    <!-- Centered logo -->
+    <div class="text-center">
+      <a href="index.html">
+        <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
+      </a>
+    </div>
+
+    <!-- Buttons positioned top-right (visible on all screens, moves naturally on mobile) -->
+    <div class="position-absolute top-0 end-0 p-3 p-md-4">
+      <button class="btn btn-outline-dark me-2">Sign In</button>
+      <button class="btn btn-dark">Contact Us</button>
     </div>
   </div>
 </header>
@@ -139,7 +149,7 @@
           </div>
         </a>
       </div>
-      <!-- Additional cards -->
+      <!-- Additional placeholder card -->
       <div class="col">
         <a href="#" class="text-decoration-none">
           <div class="card h-100 shadow-sm property-card">
@@ -161,7 +171,7 @@
 
 <footer class="py-5 text-center">
   <div class="container">
-    <p>© 2026 SOB Rentals</p>
+    <p>© 2026 SOB Rentals · Proudly managing 65 premier vacation properties across the Lake of the Ozarks</p>
   </div>
 </footer>
 
