@@ -37,17 +37,66 @@
       font-weight: 700;
     }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-      background-color: rgba(0,0,0,0.5);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-    }
-
     footer {
       background: var(--dark);
       color: #aaa;
+    }
+
+    /* Gallery Styles – VRBO-inspired */
+    .hero-img {
+      height: 70vh;
+      object-fit: cover;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .hero-img:hover {
+      opacity: 0.9;
+    }
+
+    .thumbnail-container {
+      scrollbar-width: thin;
+    }
+
+    .thumbnail-img {
+      width: 180px;
+      height: 135px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex-shrink: 0;
+    }
+
+    .thumbnail-img:hover {
+      transform: scale(1.05);
+      box-shadow: var(--soft-shadow);
+      z-index: 1;
+    }
+
+    /* Modal Carousel – full-screen feel */
+    #modalCarousel .carousel-item {
+      height: 100vh;
+      background: #000;
+    }
+
+    #modalCarousel img {
+      object-fit: contain;
+      height: 100%;
+      width: 100%;
+    }
+
+    #modalCarousel .carousel-control-prev,
+    #modalCarousel .carousel-control-next {
+      width: 10%;
+      opacity: 0.8;
+    }
+
+    #modalCarousel .carousel-control-prev-icon,
+    #modalCarousel .carousel-control-next-icon {
+      width: 60px;
+      height: 60px;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 50%;
     }
   </style>
 </head>
@@ -70,141 +119,239 @@
 <main>
   <a href="../index.html" class="d-block text-center my-4 text-muted text-decoration-none">← Back to Properties</a>
 
-  <!-- Full-width Photo Gallery Carousel (all current images, starting with livingarea3.avif) -->
-  <div id="propertyCarousel" class="carousel slide" data-bs-ride="false">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="Ledges1037/livingarea3.avif" class="d-block w-100" alt="Ledges 1037 - Spacious Living Area with Lake Views" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/livingarea.avif" class="d-block w-100" alt="Ledges 1037 - Open Living Space" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/livingarea2.avif" class="d-block w-100" alt="Ledges 1037 - Cozy Living Area" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/ledges-livingarea.avif" class="d-block w-100" alt="Ledges 1037 - Modern Living Room" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/interior.avif" class="d-block w-100" alt="Ledges 1037 - Interior Overview" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/living3.avif" class="d-block w-100" alt="Ledges 1037 - Living Room Detail" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/living4.webp" class="d-block w-100" alt="Ledges 1037 - Comfortable Seating Area" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/dining.avif" class="d-block w-100" alt="Ledges 1037 - Dining Area" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/dining2.avif" class="d-block w-100" alt="Ledges 1037 - Dining View" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/dining3.avif" class="d-block w-100" alt="Ledges 1037 - Dining with Lake Views" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/privatekitchen.avif" class="d-block w-100" alt="Ledges 1037 - Fully Equipped Kitchen" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/privatekitchen2.avif" class="d-block w-100" alt="Ledges 1037 - Kitchen Detail" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/kitchen2.avif" class="d-block w-100" alt="Ledges 1037 - Modern Appliances" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/kitchen3.avif" class="d-block w-100" alt="Ledges 1037 - Kitchen Island" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/kitchen4.avif" class="d-block w-100" alt="Ledges 1037 - Kitchen Storage" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/ledges-newbedding.avif" class="d-block w-100" alt="Ledges 1037 - Fresh Bedding" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room.avif" class="d-block w-100" alt="Ledges 1037 - Master Bedroom" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/romm2.avif" class="d-block w-100" alt="Ledges 1037 - Guest Bedroom" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room3.webp" class="d-block w-100" alt="Ledges 1037 - Bedroom View" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room%204.avif" class="d-block w-100" alt="Ledges 1037 - Bedroom Detail" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room%205.avif" class="d-block w-100" alt="Ledges 1037 - Cozy Bedroom" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room6.avif" class="d-block w-100" alt="Ledges 1037 - Bedroom with View" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room7.avif" class="d-block w-100" alt="Ledges 1037 - Bedroom Comfort" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room8.avif" class="d-block w-100" alt="Ledges 1037 - Bedroom Lighting" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/room9.avif" class="d-block w-100" alt="Ledges 1037 - Bedroom Storage" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/bath1.avif" class="d-block w-100" alt="Ledges 1037 - Master Bathroom" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/bath2.avif" class="d-block w-100" alt="Ledges 1037 - Guest Bathroom" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/patio.avif" class="d-block w-100" alt="Ledges 1037 - Screened Patio" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/patio2.avif" class="d-block w-100" alt="Ledges 1037 - Patio Seating" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/patio3.avif" class="d-block w-100" alt="Ledges 1037 - Patio Detail" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/patiosunset.avif" class="d-block w-100" alt="Ledges 1037 - Sunset from Patio" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/patioview.avif" class="d-block w-100" alt="Ledges 1037 - Main Channel View" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/sunset.avif" class="d-block w-100" alt="Ledges 1037 - Lake Sunset" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/pool.webp" class="d-block w-100" alt="Ledges 1037 - Community Pool" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/pool1.avif" class="d-block w-100" alt="Ledges 1037 - Pool View" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/entertainment.webp" class="d-block w-100" alt="Ledges 1037 - Entertainment Area" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/beach.webp" class="d-block w-100" alt="Ledges 1037 - Nearby Beach Access" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/golf.avif" class="d-block w-100" alt="Ledges 1037 - Nearby Golf" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/horseback.avif" class="d-block w-100" alt="Ledges 1037 - Area Activities" style="height: 80vh; object-fit: cover;">
-      </div>
-      <div class="carousel-item">
-        <img src="Ledges1037/img-1.webp" class="d-block w-100" alt="Ledges 1037 - Additional View" style="height: 80vh; object-fit: cover;">
-      </div>
-    </div>
-
-    <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
+  <!-- VRBO-style Gallery -->
+  <!-- Large Hero Image (click to open full gallery) -->
+  <div class="container-fluid px-0 mb-4">
+    <img src="Ledges1037/livingarea3.avif" class="w-100 rounded hero-img shadow-lg"
+         alt="Ledges 1037 - Spacious Living Area"
+         data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="0">
   </div>
 
+  <!-- Horizontal Scrollable Thumbnails + All Photos Label -->
+  <section class="container my-5">
+    <h2 class="h4 fw-bold mb-4">All 40 Photos</h2>
+    <div class="d-flex overflow-x-auto gap-3 thumbnail-container pb-3">
+      <!-- Thumbnail 0 -->
+      <img src="Ledges1037/livingarea3.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Living Area"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="0">
+      <!-- Thumbnail 1 -->
+      <img src="Ledges1037/livingarea.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Open Living Space"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="1">
+      <!-- Thumbnail 2 -->
+      <img src="Ledges1037/livingarea2.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Cozy Living Area"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="2">
+      <!-- Thumbnail 3 -->
+      <img src="Ledges1037/ledges-livingarea.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Modern Living Room"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="3">
+      <!-- Thumbnail 4 -->
+      <img src="Ledges1037/interior.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Interior Overview"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="4">
+      <!-- Thumbnail 5 -->
+      <img src="Ledges1037/living3.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Living Room Detail"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="5">
+      <!-- Thumbnail 6 -->
+      <img src="Ledges1037/living4.webp" class="rounded thumbnail-img shadow-sm"
+           alt="Comfortable Seating"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="6">
+      <!-- Thumbnail 7 -->
+      <img src="Ledges1037/dining.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Dining Area"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="7">
+      <!-- Thumbnail 8 -->
+      <img src="Ledges1037/dining2.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Dining View"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="8">
+      <!-- Thumbnail 9 -->
+      <img src="Ledges1037/dining3.avif" class="rounded thumbnail-img shadow-sm"
+           alt="Dining with Views"
+           data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="9">
+      <!-- Thumbnail 10–39 (continuing the full list) -->
+      <img src="Ledges1037/privatekitchen.avif" class="rounded thumbnail-img shadow-sm" alt="Kitchen" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="10">
+      <img src="Ledges1037/privatekitchen2.avif" class="rounded thumbnail-img shadow-sm" alt="Kitchen Detail" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="11">
+      <img src="Ledges1037/kitchen2.avif" class="rounded thumbnail-img shadow-sm" alt="Appliances" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="12">
+      <img src="Ledges1037/kitchen3.avif" class="rounded thumbnail-img shadow-sm" alt="Island" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="13">
+      <img src="Ledges1037/kitchen4.avif" class="rounded thumbnail-img shadow-sm" alt="Storage" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="14">
+      <img src="Ledges1037/ledges-newbedding.avif" class="rounded thumbnail-img shadow-sm" alt="Bedding" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="15">
+      <img src="Ledges1037/room.avif" class="rounded thumbnail-img shadow-sm" alt="Master Bedroom" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="16">
+      <img src="Ledges1037/romm2.avif" class="rounded thumbnail-img shadow-sm" alt="Guest Bedroom" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="17">
+      <img src="Ledges1037/room3.webp" class="rounded thumbnail-img shadow-sm" alt="Bedroom View" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="18">
+      <img src="Ledges1037/room%204.avif" class="rounded thumbnail-img shadow-sm" alt="Bedroom Detail" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="19">
+      <img src="Ledges1037/room%205.avif" class="rounded thumbnail-img shadow-sm" alt="Cozy Bedroom" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="20">
+      <img src="Ledges1037/room6.avif" class="rounded thumbnail-img shadow-sm" alt="Bedroom View" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="21">
+      <img src="Ledges1037/room7.avif" class="rounded thumbnail-img shadow-sm" alt="Bedroom Comfort" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="22">
+      <img src="Ledges1037/room8.avif" class="rounded thumbnail-img shadow-sm" alt="Bedroom Lighting" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="23">
+      <img src="Ledges1037/room9.avif" class="rounded thumbnail-img shadow-sm" alt="Bedroom Storage" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="24">
+      <img src="Ledges1037/bath1.avif" class="rounded thumbnail-img shadow-sm" alt="Master Bath" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="25">
+      <img src="Ledges1037/bath2.avif" class="rounded thumbnail-img shadow-sm" alt="Guest Bath" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="26">
+      <img src="Ledges1037/patio.avif" class="rounded thumbnail-img shadow-sm" alt="Screened Patio" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="27">
+      <img src="Ledges1037/patio2.avif" class="rounded thumbnail-img shadow-sm" alt="Patio Seating" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="28">
+      <img src="Ledges1037/patio3.avif" class="rounded thumbnail-img shadow-sm" alt="Patio Detail" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="29">
+      <img src="Ledges1037/patiosunset.avif" class="rounded thumbnail-img shadow-sm" alt="Sunset Patio" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="30">
+      <img src="Ledges1037/patioview.avif" class="rounded thumbnail-img shadow-sm" alt="Main Channel View" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="31">
+      <img src="Ledges1037/sunset.avif" class="rounded thumbnail-img shadow-sm" alt="Lake Sunset" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="32">
+      <img src="Ledges1037/pool.webp" class="rounded thumbnail-img shadow-sm" alt="Community Pool" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="33">
+      <img src="Ledges1037/pool1.avif" class="rounded thumbnail-img shadow-sm" alt="Pool View" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="34">
+      <img src="Ledges1037/entertainment.webp" class="rounded thumbnail-img shadow-sm" alt="Entertainment Area" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="35">
+      <img src="Ledges1037/beach.webp" class="rounded thumbnail-img shadow-sm" alt="Nearby Beach" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="36">
+      <img src="Ledges1037/golf.avif" class="rounded thumbnail-img shadow-sm" alt="Nearby Golf" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="37">
+      <img src="Ledges1037/horseback.avif" class="rounded thumbnail-img shadow-sm" alt="Area Activities" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="38">
+      <img src="Ledges1037/img-1.webp" class="rounded thumbnail-img shadow-sm" alt="Additional View" data-bs-toggle="modal" data-bs-target="#photoModal" data-bs-slide-to="39">
+    </div>
+  </section>
+
+  <!-- Full-screen Modal Carousel (lightbox style) -->
+  <div class="modal fade" id="photoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-sm-down">
+      <div class="modal-content bg-transparent border-0">
+        <div class="modal-header border-0 position-absolute top-0 end-0 z-3 p-3">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div id="modalCarousel" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="Ledges1037/livingarea3.avif" class="d-block w-100" alt="Ledges 1037 - Spacious Living Area">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/livingarea.avif" class="d-block w-100" alt="Open Living Space">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/livingarea2.avif" class="d-block w-100" alt="Cozy Living Area">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/ledges-livingarea.avif" class="d-block w-100" alt="Modern Living Room">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/interior.avif" class="d-block w-100" alt="Interior Overview">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/living3.avif" class="d-block w-100" alt="Living Room Detail">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/living4.webp" class="d-block w-100" alt="Comfortable Seating">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/dining.avif" class="d-block w-100" alt="Dining Area">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/dining2.avif" class="d-block w-100" alt="Dining View">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/dining3.avif" class="d-block w-100" alt="Dining with Views">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/privatekitchen.avif" class="d-block w-100" alt="Kitchen">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/privatekitchen2.avif" class="d-block w-100" alt="Kitchen Detail">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/kitchen2.avif" class="d-block w-100" alt="Appliances">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/kitchen3.avif" class="d-block w-100" alt="Island">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/kitchen4.avif" class="d-block w-100" alt="Storage">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/ledges-newbedding.avif" class="d-block w-100" alt="Bedding">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room.avif" class="d-block w-100" alt="Master Bedroom">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/romm2.avif" class="d-block w-100" alt="Guest Bedroom">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room3.webp" class="d-block w-100" alt="Bedroom View">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room%204.avif" class="d-block w-100" alt="Bedroom Detail">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room%205.avif" class="d-block w-100" alt="Cozy Bedroom">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room6.avif" class="d-block w-100" alt="Bedroom View">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room7.avif" class="d-block w-100" alt="Bedroom Comfort">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room8.avif" class="d-block w-100" alt="Bedroom Lighting">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/room9.avif" class="d-block w-100" alt="Bedroom Storage">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/bath1.avif" class="d-block w-100" alt="Master Bath">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/bath2.avif" class="d-block w-100" alt="Guest Bath">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/patio.avif" class="d-block w-100" alt="Screened Patio">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/patio2.avif" class="d-block w-100" alt="Patio Seating">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/patio3.avif" class="d-block w-100" alt="Patio Detail">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/patiosunset.avif" class="d-block w-100" alt="Sunset Patio">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/patioview.avif" class="d-block w-100" alt="Main Channel View">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/sunset.avif" class="d-block w-100" alt="Lake Sunset">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/pool.webp" class="d-block w-100" alt="Community Pool">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/pool1.avif" class="d-block w-100" alt="Pool View">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/entertainment.webp" class="d-block w-100" alt="Entertainment Area">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/beach.webp" class="d-block w-100" alt="Nearby Beach">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/golf.avif" class="d-block w-100" alt="Nearby Golf">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/horseback.avif" class="d-block w-100" alt="Area Activities">
+              </div>
+              <div class="carousel-item">
+                <img src="Ledges1037/img-1.webp" class="d-block w-100" alt="Additional View">
+              </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#modalCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#modalCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Property Details (unchanged from previous version) -->
   <section class="container py-5">
     <div class="row justify-content-center">
       <div class="col-lg-8">
