@@ -31,47 +31,46 @@
       line-height: 1.6;
     }
 
-    /* Large centered logo – true middle placement, ~2.5× larger than original small versions */
+    /* Compact header – roughly half the previous height */
     header {
-      padding: 3rem 1rem;
+      padding: 1.5rem 1rem 1rem; /* Cut vertical padding in half for tighter feel */
       text-align: center;
       position: relative;
       background: var(--white);
     }
 
     header .logo-img {
-      height: 240px;          /* Bold, statement size – adjust ±20px if needed */
+      height: 120px;          /* Halved from previous tall versions – balanced and prominent without dominating */
       width: auto;
       max-width: 95vw;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,0.15));
-      transition: transform 0.4s ease;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+      transition: transform 0.3s ease;
     }
 
     header .logo-img:hover {
-      transform: scale(1.04);
+      transform: scale(1.05);
     }
 
-    /* Responsive – stays prominent but fits all screens */
+    /* Responsive – scales down gracefully on smaller screens */
     @media (max-width: 1200px) {
-      header .logo-img { height: 200px; }
-      header { padding: 2.5rem 1rem; }
+      header .logo-img { height: 110px; }
     }
 
     @media (max-width: 992px) {
-      header .logo-img { height: 180px; }
+      header .logo-img { height: 100px; }
     }
 
     @media (max-width: 768px) {
-      header .logo-img { height: 160px; }
-      header { padding: 2rem 1rem; }
+      header .logo-img { height: 90px; }
+      header { padding: 1rem 1rem 0.75rem; }
     }
 
     @media (max-width: 576px) {
-      header .logo-img { height: 140px; }
-      header { padding: 1.5rem 1rem; }
+      header .logo-img { height: 80px; }
+      header { padding: 0.75rem 1rem 0.5rem; }
     }
 
-    /* Buttons stay top-right, cleanly layered over the centered logo */
+    /* Buttons remain top-right, with tighter spacing */
     header .header-buttons {
       position: absolute;
       top: 1rem;
@@ -109,12 +108,12 @@
 <body>
 
 <header class="sticky-top shadow-sm">
-  <!-- Centered large logo -->
+  <!-- Compact centered logo -->
   <a href="index.html">
     <img src="soblogo.jpg" alt="Sun of the Beach Rentals Logo" class="logo-img img-fluid">
   </a>
 
-  <!-- Top-right buttons (always visible, never overlap logo badly) -->
+  <!-- Top-right buttons -->
   <div class="header-buttons">
     <button class="btn btn-outline-dark me-2">Sign In</button>
     <button class="btn btn-dark">Contact Us</button>
@@ -176,7 +175,7 @@
 
 <footer class="py-5 text-center">
   <div class="container">
-    <p>© 2026 SOB Rentals · Proudly managing vacation properties across the Lake of the Ozarks</p>
+    <p>© 2026 SOB Rentals · Proudly managing 65 premier vacation properties across the Lake of the Ozarks</p>
   </div>
 </footer>
 
