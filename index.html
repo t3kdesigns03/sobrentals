@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOB Rentals | Lake of the Ozarks Luxury Rentals</title>
-    <meta name="description" content="Premier Lake of the Ozarks vacation rentals. Luxury properties with unforgettable lake views and exceptional service.">
+    <title>SOB Rentals | Luxury Lake of the Ozarks Vacation Rentals</title>
+    <meta name="description" content="Premier Lake of the Ozarks vacation rentals. Luxury properties with stunning lake views, private docks, and exceptional service.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,18 +27,21 @@
                     },
                     colors: {
                         primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                            950: '#082f49',
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
                         },
-                        gold: {
-                            400: '#d4af37',
-                            500: '#c9a24d',
-                            600: '#b8941f',
+                        accent: {
+                            400: '#f97316',
+                            500: '#ea580c',
+                            600: '#c2410c',
                         }
                     }
                 }
@@ -48,97 +51,87 @@
 
     <style>
         .hero-gradient {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
-        }
-        
-        .luxury-shadow {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .property-card {
-            transition: all 0.4s ease;
-        }
-        
-        .property-card:hover {
-            transform: translateY(-8px);
-        }
-        
-        .property-card:hover .property-image {
-            transform: scale(1.05);
-        }
-        
-        .search-bar {
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
         }
         
         .nav-scrolled {
-            background-color: white;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .nav-scrolled .nav-link {
-            color: #1f2937;
+        .property-card {
+            transition: all 0.3s ease;
         }
         
-        .nav-scrolled .logo-text {
-            color: #0c4a6e;
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
-
+        
+        .section-padding {
+            padding: 5rem 0;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
+        }
+        
         .text-shadow {
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        .gold-accent {
-            color: #c9a24d;
+        .feature-icon {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50">
+<body class="font-sans text-gray-700 antialiased bg-white">
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent text-white py-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
                 <a href="index.html" class="flex items-center space-x-3">
-                    <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-16 w-auto object-contain drop-shadow-lg">
+                    <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-14 w-auto object-contain">
+                    <span class="text-xl font-serif font-bold text-white">SOB RENTALS</span>
                 </a>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link hover:text-gold-400 transition-colors font-medium">Home</a>
-                    <a href="#properties" class="nav-link hover:text-gold-400 transition-colors font-medium">Properties</a>
-                    <a href="#about" class="nav-link hover:text-gold-400 transition-colors font-medium">About</a>
-                    <a href="#contact" class="nav-link hover:text-gold-400 transition-colors font-medium">Contact</a>
-                    <div class="flex items-center space-x-3">
-                        <button class="border-2 border-white nav-link px-6 py-2 rounded-full font-semibold hover:bg-white hover:text-gray-900 transition-all">
-                            Sign In
-                        </button>
-                        <button class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition-all">
-                            Contact Us
-                        </button>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a>
+                    <a href="#properties" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a>
+                    <a href="#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a>
+                    <a href="#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a>
+                    <a href="#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a>
+                    <div class="flex items-center space-x-4">
+                        
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2">
-                    <i data-lucide="menu" class="h-6 w-6 nav-link"></i>
+                <button id="mobile-menu-btn" class="lg:hidden p-2">
+                    <i data-lucide="menu" class="h-7 w-7 nav-link"></i>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-lg border-t">
-            <div class="px-6 py-4 space-y-4">
-                <a href="#home" class="block py-2 hover:text-primary-600 font-medium">Home</a>
-                <a href="#properties" class="block py-2 hover:text-primary-600 font-medium">Properties</a>
-                <a href="#about" class="block py-2 hover:text-primary-600 font-medium">About</a>
-                <a href="#contact" class="block py-2 hover:text-primary-600 font-medium">Contact</a>
-                <div class="pt-4 space-y-2">
-                    <button class="w-full border-2 border-gray-800 py-3 rounded-full font-semibold">Sign In</button>
-                    <button class="w-full bg-gray-900 text-white py-3 rounded-full font-semibold">Contact Us</button>
-                </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl">
+            <div class="px-6 py-6 space-y-4">
+                <a href="#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a>
+                <a href="#properties" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a>
+                <a href="#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a>
+                <a href="#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a>
+                <a href="#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a>
+                
             </div>
         </div>
     </nav>
@@ -147,40 +140,49 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1920&q=80" alt="Lake of the Ozarks" class="w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Lake of the Ozarks" class="w-full h-full object-cover">
             <div class="absolute inset-0 hero-gradient"></div>
         </div>
 
         <!-- Hero Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white pt-32">
-            <p class="text-gold-400 font-semibold tracking-widest uppercase mb-4 text-sm md:text-base">Lake of the Ozarks</p>
-            <h1 class="font-serif text-5xl md:text-7xl font-bold mb-6 text-shadow tracking-tight">
-                Premier Luxury<br>
-                <span class="italic font-light">Getaways</span>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center text-white pt-28">
+            <p class="text-accent-400 font-semibold tracking-[0.3em] uppercase mb-6 text-sm md:text-base">LAKE OF THE OZARKS</p>
+            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-shadow leading-tight">
+                PREMIER LUXURY<br>
+                <span class="text-accent-400 italic">VACATION RENTALS</span>
             </h1>
-            <p class="text-xl md:text-2xl mb-12 text-gray-200 font-light max-w-2xl mx-auto">
-                Luxury Properties · Unforgettable Escapes · Exceptional Service
+            <p class="text-xl md:text-2xl mb-12 text-gray-100 max-w-3xl mx-auto leading-relaxed">
+                Experience the finest Lake of the Ozarks properties with stunning views, private docks, and exceptional service.
             </p>
 
-            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+                <button class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2">
+                    <span>EXPLORE PROPERTIES</span>
+                    <i data-lucide="arrow-right" class="h-5 w-5"></i>
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-md font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all">
+                    VIEW AMENITIES
+                </button>
+            </div>
 
             <!-- Stats -->
-            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto border-t border-white/20 pt-12">
                 <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-1">50+</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider">Properties</div>
+                    <div class="text-4xl font-bold font-serif text-white mb-2">50+</div>
+                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">LUXURY PROPERTIES</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-1">4.9</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider">Guest Rating</div>
+                    <div class="text-4xl font-bold font-serif text-white mb-2">4.9★</div>
+                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">GUEST RATING</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-1">24/7</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider">Support</div>
+                    <div class="text-4xl font-bold font-serif text-white mb-2">24/7</div>
+                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">CONCIERGE</div>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-1">100%</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider">Satisfaction</div>
+                    <div class="text-4xl font-bold font-serif text-white mb-2">100%</div>
+                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">SATISFACTION</div>
                 </div>
             </div>
         </div>
@@ -207,11 +209,9 @@
                 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                     <div class="relative h-72 overflow-hidden">
                         <img src="https://a0.muscache.com/im/pictures/miso/Hosting-29677039/original/48c6c2f5-7a14-4e1b-8bbf-11c2a674e28f.jpeg" alt="Ledges 1037" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-gray-900 shadow-lg">
-                            $325/night
-                        </div>
-                        <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                            Available
+                        
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
+                            CHECK AVAILABILITY
                         </div>
                     </div>
                     <div class="p-6">
@@ -258,11 +258,9 @@
                 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                     <div class="relative h-72 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Sunset View" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-gray-900 shadow-lg">
-                            $350/night
-                        </div>
-                        <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                            Available
+                        
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
+                            CHECK AVAILABILITY
                         </div>
                     </div>
                     <div class="p-6">
@@ -309,11 +307,9 @@
                 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                     <div class="relative h-72 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Lakefront Retreat" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        <div class="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-sm font-bold text-gray-900 shadow-lg">
-                            $425/night
-                        </div>
-                        <div class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
-                            New Listing
+                        
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
+                            CHECK AVAILABILITY
                         </div>
                     </div>
                     <div class="p-6">
