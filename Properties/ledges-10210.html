@@ -53,50 +53,44 @@
 </head>
 <body class="font-sans text-gray-700 antialiased bg-white" x-data="{ modalOpen: false, currentSlide: 0 }">
 
-  <!-- Property Images Array - UPDATE PATHS/FILENAMES AFTER DOWNLOADING PHOTOS -->
+  <!-- Property Images Array - Now using your actual uploaded file names, ordered numerically -->
   <script>
     const propertyImages = [
-      'Ledges10210/livingarea3.avif',
-      'Ledges10210/livingarea.avif',
-      'Ledges10210/livingarea2.avif',
-      'Ledges10210/ledges-livingarea.avif',
-      'Ledges10210/interior.avif',
-      'Ledges10210/living3.avif',
-      'Ledges10210/living4.webp',
-      'Ledges10210/dining.avif',
-      'Ledges10210/dining2.avif',
-      'Ledges10210/dining3.avif',
-      'Ledges10210/privatekitchen.avif',
-      'Ledges10210/privatekitchen2.avif',
-      'Ledges10210/kitchen2.avif',
-      'Ledges10210/kitchen3.avif',
-      'Ledges10210/kitchen4.avif',
-      'Ledges10210/ledges-newbedding.avif',
-      'Ledges10210/room.avif',
-      'Ledges10210/room2.avif',
-      'Ledges10210/room3.webp',
-      'Ledges10210/room4.avif',
-      'Ledges10210/room5.avif',
-      'Ledges10210/room6.avif',
-      'Ledges10210/room7.avif',
-      'Ledges10210/room8.avif',
-      'Ledges10210/room9.avif',
-      'Ledges10210/bath1.avif',
-      'Ledges10210/bath2.avif',
-      'Ledges10210/patio.avif',
-      'Ledges10210/patio2.avif',
-      'Ledges10210/patio3.avif',
-      'Ledges10210/patiosunset.avif',
-      'Ledges10210/patioview.avif',
-      'Ledges10210/sunset.avif',
-      'Ledges10210/pool.webp',
-      'Ledges10210/pool1.avif',
-      'Ledges10210/entertainment.webp',
-      'Ledges10210/beach.webp',
-      'Ledges10210/golf.avif',
-      'Ledges10210/horseback.avif',
-      'Ledges10210/img-1.webp'
-      // Add more as needed to match your downloaded photos
+      'Ledges10210/img01.avif',
+      'Ledges10210/img02.avif',
+      'Ledges10210/img03.avif',
+      'Ledges10210/img04.avif',
+      'Ledges10210/img05.avif',
+      'Ledges10210/img06.avif',
+      'Ledges10210/img007.avif',
+      'Ledges10210/img08.avif',
+      'Ledges10210/img09.avif',
+      'Ledges10210/img10.avif',
+      'Ledges10210/img11.webp',
+      'Ledges10210/img12.webp',
+      'Ledges10210/img13.avif',
+      'Ledges10210/img14.avif',
+      'Ledges10210/img15.avif',
+      'Ledges10210/img16.avif',
+      'Ledges10210/img17.avif',
+      'Ledges10210/img18.avif',
+      'Ledges10210/img19.avif',
+      'Ledges10210/img20.avif',
+      'Ledges10210/img21.avif',
+      'Ledges10210/img22.avif',
+      'Ledges10210/img23.avif',
+      'Ledges10210/img24.webp',
+      'Ledges10210/img25.avif',
+      'Ledges10210/img26.avif',
+      'Ledges10210/img27.avif',
+      'Ledges10210/img28.avif',
+      'Ledges10210/img29.webp',
+      'Ledges10210/img30.webp',
+      'Ledges10210/img31.webp',
+      'Ledges10210/img32.webp',
+      'Ledges10210/img33.avif',
+      'Ledges10210/img34.avif',
+      'Ledges10210/img35.avif'
     ];
   </script>
 
@@ -304,7 +298,7 @@
   <div x-show="modalOpen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" @click="modalOpen = false" @keydown.escape.window="modalOpen = false">
     <div class="relative max-w-7xl w-full h-full" @click.stop>
       <button @click="modalOpen = false" class="absolute top-8 right-8 text-white z-10">
-        <i data-lucide="x" class="h-12 w-12"></i>
+        <i data-lucide="x" class="h-12 Piazza w-12"></i>
       </button>
       <img :src="propertyImages[currentSlide]" alt="Property photo" class="w-full h-full object-contain">
       
