@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOB Rentals | Luxury Lake of the Ozarks Vacation Rentals</title>
-    <meta name="description" content="Premier Lake of the Ozarks vacation rentals. Luxury properties with stunning lake views, private docks, and exceptional service.">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <script>
+<!DOCTYPE html> 
+<html lang="en" class="scroll-smooth"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>SOB Rentals | Luxury Lake of the Ozarks Vacation Rentals</title>         
+        <meta name="description" content="Premier Lake of the Ozarks vacation rentals. Luxury properties with stunning lake views, private docks, and exceptional service."> 
+        <!-- Tailwind CSS -->         
+        <script src="https://cdn.tailwindcss.com"></script>         
+        <!-- Lucide Icons -->         
+        <script src="https://unpkg.com/lucide@latest"></script>         
+        <!-- Google Fonts -->         
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+        <script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -47,654 +43,537 @@
                 }
             }
         }
-    </script>
-
-    <style>
-        .hero-gradient {
-            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
-        }
-        
-        .nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .property-card {
-            transition: all 0.3s ease;
-        }
-        
-        .property-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .section-padding {
-            padding: 5rem 0;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3);
-        }
-        
-        .text-shadow {
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .feature-icon {
-            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-        }
-    </style>
-</head>
-<body class="font-sans text-gray-700 antialiased bg-white">
-
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center space-x-3">
-                    <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-14 w-auto object-contain">
-                    <span class="text-xl font-serif font-bold text-white">SOB RENTALS</span>
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-10">
-                    <a href="#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a>
-                    <a href="#properties" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a>
-                    <a href="#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a>
-                    <a href="#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a>
-                    <a href="#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a>
-                    <div class="flex items-center space-x-4">
-                        
-                    </div>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="lg:hidden p-2">
-                    <i data-lucide="menu" class="h-7 w-7 nav-link"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl">
-            <div class="px-6 py-6 space-y-4">
-                <a href="#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a>
-                <a href="#properties" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a>
-                <a href="#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a>
-                <a href="#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a>
-                <a href="#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a>
-                
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center">
-        <!-- Background Image -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Lake of the Ozarks" class="w-full h-full object-cover">
-            <div class="absolute inset-0 hero-gradient"></div>
-        </div>
-
-        <!-- Hero Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center text-white pt-28">
-            <p class="text-accent-400 font-semibold tracking-[0.3em] uppercase mb-6 text-sm md:text-base">LAKE OF THE OZARKS</p>
-            <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-shadow leading-tight">
-                PREMIER LUXURY<br>
-                <span class="text-accent-400 italic">VACATION RENTALS</span>
-            </h1>
-            <p class="text-xl md:text-2xl mb-12 text-gray-100 max-w-3xl mx-auto leading-relaxed">
-                Experience the finest Lake of the Ozarks properties with stunning views, private docks, and exceptional service.
-            </p>
-
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
-                <button class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2">
-                    <span>EXPLORE PROPERTIES</span>
-                    <i data-lucide="arrow-right" class="h-5 w-5"></i>
-                </button>
-                <button class="border-2 border-white text-white px-10 py-4 rounded-md font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all">
-                    VIEW AMENITIES
-                </button>
-            </div>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto border-t border-white/20 pt-12">
-                <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-2">50+</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">LUXURY PROPERTIES</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-2">4.9★</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">GUEST RATING</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-2">24/7</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">CONCIERGE</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold font-serif text-white mb-2">100%</div>
-                    <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">SATISFACTION</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="h-8 w-8 text-white opacity-70"></i>
-        </div>
-    </section>
-
-    <!-- Featured Properties Section -->
-    <section id="properties" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Featured</p>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">Luxury Properties</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Discover our handpicked selection of premium Lake of the Ozarks vacation homes, each offering stunning views and world-class amenities.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Property 1: Ledges 1037 -->
-                <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://a0.muscache.com/im/pictures/miso/Hosting-29677039/original/48c6c2f5-7a14-4e1b-8bbf-11c2a674e28f.jpeg" alt="Ledges 1037" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
-                            CHECK AVAILABILITY
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Ledges 1037 Condo</h3>
-                                <p class="text-gray-500 flex items-center space-x-1">
-                                    <i data-lucide="map-pin" class="h-4 w-4"></i>
-                                    <span>Osage Beach · Main Channel Views</span>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100">
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bed-double" class="h-5 w-5"></i>
-                                <span class="font-medium">3 Beds</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bath" class="h-5 w-5"></i>
-                                <span class="font-medium">2 Baths</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="users" class="h-5 w-5"></i>
-                                <span class="font-medium">Sleeps 8</span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-1">
-                                <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i>
-                                <span class="font-bold text-gray-900">4.9</span>
-                                <span class="text-gray-500 text-sm">(28 reviews)</span>
-                            </div>
-                            <a href="Properties/ledges-1037.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
-                                <span>View Details</span>
-                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property 2: Sunset View -->
-                <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Sunset View" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
-                            CHECK AVAILABILITY
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Sunset View for Miles</h3>
-                                <p class="text-gray-500 flex items-center space-x-1">
-                                    <i data-lucide="map-pin" class="h-4 w-4"></i>
-                                    <span>Osage Beach · Panoramic Lake Views</span>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100">
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bed-double" class="h-5 w-5"></i>
-                                <span class="font-medium">4 Beds</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bath" class="h-5 w-5"></i>
-                                <span class="font-medium">3 Baths</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="users" class="h-5 w-5"></i>
-                                <span class="font-medium">Sleeps 10</span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-1">
-                                <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i>
-                                <span class="font-bold text-gray-900">5.0</span>
-                                <span class="text-gray-500 text-sm">(42 reviews)</span>
-                            </div>
-                            <a href="#" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
-                                <span>View Details</span>
-                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property 3: Coming Soon / Placeholder -->
-                <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                    <div class="relative h-72 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Lakefront Retreat" class="property-image w-full h-full object-cover transition-transform duration-500">
-                        
-                        <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
-                            CHECK AVAILABILITY
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Lakefront Retreat</h3>
-                                <p class="text-gray-500 flex items-center space-x-1">
-                                    <i data-lucide="map-pin" class="h-4 w-4"></i>
-                                    <span>Lake Ozark · Private Dock</span>
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100">
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bed-double" class="h-5 w-5"></i>
-                                <span class="font-medium">5 Beds</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="bath" class="h-5 w-5"></i>
-                                <span class="font-medium">4 Baths</span>
-                            </div>
-                            <div class="flex items-center space-x-1 text-gray-600">
-                                <i data-lucide="users" class="h-5 w-5"></i>
-                                <span class="font-medium">Sleeps 12</span>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-1">
-                                <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i>
-                                <span class="font-bold text-gray-900">4.8</span>
-                                <span class="text-gray-500 text-sm">(15 reviews)</span>
-                            </div>
-                            <a href="#" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
-                                <span>View Details</span>
-                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12">
-                <button class="border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
-                    <span>View All Properties</span>
-                    <i data-lucide="arrow-right" class="h-5 w-5"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features/Amenities Section -->
-    <section class="py-24 bg-gray-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Background" class="w-full h-full object-cover">
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <p class="text-gold-400 font-semibold tracking-widest uppercase mb-2 text-sm">Why Choose Us</p>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">The SOB Rentals Difference</h2>
-                <p class="text-gray-300 text-lg max-w-2xl mx-auto">
-                    We go above and beyond to ensure your Lake of the Ozarks vacation is nothing short of extraordinary.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all">
-                    <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="gem" class="h-8 w-8 text-gold-400"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold mb-3">Luxury Amenities</h3>
-                    <p class="text-gray-300 text-sm">Premium furnishings, gourmet kitchens, and resort-style comforts in every property.</p>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all">
-                    <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="waves" class="h-8 w-8 text-gold-400"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold mb-3">Prime Locations</h3>
-                    <p class="text-gray-300 text-sm">Main channel views, private docks, and easy access to the best Lake of the Ozarks attractions.</p>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all">
-                    <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="headphones" class="h-8 w-8 text-gold-400"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold mb-3">24/7 Concierge</h3>
-                    <p class="text-gray-300 text-sm">Round-the-clock support for any questions or needs during your stay.</p>
-                </div>
-
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all">
-                    <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i data-lucide="sparkles" class="h-8 w-8 text-gold-400"></i>
-                    </div>
-                    <h3 class="font-serif text-xl font-bold mb-3">Impeccable Cleanliness</h3>
-                    <p class="text-gray-300 text-sm">Professional cleaning and sanitization before every guest arrival.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="relative">
-                    <div class="grid grid-cols-2 gap-4">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Interior" class="rounded-2xl shadow-lg w-full h-64 object-cover">
-                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="View" class="rounded-2xl shadow-lg w-full h-64 object-cover mt-8">
-                    </div>
-                    <div class="absolute -bottom-8 -right-8 bg-gray-900 text-white p-8 rounded-2xl shadow-2xl hidden md:block">
-                        <div class="text-4xl font-bold font-serif text-gold-400 mb-2">10+</div>
-                        <div class="text-sm uppercase tracking-wider">Years of Excellence</div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">About SOB Rentals</p>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                        Creating Unforgettable Lake Memories
-                    </h2>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">
-                        SOB Rentals (Sun of the Beach Rentals) is your premier choice for luxury vacation properties at Lake of the Ozarks. We specialize in curating exceptional experiences, offering handpicked homes with stunning main channel views, private docks, and world-class amenities.
-                    </p>
-                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                        Whether you're planning a family reunion, a weekend getaway with friends, or a peaceful retreat, our properties provide the perfect backdrop for making lasting memories at one of Missouri's most beautiful destinations.
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-start space-x-3">
-                            <div class="bg-primary-100 p-2 rounded-lg mt-1">
-                                <i data-lucide="check-circle" class="h-5 w-5 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Handpicked Properties</div>
-                                <div class="text-sm text-gray-600">Every home meets our luxury standards</div>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-3">
-                            <div class="bg-primary-100 p-2 rounded-lg mt-1">
-                                <i data-lucide="check-circle" class="h-5 w-5 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Local Expertise</div>
-                                <div class="text-sm text-gray-600">Insider knowledge of the Lake area</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
-                        <span>Learn More About Us</span>
-                        <i data-lucide="arrow-right" class="h-5 w-5"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Testimonials</p>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">What Our Guests Say</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                    <div class="flex text-gold-400 mb-4">
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">"The Ledges condo exceeded all expectations. Waking up to those main channel views every morning was incredible. SOB Rentals made everything seamless from booking to checkout."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                            <i data-lucide="user" class="h-6 w-6 text-gray-400"></i>
-                        </div>
-                        <div>
-                            <div class="font-semibold text-gray-900">Sarah Mitchell</div>
-                            <div class="text-sm text-gray-500">Kansas City, MO</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                    <div class="flex text-gold-400 mb-4">
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">"Best family vacation we've had! The property was immaculate, the kitchen was fully stocked for cooking family dinners, and the kids loved the pool. We'll definitely be back!"</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                            <i data-lucide="user" class="h-6 w-6 text-gray-400"></i>
-                        </div>
-                        <div>
-                            <div class="font-semibold text-gray-900">Michael Torres</div>
-                            <div class="text-sm text-gray-500">St. Louis, MO</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                    <div class="flex text-gold-400 mb-4">
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                        <i data-lucide="star" class="h-5 w-5 fill-current"></i>
-                    </div>
-                    <p class="text-gray-600 mb-6 italic">"I've stayed at many Lake of the Ozarks rentals, and SOB Rentals properties are by far the most luxurious. Attention to detail is unmatched. The private dock was perfect for our boat."</p>
-                    <div class="flex items-center space-x-3">
-                        <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
-                            <i data-lucide="user" class="h-6 w-6 text-gray-400"></i>
-                        </div>
-                        <div>
-                            <div class="font-semibold text-gray-900">Jennifer Adams</div>
-                            <div class="text-sm text-gray-500">Chicago, IL</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-16">
-                <div>
-                    <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Contact Us</p>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                        Plan Your Perfect Lake Getaway
-                    </h2>
-                    <p class="text-gray-600 text-lg mb-8">
-                        Ready to book your luxury Lake of the Ozarks vacation? Have questions about a specific property? Our team is here to help you plan the perfect escape.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary-100 p-3 rounded-lg">
-                                <i data-lucide="mail" class="h-6 w-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Email Us</div>
-                                <a href="mailto:sobrentals@gmail.com" class="text-gray-600 hover:text-primary-600 transition-colors">sobrentals@gmail.com</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary-100 p-3 rounded-lg">
-                                <i data-lucide="phone" class="h-6 w-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Call Us</div>
-                                <a href="tel:+14243227837" class="text-gray-600 hover:text-primary-600 transition-colors">(424) 322-7837</a>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-primary-100 p-3 rounded-lg">
-                                <i data-lucide="clock" class="h-6 w-6 text-primary-600"></i>
-                            </div>
-                            <div>
-                                <div class="font-semibold text-gray-900">Office Hours</div>
-                                <div class="text-gray-600">Mon-Sat: 7:00 AM - 7:00 PM<br>Sunday: 7:00 AM - 5:00 PM</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200">
-                    <h3 class="font-serif text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3>
-                    <form class="space-y-6" onsubmit="handleContact(event)">
-                        <div class="grid md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">First Name</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>
-                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Doe">
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                            <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>
-                            <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="(555) 123-4567">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Interested Property</label>
-                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all">
-                                <option>Select a property...</option>
-                                <option>Ledges 1037 Condo</option>
-                                <option>Sunset View for Miles</option>
-                                <option>Lakefront Retreat</option>
-                                <option>Any Available Property</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                            <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Tell us about your ideal vacation dates and any special requests..."></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center space-x-2">
-                            <span>Send Message</span>
-                            <i data-lucide="send" class="h-5 w-5"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-2">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-12 w-auto object-contain">
-                    </div>
-                    <p class="text-gray-400 mb-6 max-w-md">
-                        Premier luxury vacation rentals at Lake of the Ozarks. Creating unforgettable memories with stunning properties and exceptional service.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">
-                            <i data-lucide="facebook" class="h-5 w-5"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">
-                            <i data-lucide="instagram" class="h-5 w-5"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">
-                            <i data-lucide="twitter" class="h-5 w-5"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-serif text-lg font-bold text-white mb-4">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="hover:text-gold-400 transition-colors">Home</a></li>
-                        <li><a href="#properties" class="hover:text-gold-400 transition-colors">Properties</a></li>
-                        <li><a href="#about" class="hover:text-gold-400 transition-colors">About Us</a></li>
-                        <li><a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-serif text-lg font-bold text-white mb-4">Legal</h4>
-                    <ul class="space-y-3">
-                        <li><a href="Rental Agreement.pdf" target="_blank" class="hover:text-gold-400 transition-colors">Rental Agreement</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition-colors">Cancellation Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-sm text-gray-500 mb-4 md:mb-0">
-                    © 2026 SOB Rentals · Proudly managing premier vacation properties across the Lake of the Ozarks
-                </p>
-                <div class="flex items-center space-x-2 text-sm text-gray-500">
-                    <i data-lucide="phone" class="h-4 w-4"></i>
-                    <a href="tel:+14243227837" class="hover:text-white transition-colors">(424) 322-7837</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
+    </script>         
+        <style>.hero-gradient { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%); } .nav-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); } .property-card { transition: all 0.3s ease; } .property-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); } .section-padding { padding: 5rem 0; } .btn-primary { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); transition: all 0.3s ease; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); } .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); } .feature-icon { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }</style>         
+    </head>     
+    <body class="font-sans text-gray-700 antialiased bg-white"> 
+        <!-- Navigation -->         
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6"> 
+            <div class="max-w-7xl mx-auto px-6 lg:px-8"> 
+                <div class="flex justify-between items-center"> 
+                    <!-- Logo -->                     
+                    <a href="index.html" class="flex items-center space-x-3">  <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-14 w-auto object-contain">  <span class="text-xl font-serif font-bold text-white">SOB RENTALS</span>  </a> 
+                    <!-- Desktop Menu -->                     
+                    <div class="hidden lg:flex items-center space-x-10"> 
+                        <a href="#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a> 
+                        <a href="#properties" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a> 
+                        <a href="#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a> 
+                        <a href="#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a> 
+                        <a href="#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a> 
+                        <div class="flex items-center space-x-4"> 
+</div>                         
+                    </div>                     
+                    <!-- Mobile Menu Button -->                     
+                    <button id="mobile-menu-btn" class="lg:hidden p-2"> 
+                        <i data-lucide="menu" class="h-7 w-7 nav-link"></i> 
+                    </button>                     
+                </div>                 
+            </div>             
+            <!-- Mobile Menu -->             
+            <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl"> 
+                <div class="px-6 py-6 space-y-4"> 
+                    <a href="#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a> 
+                    <a href="#properties" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a> 
+                    <a href="#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a> 
+                    <a href="#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a> 
+                    <a href="#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a> 
+                </div>                 
+            </div>             
+        </nav>         
+        <!-- Hero Section -->         
+        <section id="home" class="relative min-h-screen flex items-center justify-center"> 
+            <!-- Background Image -->             
+            <div class="absolute inset-0 z-0"> 
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Lake of the Ozarks" class="w-full h-full object-cover"> 
+                <div class="absolute inset-0 hero-gradient"></div>                 
+            </div>             
+            <!-- Hero Content -->             
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center text-white pt-28"> 
+                <p class="text-accent-400 font-semibold tracking-[0.3em] uppercase mb-6 text-sm md:text-base">LAKE OF THE OZARKS</p> 
+                <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-shadow leading-tight"> 
+                PREMIER LUXURY<br>  <span class="text-accent-400 italic">VACATION RENTALS</span>  </h1> 
+                <p class="text-xl md:text-2xl mb-12 text-gray-100 max-w-3xl mx-auto leading-relaxed"> 
+                Experience the finest Lake of the Ozarks properties with stunning views, private docks, and exceptional service. </p> 
+                <!-- CTA Buttons -->                 
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"> 
+                    <button class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2"> 
+                        <span>EXPLORE PROPERTIES</span> 
+                        <i data-lucide="arrow-right" class="h-5 w-5"></i> 
+                    </button>                     
+                    <button class="border-2 border-white text-white px-10 py-4 rounded-md font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all"> 
+                        VIEW AMENITIES
+</button>                     
+                </div>                 
+                <!-- Stats -->                 
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto border-t border-white/20 pt-12"> 
+                    <div class="text-center"> 
+                        <div class="text-4xl font-bold font-serif text-white mb-2">50+</div>                         
+                        <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">LUXURY PROPERTIES</div>                         
+                    </div>                     
+                    <div class="text-center"> 
+                        <div class="text-4xl font-bold font-serif text-white mb-2">4.9★</div>                         
+                        <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">GUEST RATING</div>                         
+                    </div>                     
+                    <div class="text-center"> 
+                        <div class="text-4xl font-bold font-serif text-white mb-2">24/7</div>                         
+                        <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">CONCIERGE</div>                         
+                    </div>                     
+                    <div class="text-center"> 
+                        <div class="text-4xl font-bold font-serif text-white mb-2">100%</div>                         
+                        <div class="text-sm text-gray-300 uppercase tracking-wider font-medium">SATISFACTION</div>                         
+                    </div>                     
+                </div>                 
+            </div>             
+            <!-- Scroll Indicator -->             
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"> 
+                <i data-lucide="chevron-down" class="h-8 w-8 text-white opacity-70"></i> 
+            </div>             
+        </section>         
+        <!-- Featured Properties Section -->         
+        <section id="properties" class="py-24 bg-white"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="text-center mb-16"> 
+                    <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Featured</p> 
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">Luxury Properties</h2> 
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto"> 
+                    Discover our handpicked selection of premium Lake of the Ozarks vacation homes, each offering stunning views and world-class amenities. </p> 
+                </div>                 
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+                    <!-- Property 1: Ledges 1037 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://a0.muscache.com/im/pictures/miso/Hosting-29677039/original/48c6c2f5-7a14-4e1b-8bbf-11c2a674e28f.jpeg" alt="Ledges 1037" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+</div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Ledges 1037 Condo</h3> 
+                                    <p class="text-gray-500 flex items-center space-x-1">  <i data-lucide="map-pin" class="h-4 w-4"></i>  <span>Osage Beach · Main Channel Views</span>  </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">3 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 8</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(28 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/ledges-1037.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">  <span>View Details</span>  <i data-lucide="arrow-right" class="h-4 w-4"></i>  </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <!-- Property 2: Sunset View -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=800&q=80" alt="Sunset View" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+</div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Sunset View for Miles</h3> 
+                                    <p class="text-gray-500 flex items-center space-x-1">  <i data-lucide="map-pin" class="h-4 w-4"></i>  <span>Osage Beach · Panoramic Lake Views</span>  </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">4 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">3 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 10</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">5.0</span> 
+                                    <span class="text-gray-500 text-sm">(42 reviews)</span> 
+                                </div>                                 
+                                <a href="#" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">  <span>View Details</span>  <i data-lucide="arrow-right" class="h-4 w-4"></i>  </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <!-- Property 3: Coming Soon / Placeholder -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80" alt="Lakefront Retreat" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+</div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h3 class="font-serif text-2xl font-bold text-gray-900 mb-1">Lakefront Retreat</h3> 
+                                    <p class="text-gray-500 flex items-center space-x-1">  <i data-lucide="map-pin" class="h-4 w-4"></i>  <span>Lake Ozark · Private Dock</span>  </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">5 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">4 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 12</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.8</span> 
+                                    <span class="text-gray-500 text-sm">(15 reviews)</span> 
+                                </div>                                 
+                                <a href="#" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">  <span>View Details</span>  <i data-lucide="arrow-right" class="h-4 w-4"></i>  </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                </div>                 
+                <div class="text-center mt-12"> 
+                    <button class="border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white px-8 py-4 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> 
+                        <span>View All Properties</span> 
+                        <i data-lucide="arrow-right" class="h-5 w-5"></i> 
+                    </button>                     
+                </div>                 
+            </div>             
+        </section>         
+        <!-- Features/Amenities Section -->         
+        <section class="py-24 bg-gray-900 text-white relative overflow-hidden"> 
+            <div class="absolute inset-0 opacity-20"> 
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80" alt="Background" class="w-full h-full object-cover"> 
+            </div>             
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"> 
+                <div class="text-center mb-16"> 
+                    <p class="text-gold-400 font-semibold tracking-widest uppercase mb-2 text-sm">Why Choose Us</p> 
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4">The SOB Rentals Difference</h2> 
+                    <p class="text-gray-300 text-lg max-w-2xl mx-auto"> 
+                    We go above and beyond to ensure your Lake of the Ozarks vacation is nothing short of extraordinary. </p> 
+                </div>                 
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8"> 
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all"> 
+                        <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"> 
+                            <i data-lucide="gem" class="h-8 w-8 text-gold-400"></i> 
+                        </div>                         
+                        <h3 class="font-serif text-xl font-bold mb-3">Luxury Amenities</h3> 
+                        <p class="text-gray-300 text-sm">Premium furnishings, gourmet kitchens, and resort-style comforts in every property.</p> 
+                    </div>                     
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all"> 
+                        <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"> 
+                            <i data-lucide="waves" class="h-8 w-8 text-gold-400"></i> 
+                        </div>                         
+                        <h3 class="font-serif text-xl font-bold mb-3">Prime Locations</h3> 
+                        <p class="text-gray-300 text-sm">Main channel views, private docks, and easy access to the best Lake of the Ozarks attractions.</p> 
+                    </div>                     
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all"> 
+                        <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"> 
+                            <i data-lucide="headphones" class="h-8 w-8 text-gold-400"></i> 
+                        </div>                         
+                        <h3 class="font-serif text-xl font-bold mb-3">24/7 Concierge</h3> 
+                        <p class="text-gray-300 text-sm">Round-the-clock support for any questions or needs during your stay.</p> 
+                    </div>                     
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center border border-white/20 hover:bg-white/20 transition-all"> 
+                        <div class="bg-gold-400/20 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"> 
+                            <i data-lucide="sparkles" class="h-8 w-8 text-gold-400"></i> 
+                        </div>                         
+                        <h3 class="font-serif text-xl font-bold mb-3">Impeccable Cleanliness</h3> 
+                        <p class="text-gray-300 text-sm">Professional cleaning and sanitization before every guest arrival.</p> 
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        <!-- About Section -->         
+        <section id="about" class="py-24 bg-white"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="grid lg:grid-cols-2 gap-16 items-center"> 
+                    <div class="relative"> 
+                        <div class="grid grid-cols-2 gap-4"> 
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Interior" class="rounded-2xl shadow-lg w-full h-64 object-cover"> 
+                            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80" alt="View" class="rounded-2xl shadow-lg w-full h-64 object-cover mt-8"> 
+                        </div>                         
+                        <div class="absolute -bottom-8 -right-8 bg-gray-900 text-white p-8 rounded-2xl shadow-2xl hidden md:block"> 
+                            <div class="text-4xl font-bold font-serif text-gold-400 mb-2">10+</div>                             
+                            <div class="text-sm uppercase tracking-wider">Years of Excellence</div>                             
+                        </div>                         
+                    </div>                     
+                    <div> 
+                        <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">About SOB Rentals</p> 
+                        <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6"> 
+                        Creating Unforgettable Lake Memories </h2> 
+                        <p class="text-gray-600 text-lg mb-6 leading-relaxed"> 
+                        SOB Rentals (Sun of the Beach Rentals) is your premier choice for luxury vacation properties at Lake of the Ozarks. We specialize in curating exceptional experiences, offering handpicked homes with stunning main channel views, private docks, and world-class amenities. </p> 
+                        <p class="text-gray-600 text-lg mb-8 leading-relaxed"> 
+                        Whether you're planning a family reunion, a weekend getaway with friends, or a peaceful retreat, our properties provide the perfect backdrop for making lasting memories at one of Missouri's most beautiful destinations. </p> 
+                        <div class="grid grid-cols-2 gap-6 mb-8"> 
+                            <div class="flex items-start space-x-3"> 
+                                <div class="bg-primary-100 p-2 rounded-lg mt-1"> 
+                                    <i data-lucide="check-circle" class="h-5 w-5 text-primary-600"></i> 
+                                </div>                                 
+                                <div> 
+                                    <div class="font-semibold text-gray-900">Handpicked Properties</div>                                     
+                                    <div class="text-sm text-gray-600">Every home meets our luxury standards</div>                                     
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-start space-x-3"> 
+                                <div class="bg-primary-100 p-2 rounded-lg mt-1"> 
+                                    <i data-lucide="check-circle" class="h-5 w-5 text-primary-600"></i> 
+                                </div>                                 
+                                <div> 
+                                    <div class="font-semibold text-gray-900">Local Expertise</div>                                     
+                                    <div class="text-sm text-gray-600">Insider knowledge of the Lake area</div>                                     
+                                </div>                                 
+                            </div>                             
+                        </div>                         
+                        <button class="bg-gray-900 hover:bg-gray-800 text-white px-8 py-4 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> 
+                            <span>Learn More About Us</span> 
+                            <i data-lucide="arrow-right" class="h-5 w-5"></i> 
+                        </button>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        <!-- Testimonials -->         
+        <section class="py-24 bg-gray-50"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="text-center mb-16"> 
+                    <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Testimonials</p> 
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">What Our Guests Say</h2> 
+                </div>                 
+                <div class="grid md:grid-cols-3 gap-8"> 
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"> 
+                        <div class="flex text-gold-400 mb-4"> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                        </div>                         
+                        <p class="text-gray-600 mb-6 italic">"The Ledges condo exceeded all expectations. Waking up to those main channel views every morning was incredible. SOB Rentals made everything seamless from booking to checkout."</p> 
+                        <div class="flex items-center space-x-3"> 
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center"> 
+                                <i data-lucide="user" class="h-6 w-6 text-gray-400"></i> 
+                            </div>                             
+                            <div> 
+                                <div class="font-semibold text-gray-900">Sarah Mitchell</div>                                 
+                                <div class="text-sm text-gray-500">Kansas City, MO</div>                                 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"> 
+                        <div class="flex text-gold-400 mb-4"> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                        </div>                         
+                        <p class="text-gray-600 mb-6 italic">"Best family vacation we've had! The property was immaculate, the kitchen was fully stocked for cooking family dinners, and the kids loved the pool. We'll definitely be back!"</p> 
+                        <div class="flex items-center space-x-3"> 
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center"> 
+                                <i data-lucide="user" class="h-6 w-6 text-gray-400"></i> 
+                            </div>                             
+                            <div> 
+                                <div class="font-semibold text-gray-900">Michael Torres</div>                                 
+                                <div class="text-sm text-gray-500">St. Louis, MO</div>                                 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100"> 
+                        <div class="flex text-gold-400 mb-4"> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                            <i data-lucide="star" class="h-5 w-5 fill-current"></i> 
+                        </div>                         
+                        <p class="text-gray-600 mb-6 italic">"I've stayed at many Lake of the Ozarks rentals, and SOB Rentals properties are by far the most luxurious. Attention to detail is unmatched. The private dock was perfect for our boat."</p> 
+                        <div class="flex items-center space-x-3"> 
+                            <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center"> 
+                                <i data-lucide="user" class="h-6 w-6 text-gray-400"></i> 
+                            </div>                             
+                            <div> 
+                                <div class="font-semibold text-gray-900">Jennifer Adams</div>                                 
+                                <div class="text-sm text-gray-500">Chicago, IL</div>                                 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        <!-- Contact Section -->         
+        <section id="contact" class="py-24 bg-white"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="grid lg:grid-cols-2 gap-16"> 
+                    <div> 
+                        <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">Contact Us</p> 
+                        <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6"> 
+                        Plan Your Perfect Lake Getaway </h2> 
+                        <p class="text-gray-600 text-lg mb-8"> 
+                        Ready to book your luxury Lake of the Ozarks vacation? Have questions about a specific property? Our team is here to help you plan the perfect escape. </p> 
+                        <div class="space-y-6"> 
+                            <div class="flex items-start space-x-4"> 
+                                <div class="bg-primary-100 p-3 rounded-lg"> 
+                                    <i data-lucide="mail" class="h-6 w-6 text-primary-600"></i> 
+                                </div>                                 
+                                <div> 
+                                    <div class="font-semibold text-gray-900">Email Us</div>                                     
+                                    <a href="mailto:sobrentals@gmail.com" class="text-gray-600 hover:text-primary-600 transition-colors">sobrentals@gmail.com</a> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-start space-x-4"> 
+                                <div class="bg-primary-100 p-3 rounded-lg"> 
+                                    <i data-lucide="phone" class="h-6 w-6 text-primary-600"></i> 
+                                </div>                                 
+                                <div> 
+                                    <div class="font-semibold text-gray-900">Call Us</div>                                     
+                                    <a href="tel:+14243227837" class="text-gray-600 hover:text-primary-600 transition-colors">(424) 322-7837</a> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-start space-x-4"> 
+                                <div class="bg-primary-100 p-3 rounded-lg"> 
+                                    <i data-lucide="clock" class="h-6 w-6 text-primary-600"></i> 
+                                </div>                                 
+                                <div> 
+                                    <div class="font-semibold text-gray-900">Office Hours</div>                                     
+                                    <div class="text-gray-600">Mon-Sat: 7:00 AM - 7:00 PM<br>Sunday: 7:00 AM - 5:00 PM
+                                    </div>                                     
+                                </div>                                 
+                            </div>                             
+                        </div>                         
+                    </div>                     
+                    <div class="bg-gray-50 p-8 rounded-2xl border border-gray-200"> 
+                        <h3 class="font-serif text-2xl font-bold text-gray-900 mb-6">Send Us a Message</h3> 
+                        <form class="space-y-6" onsubmit="handleContact(event)"> 
+                            <div class="grid md:grid-cols-2 gap-6"> 
+                                <div> 
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">First Name</label>                                     
+                                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="John"> 
+                                </div>                                 
+                                <div> 
+                                    <label class="block text-sm font-semibold text-gray-700 mb-2">Last Name</label>                                     
+                                    <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Doe"> 
+                                </div>                                 
+                            </div>                             
+                            <div> 
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>                                 
+                                <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="john@example.com"> 
+                            </div>                             
+                            <div> 
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Phone</label>                                 
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="(555) 123-4567"> 
+                            </div>                             
+                            <div> 
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Interested Property</label>                                 
+                                <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all"> 
+                                    <option>Select a property...</option>                                     
+                                    <option>Ledges 1037 Condo</option>                                     
+                                    <option>Sunset View for Miles</option>                                     
+                                    <option>Lakefront Retreat</option>                                     
+                                    <option>Any Available Property</option>                                     
+                                </select>                                 
+                            </div>                             
+                            <div> 
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Message</label>                                 
+                                <textarea rows="4" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all" placeholder="Tell us about your ideal vacation dates and any special requests..."></textarea> 
+                            </div>                             
+                            <button type="submit" class="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-lg transition-all flex items-center justify-center space-x-2"> 
+                                <span>Send Message</span> 
+                                <i data-lucide="send" class="h-5 w-5"></i> 
+                            </button>                             
+                        </form>                         
+                    </div>                     
+                </div>                 
+            </div>             
+        </section>         
+        <!-- Footer -->         
+        <footer class="bg-gray-900 text-gray-300 py-16"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="grid md:grid-cols-4 gap-12 mb-12"> 
+                    <div class="col-span-2"> 
+                        <div class="flex items-center space-x-3 mb-6"> 
+                            <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-12 w-auto object-contain"> 
+                        </div>                         
+                        <p class="text-gray-400 mb-6 max-w-md"> 
+                        Premier luxury vacation rentals at Lake of the Ozarks. Creating unforgettable memories with stunning properties and exceptional service. </p> 
+                        <div class="flex space-x-4"> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">  <i data-lucide="facebook" class="h-5 w-5"></i>  </a> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">  <i data-lucide="instagram" class="h-5 w-5"></i>  </a> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all">  <i data-lucide="twitter" class="h-5 w-5"></i>  </a> 
+                        </div>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">Quick Links</h4> 
+                        <ul class="space-y-3"> 
+                            <li>
+                                <a href="#home" class="hover:text-gold-400 transition-colors">Home</a>
+                            </li>                             
+                            <li>
+                                <a href="#properties" class="hover:text-gold-400 transition-colors">Properties</a>
+                            </li>                             
+                            <li>
+                                <a href="#about" class="hover:text-gold-400 transition-colors">About Us</a>
+                            </li>                             
+                            <li>
+                                <a href="#contact" class="hover:text-gold-400 transition-colors">Contact</a>
+                            </li>                             
+                        </ul>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">Legal</h4> 
+                        <ul class="space-y-3"> 
+                            <li>
+                                <a href="Rental Agreement.pdf" target="_blank" class="hover:text-gold-400 transition-colors">Rental Agreement</a>
+                            </li>                             
+                            <li>
+                                <a href="#" class="hover:text-gold-400 transition-colors">Privacy Policy</a>
+                            </li>                             
+                            <li>
+                                <a href="#" class="hover:text-gold-400 transition-colors">Terms of Service</a>
+                            </li>                             
+                            <li>
+                                <a href="#" class="hover:text-gold-400 transition-colors">Cancellation Policy</a>
+                            </li>                             
+                        </ul>                         
+                    </div>                     
+                </div>                 
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"> 
+                    <p class="text-sm text-gray-500 mb-4 md:mb-0"> 
+                    © 2026 SOB Rentals · Proudly managing premier vacation properties across the Lake of the Ozarks </p> 
+                    <div class="flex items-center space-x-2 text-sm text-gray-500"> 
+                        <i data-lucide="phone" class="h-4 w-4"></i> 
+                        <a href="tel:+14243227837" class="hover:text-white transition-colors">(424) 322-7837</a> 
+                    </div>                     
+                </div>                 
+            </div>             
+        </footer>         
+        <script>
         // Initialize Lucide icons
         lucide.createIcons();
 
@@ -746,6 +625,6 @@
             alert('Thank you for your message! We will get back to you within 24 hours to help plan your perfect Lake of the Ozarks getaway.');
             e.target.reset();
         }
-    </script>
-</body>
+    </script>         
+    </body>     
 </html>
