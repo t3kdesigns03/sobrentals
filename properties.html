@@ -1,233 +1,702 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>All Properties | SOB Rentals - Lake of the Ozarks Luxury Rentals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html> 
+<html lang="en" class="scroll-smooth"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <title>All Properties | SOB Rentals - Lake of the Ozarks Luxury Rentals</title>         
+        <meta name="description" content="Explore all 65 hand-managed luxury vacation rentals at Lake of the Ozarks, personally overseen by Sheila for your perfect getaway."> 
+        <!-- Tailwind CSS -->         
+        <script src="https://cdn.tailwindcss.com"></script>         
+        <!-- Lucide Icons -->         
+        <script src="https://unpkg.com/lucide@latest"></script>         
+        <!-- Google Fonts -->         
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+        <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                        accent: {
+                            400: '#f97316',
+                            500: '#ea580c',
+                            600: '#c2410c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>         
+        <style>.hero-gradient { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%); } .nav-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); } .property-card { transition: all 0.3s ease; } .property-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); } .section-padding { padding: 5rem 0; } .btn-primary { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); transition: all 0.3s ease; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); } .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); } .feature-icon { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }</style>         
+    </head>     
+    <body class="font-sans text-gray-700 antialiased bg-white"> 
+        <!-- Navigation -->         
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6"> 
+            <div class="max-w-7xl mx-auto px-6 lg:px-8"> 
+                <div class="flex justify-between items-center"> 
+                    <!-- Logo -->                     
+                    <a href="index.html" class="flex items-center space-x-3">  
+                        <span class="text-xl font-serif font-bold text-white">SOB RENTALS</span>
+                        <img src="transparent_soblogo.png" alt="SOB Rentals Logo" class="bg-auto h-14 object-contain opacity-95 w-auto"> 
+                    </a> 
+                    <!-- Desktop Menu -->                     
+                    <div class="hidden lg:flex items-center space-x-10"> 
+                        <a href="index.html#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a> 
+                        <a href="properties.html" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a> 
+                        <a href="index.html#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a> 
+                        <a href="index.html#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a> 
+                        <a href="index.html#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a> 
+                    </div>                     
+                    <!-- Mobile Menu Button -->                     
+                    <button id="mobile-menu-btn" class="lg:hidden p-2"> 
+                        <i data-lucide="menu" class="h-7 w-7 nav-link"></i> 
+                    </button>                     
+                </div>                 
+            </div>             
+            <!-- Mobile Menu -->             
+            <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl"> 
+                <div class="px-6 py-6 space-y-4"> 
+                    <a href="index.html#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a> 
+                    <a href="properties.html" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a> 
+                    <a href="index.html#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a> 
+                    <a href="index.html#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a> 
+                    <a href="index.html#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a> 
+                </div>                 
+            </div>             
+        </nav>         
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+        <!-- All Properties Section -->         
+        <section class="py-24 bg-white"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="text-center mb-16"> 
+                    <p class="text-primary-600 font-semibold tracking-widest uppercase mb-2 text-sm">All Properties</p> 
+                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-4">Sheila's 65 Hand-Managed Luxury Rentals</h2> 
+                    <p class="text-gray-600 text-lg max-w-2xl mx-auto"> 
+                    Explore the full collection of 65 premier vacation properties at Lake of the Ozarks, personally overseen by Sheila for unforgettable escapes.
+ </p> 
+                </div>                 
 
-  <!-- Bootstrap 5 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+                <!-- 1–2 Bedroom Getaways -->                 
+                <h3 class="font-serif text-3xl font-bold mb-8 text-gray-900">1–2 Bedroom Getaways</h3> 
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"> 
+                    <!-- Property: 1 Bedroom (Sleeps 4)- Unit 10210 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/1 Bedroom  (Sleeps 4)- Unit 10210/img030.jpeg" alt="1 Bedroom (Sleeps 4)- Unit 10210" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 Bedroom (Sleeps 4)- Unit 10210</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Lakefront</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">1 Bed</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">1 Bath</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 4</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(50 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/ledges-10210.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-  <style>
-    :root {
-      --bg: #f7f7f7;
-      --white: #ffffff;
-      --dark: #1f1f1f;
-      --muted: #6b6b6b;
-      --accent: #c9a24d;
-      --soft-shadow: 0 10px 30px rgba(0,0,0,.08);
-      --radius: 18px;
-    }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-    h1, h2 { font-family: 'Playfair Display', serif; }
-    .card {
-      border: none;
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-    }
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--soft-shadow);
-    }
-    .card-img-top {
-      height: 220px;
-      object-fit: cover;
-    }
-    .section-header {
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: var(--dark);
-    }
-    .badge-bedroom {
-      font-size: 0.9rem;
-      padding: 0.5em 1em;
-    }
-  </style>
-</head>
-<body>
+                    <!-- Property: 2 Bedroom (Sleeps 4) - Unit 1036 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 4) - Unit 1036/img001.jpeg" alt="2 Bedroom (Sleeps 4) - Unit 1036" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 4) - Unit 1036</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Main Channel Views</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 4</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.8</span> 
+                                    <span class="text-gray-500 text-sm">(45 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-4-unit-1036.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-<!-- Header (copy your nav from index.html or make it consistent) -->
-<header class="sticky-top bg-white shadow-sm">
-  <div class="container-fluid py-3">
-    <div class="row align-items-center">
-      <div class="col">
-        <a href="index.html" class="logo fs-3 fw-bold text-decoration-none">SOB Rentals</a>
-      </div>
-      <div class="col text-end">
-        <button class="btn btn-outline-dark me-2">Sign In</button>
-        <button class="btn btn-dark">Contact Us</button>
-      </div>
-    </div>
-  </div>
-</header>
+                    <!-- Property: 2 Bedroom (Sleeps 6) - Unit 1022 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 6) - Unit 1022/img001.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1022" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1022</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Lakefront</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 6</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(50 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-6-unit-1022.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-<main class="container py-5">
+                    <!-- Property: 2 Bedroom (Sleeps 6) - Unit 1037 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 6) - Unit 1037/img001.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1037" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1037</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Main Channel Views</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 6</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(50 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-6-unit-1037.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-  <h1 class="display-4 fw-bold text-center mb-3">All Properties</h1>
-  <p class="lead text-center text-muted mb-5">
-    65 hand-managed luxury vacation rentals at Lake of the Ozarks – personally overseen by Sheila for your perfect getaway
-  </p>
+                    <!-- Property: 2 Bedroom (Sleeps 6) - Unit 1039 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 6) - Unit 1039/img001.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1039" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1039</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Lakefront</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 6</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.8</span> 
+                                    <span class="text-gray-500 text-sm">(45 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-6-unit-1039.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-  <!-- 1–2 Bedroom Properties -->
-  <h2 class="section-header">1–2 Bedroom Getaways</h2>
-  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+                    <!-- Property: 2 Bedroom (Sleeps 6) - Unit 623 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 6) - Unit 623/img001.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 623" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 623</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Lakefront</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 6</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(50 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-6-unit-623.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <!-- Real Property: Ledges 1037 (from repo) -->
-    <div class="col">
-      <a href="Properties/ledges-1037.html" class="text-decoration-none">
-        <div class="card h-100">
-          <img src="Properties/Ledges1037/ledges-livingarea.avif" class="card-img-top" alt="Ledges 1037">
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Ledges 1037 Condo</h5>
-            <p class="text-muted mb-2">Osage Beach · Main Channel Views</p>
-            <div class="mt-auto d-flex justify-content-between align-items-center">
-              <strong>$325/night</strong>
-              <span class="badge bg-success">Available</span>
-            </div>
-            <span class="badge-bedroom bg-secondary mt-2 d-inline-block">2 Bedrooms</span>
-          </div>
-        </div>
-      </a>
-    </div>
+                    <!-- Property: 2 Bedroom (Sleeps 7) - Unit 1033 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 7) - Unit 1033/img001.jpeg" alt="2 Bedroom (Sleeps 7) - Unit 1033" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 7) - Unit 1033</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Main Channel Views</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 7</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.8</span> 
+                                    <span class="text-gray-500 text-sm">(45 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-7-unit-1033.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <!-- Real Property: Ledges 10210 (from repo; adjust image if needed) -->
-    <div class="col">
-      <a href="Properties/ledges-10210.html" class="text-decoration-none">
-        <div class="card h-100">
-          <img src="Properties/Ledges10210/livingarea.avif" class="card-img-top" alt="Ledges 10210"> <!-- Use a real image from the folder -->
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Ledges 10210 Condo</h5>
-            <p class="text-muted mb-2">Osage Beach · Lakefront</p>
-            <div class="mt-auto d-flex justify-content-between align-items-center">
-              <strong>$340/night</strong>
-              <span class="badge bg-success">Available</span>
-            </div>
-            <span class="badge-bedroom bg-secondary mt-2 d-inline-block">2 Bedrooms</span>
-          </div>
-        </div>
-      </a>
-    </div>
+                    <!-- Property: 2 Bedroom (Sleeps 8) - Unit 10310 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom (Sleeps 8) - Unit 10310/img001.jpeg" alt="2 Bedroom (Sleeps 8) - Unit 10310" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 8) - Unit 10310</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Lakefront</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 8</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.9</span> 
+                                    <span class="text-gray-500 text-sm">(50 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-8-unit-10310.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <!-- Placeholder: Duplicate & customize as you add more from repo -->
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Cozy Lakeside Condo</h5>
-          <p class="text-muted small mb-3">Camdenton · Pool Access</p>
-          <strong class="text-muted">$250/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">1 Bedroom</span>
-        </div>
-      </div>
-    </div>
+                    <!-- Property: 2 Bedroom -Sleeps 8 - Unit 613 -->                     
+                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="Properties/2 Bedroom -Sleeps 8 - Unit 613/img001.jpeg" alt="2 Bedroom -Sleeps 8 - Unit 613" class="property-image w-full h-full object-cover transition-transform duration-500"> 
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors"> 
+                                CHECK AVAILABILITY
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom -Sleeps 8 - Unit 613</h4> 
+                                    <p class="text-gray-500 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Osage Beach · Main Channel Views</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">2 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-600"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 8</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i> 
+                                    <span class="font-bold text-gray-900">4.8</span> 
+                                    <span class="text-gray-500 text-sm">(45 reviews)</span> 
+                                </div>                                 
+                                <a href="Properties/2-bedroom-sleeps-8-unit-613.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Sunrise View Apartment</h5>
-          <p class="text-muted small mb-3">Osage Beach · Dock Nearby</p>
-          <strong class="text-muted">$280/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">2 Bedrooms</span>
-        </div>
-      </div>
-    </div>
+                    <!-- Placeholder: Duplicate & customize as you add more from repo -->                     
+                    <div class="property-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-dashed border-gray-300"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" class="property-image w-full h-full object-cover transition-transform duration-500 opacity-70"> 
+                            <div class="absolute top-4 left-4 bg-gray-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider"> 
+                                COMING SOON
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-500 mb-1">Cozy Lakeside Condo</h4> 
+                                    <p class="text-gray-400 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Camdenton · Pool Access</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">1 Bed</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">1 Bath</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 4</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gray-400"></i> 
+                                    <span class="font-bold text-gray-500">TBD</span> 
+                                    <span class="text-gray-400 text-sm">(Reviews Coming)</span> 
+                                </div>                                 
+                                <a href="#" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2 cursor-not-allowed"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <!-- Add more placeholders here (aim for ~20 in this section for smaller properties) -->
-    <!-- Repeat the placeholder div as needed -->
+                    <!-- Repeat placeholder for remaining ~10-15 in 1-2 bedrooms --> 
 
-  </div>
+                </div>                 
 
-  <!-- 3–4 Bedroom Properties -->
-  <h2 class="section-header">3–4 Bedroom Villas & Homes</h2>
-  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+                <!-- 3–4 Bedroom Villas & Homes -->                 
+                <h3 class="font-serif text-3xl font-bold mb-8 text-gray-900">3–4 Bedroom Villas & Homes</h3> 
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"> 
+                    <!-- Placeholder -->                     
+                    <div class="property-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-dashed border-gray-300"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" class="property-image w-full h-full object-cover transition-transform duration-500 opacity-70"> 
+                            <div class="absolute top-4 left-4 bg-gray-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider"> 
+                                COMING SOON
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-500 mb-1">Sunset Ridge Villa</h4> 
+                                    <p class="text-gray-400 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Lake Ozark · Private Dock</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">3 Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">3 Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 8</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gray-400"></i> 
+                                    <span class="font-bold text-gray-500">TBD</span> 
+                                    <span class="text-gray-400 text-sm">(Reviews Coming)</span> 
+                                </div>                                 
+                                <a href="#" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2 cursor-not-allowed"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-    <!-- Placeholder -->
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Sunset Ridge Villa</h5>
-          <p class="text-muted small mb-3">Lake Ozark · Private Dock</p>
-          <strong class="text-muted">$550/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">3 Bedrooms</span>
-        </div>
-      </div>
-    </div>
+                    <!-- Repeat placeholders for ~30 mid-size properties --> 
 
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Emerald Bay Home</h5>
-          <p class="text-muted small mb-3">Gravois Mills · Hot Tub</p>
-          <strong class="text-muted">$650/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">4 Bedrooms</span>
-        </div>
-      </div>
-    </div>
+                </div>                 
 
-    <!-- Add more placeholders here (aim for ~30 for mid-size) -->
-    <!-- Repeat as needed -->
+                <!-- 5+ Bedroom Luxury Estates -->                 
+                <h3 class="font-serif text-3xl font-bold mb-8 text-gray-900">5+ Bedroom Luxury Estates</h3> 
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"> 
+                    <!-- Placeholder -->                     
+                    <div class="property-card bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-dashed border-gray-300"> 
+                        <div class="relative h-72 overflow-hidden"> 
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" class="property-image w-full h-full object-cover transition-transform duration-500 opacity-70"> 
+                            <div class="absolute top-4 left-4 bg-gray-500 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider"> 
+                                COMING SOON
+                            </div>                             
+                        </div>                         
+                        <div class="p-6"> 
+                            <div class="flex justify-between items-start mb-2"> 
+                                <div> 
+                                    <h4 class="font-serif text-2xl font-bold text-gray-500 mb-1">Grand Pointe Estate</h4> 
+                                    <p class="text-gray-400 flex items-center space-x-1"> <i data-lucide="map-pin" class="h-4 w-4"></i> <span>Porto Cima · Golf & Pool</span> </p> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center space-x-4 my-4 py-4 border-y border-gray-100"> 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bed-double" class="h-5 w-5"></i> 
+                                    <span class="font-medium">5+ Beds</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="bath" class="h-5 w-5"></i> 
+                                    <span class="font-medium">5+ Baths</span> 
+                                </div>                                 
+                                <div class="flex items-center space-x-1 text-gray-400"> 
+                                    <i data-lucide="users" class="h-5 w-5"></i> 
+                                    <span class="font-medium">Sleeps 12+</span> 
+                                </div>                                 
+                            </div>                             
+                            <div class="flex items-center justify-between"> 
+                                <div class="flex items-center space-x-1"> 
+                                    <i data-lucide="star" class="h-5 w-5 text-gray-400"></i> 
+                                    <span class="font-bold text-gray-500">TBD</span> 
+                                    <span class="text-gray-400 text-sm">(Reviews Coming)</span> 
+                                </div>                                 
+                                <a href="#" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2 cursor-not-allowed"> <span>View Details</span> <i data-lucide="arrow-right" class="h-4 w-4"></i> </a> 
+                            </div>                             
+                        </div>                         
+                    </div>                     
 
-  </div>
+                    <!-- Repeat placeholders for ~15 larger estates --> 
 
-  <!-- 5+ Bedroom Luxury Estates -->
-  <h2 class="section-header">5+ Bedroom Luxury Estates</h2>
-  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-5">
+                </div>                 
 
-    <!-- Placeholder -->
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Grand Pointe Estate</h5>
-          <p class="text-muted small mb-3">Porto Cima · Golf & Pool</p>
-          <strong class="text-muted">$900/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">5+ Bedrooms</span>
-        </div>
-      </div>
-    </div>
+                <div class="text-center mt-12"> 
+                    <p class="text-gray-600 text-lg mb-6">65 total properties – hand-managed by Sheila, with more details being added regularly</p> 
+                    <a href="mailto:sobrentals@yahoo.com?subject=Property Inquiry" class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2"> 
+                        <span>Contact Sheila for Availability</span> 
+                        <i data-lucide="arrow-right" class="h-5 w-5"></i> 
+                    </a> 
+                </div>                 
+            </div>             
+        </section>         
 
-    <div class="col">
-      <div class="card h-100 bg-light border-dashed border-2 border-muted">
-        <div class="card-body text-center d-flex flex-column justify-content-center">
-          <h5 class="text-muted">Captain's Manor</h5>
-          <p class="text-muted small mb-3">Osage Beach · Main Channel</p>
-          <strong class="text-muted">$1,200/night</strong>
-          <span class="badge-bedroom bg-secondary mt-3 d-inline-block">6 Bedrooms</span>
-        </div>
-      </div>
-    </div>
+        <!-- Footer -->         
+        <footer class="bg-gray-900 text-gray-300 py-16"> 
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+                <div class="grid md:grid-cols-4 gap-12 mb-12"> 
+                    <div class="col-span-2"> 
+                        <div class="flex items-center space-x-3 mb-6"> 
+                            <img src="soblogo.jpg" alt="SOB Rentals Logo" class="h-12 w-auto object-contain"> 
+                        </div>                         
+                        <p class="text-gray-400 mb-6 max-w-md"> 
+                        Premier luxury vacation rentals at Lake of the Ozarks. Creating unforgettable memories with stunning properties and exceptional service.
+ </p> 
+                        <div class="flex space-x-4"> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all"> <i data-lucide="facebook" class="h-5 w-5"></i> </a> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all"> <i data-lucide="instagram" class="h-5 w-5"></i> </a> 
+                            <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold-400 hover:text-gray-900 transition-all"> <i data-lucide="twitter" class="h-5 w-5"></i> </a> 
+                        </div>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">Quick Links</h4> 
+                        <ul class="space-y-3"> 
+                            <li><a href="index.html#home" class="hover:text-gold-400 transition-colors">Home</a></li>                             
+                            <li><a href="properties.html" class="hover:text-gold-400 transition-colors">Properties</a></li>                             
+                            <li><a href="index.html#about" class="hover:text-gold-400 transition-colors">About Us</a></li>                             
+                            <li><a href="index.html#contact" class="hover:text-gold-400 transition-colors">Contact</a></li>                             
+                        </ul>                         
+                    </div>                     
+                    <div> 
+                        <h4 class="font-serif text-lg font-bold text-white mb-4">Legal</h4> 
+                        <ul class="space-y-3"> 
+                            <li><a href="Rental Agreement.pdf" target="_blank" class="hover:text-gold-400 transition-colors">Rental Agreement</a></li>                             
+                            <li><a href="#" class="hover:text-gold-400 transition-colors">Privacy Policy</a></li>                             
+                            <li><a href="#" class="hover:text-gold-400 transition-colors">Terms of Service</a></li>                             
+                            <li><a href="#" class="hover:text-gold-400 transition-colors">Cancellation Policy</a></li>                             
+                        </ul>                         
+                    </div>                     
+                </div>                 
+                <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"> 
+                    <p class="text-sm text-gray-500 mb-4 md:mb-0"> 
+                    © 2026 SOB Rentals · Proudly managing 65 premier vacation properties across the Lake of the Ozarks
+ </p> 
+                    <div class="flex items-center space-x-2 text-sm text-gray-500"> 
+                        <i data-lucide="phone" class="h-4 w-4"></i> 
+                        <a href="tel:+14243227837" class="hover:text-white transition-colors">(424) 322-7837</a> 
+                    </div>                     
+                </div>                 
+            </div>             
+        </footer>         
 
-    <!-- Add more placeholders here (aim for ~15 for larger estates) -->
-    <!-- Repeat to reach total ~65 cards -->
+        <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
 
-  </div>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+                navbar.classList.remove('bg-transparent', 'text-white');
+                navbar.classList.add('text-gray-800');
+            } else {
+                navbar.classList.remove('nav-scrolled', 'text-gray-800');
+                navbar.classList.add('bg-transparent', 'text-white');
+            }
+        });
 
-  <div class="text-center mt-5">
-    <p class="lead text-muted">65 total properties – hand-managed by Sheila, with more details added as available</p>
-    <a href="mailto:sobrentals@yahoo.com?subject=Property Inquiry" class="btn btn-dark btn-lg px-5 py-3 rounded-pill">
-      Contact Sheila for Availability
-    </a>
-  </div>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-</main>
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
 
-<footer class="bg-dark text-white text-center py-4 mt-5">
-  <div class="container">
-    <p>© 2026 SOB Rentals · Proudly hand-managing 65 premier Lake of the Ozarks vacation properties</p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>         
+    </body>     
 </html>
