@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>2 Bedroom (Sleeps 6) - Unit 918 | SOB Rentals - Lake of the Ozarks Luxury Rentals</title>         
         <meta name="description" content="Modern upscale condo with stunning main channel views at Lake of the Ozarks. Sleeps 6, fully remodeled, pool, dock access."> 
+        <!-- Preload hero image for faster initial render -->
+        <link rel="preload" href="2 Bedroom (Sleeps 6)- Unit 918/img001.jpeg" as="image">
         <!-- Tailwind CSS -->         
         <script src="https://cdn.tailwindcss.com"></script>         
         <!-- Lucide Icons -->         
@@ -83,6 +85,12 @@
       '2 Bedroom (Sleeps 6)- Unit 918/img039.jpeg',
       '2 Bedroom (Sleeps 6)- Unit 918/img040.jpeg'
     ];
+
+    // Optional fallback: If relative paths don't work yet, use raw GitHub URLs (uncomment if needed)
+    // const propertyImages = [
+    //   'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/2%20Bedroom%20(Sleeps%206)%20-%20Unit%20918/img001.jpeg',
+    //   // ... repeat for all 40 with %20 for spaces
+    // ];
   </script>         
         <!-- Navigation (same as index.html) -->         
         <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6"> 
@@ -117,7 +125,7 @@
         </div>         
         <!-- Hero Image -->         
         <section class="relative cursor-pointer" @click="modalOpen = true; currentSlide = 0"> 
-            <img :src="propertyImages[0]" alt="2 Bedroom (Sleeps 6) - Unit 918 - Main View" class="w-full h-screen object-cover"> 
+            <img :src="propertyImages[0]" alt="Unit 918 - Stunning main channel view from the condo" class="w-full h-screen object-cover" loading="eager"> 
             <div class="absolute inset-0 hero-gradient"></div>             
             <div class="absolute bottom-0 left-0 right-0 p-8 text-white"> 
                 <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">2 Bedroom (Sleeps 6) - Unit 918</h1> 
@@ -158,7 +166,13 @@
                             <h2 class="font-serif text-3xl font-bold mb-6">All 40 Photos</h2> 
                             <div class="flex overflow-x-auto gap-4 pb-4 scrollbar-thin"> 
                                 <template x-for="(img, index) in propertyImages" :key="index"> 
-                                    <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-40 w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0" alt="Property photo"> 
+                                    <img 
+                                      :src="img" 
+                                      @click="modalOpen = true; currentSlide = index" 
+                                      class="h-40 w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0" 
+                                      :alt="`Unit 918 - Photo ${index + 1} - Lake of the Ozarks condo`"
+                                      loading="lazy"
+                                    > 
                                 </template>                                 
                             </div>                             
                         </div>                         
@@ -281,7 +295,7 @@
                 <button @click="modalOpen = false" class="absolute top-8 right-8 text-white z-10"> 
                     <i data-lucide="x" class="h-12 w-12"></i> 
                 </button>                 
-                <img :src="propertyImages[currentSlide]" alt="Property photo" class="w-full h-full object-contain"> 
+                <img :src="propertyImages[currentSlide]" :alt="`Unit 918 - Full view ${currentSlide + 1}`" class="w-full h-full object-contain"> 
                 <!-- Prev/Next Controls -->                 
                 <button @click="currentSlide = (currentSlide - 1 + propertyImages.length) % propertyImages.length" class="absolute left-8 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-4"> 
                     <i data-lucide="chevron-left" class="h-12 w-12"></i> 
