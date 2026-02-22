@@ -45,18 +45,17 @@
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
     .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
 
-    /* Lake blue scroll effect */
-    .nav-scrolled {
-      background-color: #4a90e2 !important; /* Lake blue */
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-      color: white !important; /* Keep text white for contrast */
+    /* Always solid lake blue navbar */
+    #navbar {
+      background-color: #4a90e2 !important; /* lake blue */
+      color: white !important;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
     }
-    .nav-scrolled a, .nav-scrolled span {
+    #navbar a, #navbar span, #navbar button i {
       color: white !important;
     }
-    .nav-scrolled button i {
-      color: white !important; /* Menu icon */
+    #navbar .text-white {
+      color: white !important;
     }
   </style>         
     </head>     
@@ -106,8 +105,8 @@
       'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/4%20Bedroom%20(Sleeps%2012)%20-%20Unit%201017/img040.jpeg'
     ];
   </script>         
-        <!-- Navigation -->         
-        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent text-white py-6"> 
+        <!-- Navigation - Always solid lake blue -->
+        <nav id="navbar" class="fixed w-full z-50 bg-[#4a90e2] text-white py-6 shadow-md"> 
             <div class="max-w-7xl mx-auto px-6 lg:px-8"> 
                 <div class="flex justify-between items-center"> 
                     <a href="../index.html" class="flex items-center space-x-3">  
@@ -115,24 +114,24 @@
                         <span class="text-xl font-serif font-bold">SOB RENTALS</span>  
                     </a> 
                     <div class="hidden lg:flex items-center space-x-10"> 
-                        <a href="../index.html#home" class="hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a> 
-                        <a href="../properties.html" class="hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a> 
-                        <a href="../index.html#amenities" class="hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a> 
-                        <a href="../index.html#about" class="hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a> 
-                        <a href="../index.html#contact" class="hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a> 
+                        <a href="../index.html#home" class="hover:text-gray-200 transition-colors font-medium text-[15px]">HOME</a> 
+                        <a href="../properties.html" class="hover:text-gray-200 transition-colors font-medium text-[15px]">PROPERTIES</a> 
+                        <a href="../index.html#amenities" class="hover:text-gray-200 transition-colors font-medium text-[15px]">AMENITIES</a> 
+                        <a href="../index.html#about" class="hover:text-gray-200 transition-colors font-medium text-[15px]">ABOUT</a> 
+                        <a href="../index.html#contact" class="hover:text-gray-200 transition-colors font-medium text-[15px]">CONTACT</a> 
                     </div>                     
                     <button id="mobile-menu-btn" class="lg:hidden p-2"> 
                         <i data-lucide="menu" class="h-7 w-7"></i> 
                     </button>                     
                 </div>                 
             </div>             
-            <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl"> 
+            <div id="mobile-menu" class="hidden lg:hidden bg-[#4a90e2] text-white absolute w-full top-full left-0 shadow-xl"> 
                 <div class="px-6 py-6 space-y-4"> 
-                    <a href="../index.html#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a> 
-                    <a href="../properties.html" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a> 
-                    <a href="../index.html#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a> 
-                    <a href="../index.html#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a> 
-                    <a href="../index.html#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a> 
+                    <a href="../index.html#home" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">HOME</a> 
+                    <a href="../properties.html" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">PROPERTIES</a> 
+                    <a href="../index.html#amenities" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">AMENITIES</a> 
+                    <a href="../index.html#about" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">ABOUT</a> 
+                    <a href="../index.html#contact" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">CONTACT</a> 
                 </div>                 
             </div>             
         </nav>         
@@ -331,17 +330,6 @@
         </footer>         
         <script>
     lucide.createIcons();
-
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        navbar.classList.add('nav-scrolled');
-        navbar.classList.remove('bg-transparent', 'text-white');
-      } else {
-        navbar.classList.remove('nav-scrolled');
-        navbar.classList.add('bg-transparent', 'text-white');
-      }
-    });
 
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
