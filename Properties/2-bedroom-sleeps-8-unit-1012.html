@@ -45,6 +45,9 @@
     .btn-primary { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); transition: all 0.3s ease; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
     .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    .mobile-carousel { -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
+    .mobile-carousel > * { scroll-snap-align: center; scroll-snap-stop: always; }
   </style>         
     </head>     
     <body class="font-sans text-gray-700 antialiased bg-white" x-data="{ modalOpen: false, currentSlide: 0 }"> 
@@ -132,25 +135,40 @@
                 </div>
             </div>
         </nav>         
-        <!-- Back Link -->         
-        <div class="container mx-auto px-6 pt-32"> 
+        <!-- Back Link -->
+        <div class="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32">
             <a href="../properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">  
                 <i data-lucide="arrow-left" class="h-4 w-4"></i>  
                 <span>Back to All Properties</span>  
             </a> 
         </div>         
-        <!-- Hero Image -->         
-        <section class="relative cursor-pointer" @click="modalOpen = true; currentSlide = 0"> 
-            <img :src="propertyImages[0]" alt="Unit 1012 - Stunning main channel lakefront view" class="w-full h-screen object-cover"> 
-            <div class="absolute inset-0 hero-gradient"></div>             
-            <div class="absolute bottom-0 left-0 right-0 p-8 text-white"> 
-                <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">2 Bedroom (Sleeps 8) - Unit 1012</h1> 
-                <p class="text-xl opacity-90">Osage Beach · Lakefront</p> 
-            </div>             
+        <!-- Hero Image: Mobile = horizontal carousel, Desktop = single hero -->
+        <section class="relative">
+            <div class="md:hidden relative">
+                <div class="flex overflow-x-auto mobile-carousel snap-x snap-mandatory h-[65vh] min-h-[300px] max-h-[500px] touch-pan-x" style="-webkit-overflow-scrolling: touch;">
+                    <template x-for="(img, index) in propertyImages" :key="index">
+                        <div class="flex-shrink-0 w-full snap-center" @click="modalOpen = true; currentSlide = index">
+                            <img :src="img" :alt="'Property photo ' + (index + 1)" class="w-full h-full object-cover">
+                        </div>
+                    </template>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-12 pb-4 px-6 pointer-events-none">
+                    <h1 class="font-serif text-xl font-bold text-white mb-0.5">2 Bedroom (Sleeps 8) - Unit 1012</h1>
+                    <p class="text-white/90 text-xs">Osage Beach · Lakefront · Swipe for more photos</p>
+                </div>
+            </div>
+            <div class="hidden md:block relative cursor-pointer" @click="modalOpen = true; currentSlide = 0">
+                <img :src="propertyImages[0]" alt="Unit 1012 - Stunning main channel lakefront view" class="w-full h-screen object-cover">
+                <div class="absolute inset-0 hero-gradient"></div>
+                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">2 Bedroom (Sleeps 8) - Unit 1012</h1>
+                    <p class="text-xl opacity-90">Osage Beach · Lakefront</p>
+                </div>
+            </div>
         </section>         
-        <!-- Quick Info Bar -->         
-        <section class="bg-white border-b"> 
-            <div class="container mx-auto px-6 py-8"> 
+        <!-- Quick Info Bar -->
+        <section class="bg-white border-b">
+            <div class="container mx-auto px-4 sm:px-6 py-6 sm:py-8"> 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"> 
                     <div> 
                         <i data-lucide="users" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i> 
@@ -171,26 +189,20 @@
                 </div>                 
             </div>             
         </section>         
-        <!-- Main Content + Sticky Booking -->         
-        <section class="py-16 bg-gray-50"> 
-            <div class="container mx-auto px-6"> 
+        <!-- Main Content + Sticky Booking -->
+        <section class="py-10 sm:py-16 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6"> 
                 <div class="grid lg:grid-cols-3 gap-12"> 
                     <!-- Left Column - Details -->                     
                     <div class="lg:col-span-2 space-y-16"> 
-                        <!-- Photo Gallery Thumbnails -->                         
-                        <div> 
-                            <h2 class="font-serif text-3xl font-bold mb-6">All 40 Photos</h2> 
-                            <div class="flex overflow-x-auto gap-4 pb-4 scrollbar-thin"> 
-                                <template x-for="(img, index) in propertyImages" :key="index"> 
-                                    <img 
-                                      :src="img" 
-                                      @click="modalOpen = true; currentSlide = index" 
-                                      class="h-40 w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0" 
-                                      alt="Unit 1012 property photo"
-                                      loading="lazy"
-                                    > 
-                                </template>                                 
-                            </div>                             
+                        <!-- Photo Gallery -->
+                        <div>
+                            <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 40 Photos</h2>
+                            <div class="flex overflow-x-auto gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
+                                <template x-for="(img, index) in propertyImages" :key="index">
+                                    <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Property photo" loading="lazy">
+                                </template>
+                            </div>
                         </div>                         
                         <!-- About -->                         
                         <div> 
