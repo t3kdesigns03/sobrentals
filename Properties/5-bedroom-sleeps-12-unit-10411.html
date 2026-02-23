@@ -105,35 +105,43 @@
       'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/4%20Bedroom%20(Sleeps%2012)%20-%20Unit%20941/img040.jpeg'
     ];
   </script>         
-        <!-- Navigation - Always solid lake blue -->
-        <nav id="navbar" class="fixed w-full z-50 bg-[#4a90e2] text-white py-6 shadow-md"> 
-            <div class="max-w-7xl mx-auto px-6 lg:px-8"> 
-                <div class="flex justify-between items-center"> 
-                    <a href="../index.html" class="flex items-center space-x-3">  
-                        <img src="../soblogo.jpg" alt="SOB Rentals Logo" class="h-14 w-auto object-contain">  
-                        <span class="text-xl font-serif font-bold">SOB RENTALS</span>  
-                    </a> 
-                    <div class="hidden lg:flex items-center space-x-10"> 
-                        <a href="../index.html#home" class="hover:text-gray-200 transition-colors font-medium text-[15px]">HOME</a> 
-                        <a href="../properties.html" class="hover:text-gray-200 transition-colors font-medium text-[15px]">PROPERTIES</a> 
-                        <a href="../index.html#amenities" class="hover:text-gray-200 transition-colors font-medium text-[15px]">AMENITIES</a> 
-                        <a href="../index.html#about" class="hover:text-gray-200 transition-colors font-medium text-[15px]">ABOUT</a> 
-                        <a href="../index.html#contact" class="hover:text-gray-200 transition-colors font-medium text-[15px]">CONTACT</a> 
-                    </div>                     
-                    <button id="mobile-menu-btn" class="lg:hidden p-2"> 
-                        <i data-lucide="menu" class="h-7 w-7"></i> 
-                    </button>                     
-                </div>                 
-            </div>             
-            <div id="mobile-menu" class="hidden lg:hidden bg-[#4a90e2] text-white absolute w-full top-full left-0 shadow-xl"> 
-                <div class="px-6 py-6 space-y-4"> 
-                    <a href="../index.html#home" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">HOME</a> 
-                    <a href="../properties.html" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">PROPERTIES</a> 
-                    <a href="../index.html#amenities" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">AMENITIES</a> 
-                    <a href="../index.html#about" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">ABOUT</a> 
-                    <a href="../index.html#contact" class="block py-3 hover:text-gray-200 font-medium border-b border-gray-200">CONTACT</a> 
-                </div>                 
-            </div>             
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-gradient-to-r from-sky-900 via-sky-800 to-sky-700 text-white py-6 shadow-md">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="flex justify-between items-center">
+                    <!-- Header Contact Info -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 text-sm -ml-4 lg:-ml-6">
+                        <a href="mailto:SOBRentals@yahoo.com" class="mb-1 sm:mb-0">
+                            📧 SOBRentals@yahoo.com
+                        </a>
+                        <a href="tel:+16183638065">
+                            📞 618-363-8065
+                        </a>
+                    </div>
+                    <!-- Desktop Menu -->
+                    <div class="hidden lg:flex items-center space-x-10">
+                        <a href="../index.html#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a>
+                        <a href="../properties.html" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a>
+                        <a href="../index.html#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a>
+                        <a href="../index.html#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a>
+                        <a href="../index.html#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="lg:hidden p-2">
+                        <i data-lucide="menu" class="h-7 w-7 nav-link"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl">
+                <div class="px-6 py-6 space-y-4">
+                    <a href="../index.html#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a>
+                    <a href="../properties.html" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a>
+                    <a href="../index.html#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a>
+                    <a href="../index.html#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a>
+                    <a href="../index.html#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a>
+                </div>
+            </div>
         </nav>         
         <!-- Back Link -->         
         <div class="container mx-auto px-6 pt-32"> 
