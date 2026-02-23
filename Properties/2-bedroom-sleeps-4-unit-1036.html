@@ -9,6 +9,8 @@
         <script src="https://cdn.tailwindcss.com"></script>         
         <!-- Lucide Icons -->         
         <script src="https://unpkg.com/lucide@latest"></script>         
+        <!-- Shared property page behavior (modal swipe, scroll lock) -->
+        <script defer src="../property-page.js"></script>
         <!-- Alpine.js for modal/carousel -->         
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>         
         <!-- Google Fonts -->         
@@ -44,14 +46,17 @@
           .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
           .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
           html, body { overflow-x: hidden; max-width: 100vw; }
+          * { min-width: 0; }
           .mobile-carousel { -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
           .mobile-carousel > * { scroll-snap-align: center; scroll-snap-stop: always; }
+          .no-scrollbar::-webkit-scrollbar { display: none; }
+          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         </style>         
     </head>     
-    <body class="font-sans text-gray-700 antialiased bg-white" x-data="{ modalOpen: false, currentSlide: 0 }"> 
+    <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()"> 
         <!-- Property Images Array -->         
         <script>
-    const propertyImages = [
+    window.propertyImages = [
       '2%20Bedroom%20(Sleeps%204)%20-%20Unit%201036/img014.jpeg',
       '2%20Bedroom%20(Sleeps%204)%20-%20Unit%201036/img001.jpeg',
       '2%20Bedroom%20(Sleeps%204)%20-%20Unit%201036/img002.jpeg',
@@ -139,7 +144,7 @@
         <!-- Hero Image: Mobile = horizontal carousel, Desktop = single hero -->
         <section class="relative">
             <div class="md:hidden relative">
-                <div class="flex overflow-x-auto mobile-carousel snap-x snap-mandatory h-[65vh] min-h-[300px] max-h-[500px] touch-pan-x" style="-webkit-overflow-scrolling: touch;">
+                <div class="flex overflow-x-auto no-scrollbar mobile-carousel snap-x snap-mandatory h-[42vh] min-h-[240px] max-h-[420px] touch-pan-x" style="-webkit-overflow-scrolling: touch;">
                     <template x-for="(img, index) in propertyImages" :key="index">
                         <div class="flex-shrink-0 w-full snap-center" @click="modalOpen = true; currentSlide = index">
                             <img :src="img" :alt="'Property photo ' + (index + 1)" class="w-full h-full object-cover">
@@ -192,7 +197,7 @@
                         <!-- Photo Gallery -->
                         <div>
                             <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 40 Photos</h2>
-                            <div class="flex overflow-x-auto gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
+                            <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
                                 <template x-for="(img, index) in propertyImages" :key="index">
                                     <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Property photo">
                                 </template>
@@ -312,8 +317,8 @@
             </div>             
         </section>         
         <!-- Full-screen Modal Carousel -->         
-        <div x-show="modalOpen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" @click="modalOpen = false" @keydown.escape.window="modalOpen = false"> 
-            <div class="relative max-w-7xl w-full h-full" @click.stop> 
+        <div x-show="modalOpen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" @click="modalOpen = false" @keydown.escape.window="modalOpen = false" @keydown.arrow-left.window="if (modalOpen) prev()" @keydown.arrow-right.window="if (modalOpen) next()"> 
+            <div class="relative max-w-7xl w-full h-full select-none" @click.stop @touchstart.passive="onTouchStart($event)" @touchmove.passive="onTouchMove($event)" @touchend="onTouchEnd()"> 
                 <button @click="modalOpen = false" class="absolute top-8 right-8 text-white z-10"> 
                     <i data-lucide="x" class="h-12 w-12"></i> 
                 </button>                 
