@@ -151,7 +151,7 @@
                     Discover our handpicked selection of our Lake of the Ozarks vacation homes, each offering stunning views and world-class amenities.
  </p> 
                 </div>                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> 
+                <div id="featured-properties-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"> 
                     <!-- Property 1: Ledges 1037 -->                     
                     <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"> 
                         <div class="relative h-72 overflow-hidden"> 
@@ -639,6 +639,35 @@
                 }
             });
         });
+
+        // Rotating featured properties (home page)
+        const featuredGrid = document.getElementById('featured-properties-grid');
+        if (featuredGrid) {
+            const cards = Array.from(featuredGrid.children);
+            const visibleCount = 3;
+
+            if (cards.length > visibleCount) {
+                // Initially show only the first set
+                cards.forEach((card, index) => {
+                    card.style.display = index < visibleCount ? '' : 'none';
+                });
+
+                let startIndex = 0;
+
+                setInterval(() => {
+                    cards.forEach(card => {
+                        card.style.display = 'none';
+                    });
+
+                    for (let i = 0; i < visibleCount; i++) {
+                        const idx = (startIndex + i) % cards.length;
+                        cards[idx].style.display = '';
+                    }
+
+                    startIndex = (startIndex + visibleCount) % cards.length;
+                }, 15000); // rotate every 15 seconds
+            }
+        }
 
     </script>         
     </body>     
