@@ -1156,7 +1156,7 @@
             });
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links (prevents hash from appearing in URL on click)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1169,6 +1169,11 @@
                 }
             });
         });
+
+        // Remove hash from URL when page was opened with one
+        if (window.location.hash) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
     </script>         
     </body>     
 </html>

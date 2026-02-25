@@ -626,7 +626,7 @@
             });
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links (prevents hash from appearing in URL on click)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -639,6 +639,11 @@
                 }
             });
         });
+
+        // Remove hash from URL when page was opened with one (e.g. index.html#contact → index.html)
+        if (window.location.hash) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
 
         // Rotating featured properties (home page)
         const featuredGrid = document.getElementById('featured-properties-grid');
