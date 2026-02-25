@@ -1,0 +1,27 @@
+{
+  "name": "sobrentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "property-page.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t3kdesigns03/sobrentals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/t3kdesigns03/sobrentals/issues"
+  },
+  "homepage": "https://github.com/t3kdesigns03/sobrentals#readme",
+  "dependencies": {
+    "astro": "^5.17.3"
+  }
+}
