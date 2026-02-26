@@ -1,0 +1,3 @@
+# Astro / NPM build cache (not used for static HTML live site)
+.astro/
+node_modules/
