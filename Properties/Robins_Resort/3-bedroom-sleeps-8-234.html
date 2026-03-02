@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robins Resort · 3 Bedroom Condo #234 (Sleeps 8) | SOB Rentals</title>
+    <meta name="description" content="Robins Resort 3 bedroom condo #234 at Lake of the Ozarks. Sleeps 8 with resort access, lake views, and relaxed lake-vacation vibes.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script defer src="../../property-page.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { primary: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }, accent: { 400: '#f97316', 500: '#ea580c', 600: '#c2410c' } } } } }
+    </script>
+    <style>
+    .hero-gradient { background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%); }
+    .btn-primary { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
+    html, body { overflow-x: hidden; max-width: 100vw; }
+    * { min-width: 0; }
+    .mobile-carousel { -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory; }
+    .mobile-carousel > * { scroll-snap-align: center; scroll-snap-stop: always; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()">
+    <script>
+    window.propertyImages = [
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/96/e7/e8/the-newer-condo-units.jpg",
+      "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/c9/49/99/if-you-re-on-the-lake.jpg",
+      "https://placeholder.com/800x600?text=Resort+Image+3",
+      "https://placeholder.com/800x600?text=Resort+Image+4",
+      "https://placeholder.com/800x600?text=Resort+Image+5"
+    ];
+    </script>
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-gradient-to-r from-sky-900 via-sky-800 to-sky-700 text-white py-6 shadow-md">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-6 text-sm -ml-4 lg:-ml-6">
+                    <a href="mailto:SOBRentals@yahoo.com" class="mb-1 sm:mb-0">📧 SOBRentals@yahoo.com</a>
+                    <a href="tel:+16183638065">📞 618-363-8065</a>
+                </div>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="../../index.html#home" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">HOME</a>
+                    <a href="../../properties.html" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">PROPERTIES</a>
+                    <a href="../../index.html#amenities" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">AMENITIES</a>
+                    <a href="../../index.html#about" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">ABOUT</a>
+                    <a href="../../index.html#contact" class="nav-link hover:text-accent-400 transition-colors font-medium text-[15px]">CONTACT</a>
+                </div>
+                <button id="mobile-menu-btn" class="lg:hidden p-2"><i data-lucide="menu" class="h-7 w-7 nav-link"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white text-gray-800 absolute w-full top-full left-0 shadow-xl">
+            <div class="px-6 py-6 space-y-4">
+                <a href="../../index.html#home" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">HOME</a>
+                <a href="../../properties.html" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">PROPERTIES</a>
+                <a href="../../index.html#amenities" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">AMENITIES</a>
+                <a href="../../index.html#about" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">ABOUT</a>
+                <a href="../../index.html#contact" class="block py-3 hover:text-accent-500 font-medium border-b border-gray-100">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32">
+        <a href="../../properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">
+            <i data-lucide="arrow-left" class="h-4 w-4"></i>
+            <span>Back to All Properties</span>
+        </a>
+    </div>
+    <section class="relative">
+        <div class="md:hidden relative">
+            <div class="flex overflow-x-auto no-scrollbar mobile-carousel snap-x snap-mandatory h-[42vh] min-h-[240px] max-h-[420px] touch-pan-x" style="-webkit-overflow-scrolling: touch;">
+                <template x-for="(img, index) in propertyImages" :key="index">
+                    <div class="flex-shrink-0 w-full snap-center" @click="modalOpen = true; currentSlide = index">
+                        <img :src="img" :alt="'Robins Resort 234 condo photo ' + (index + 1)" class="w-full h-full object-cover">
+                    </div>
+                </template>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-12 pb-4 px-6 pointer-events-none">
+                <h1 class="font-serif text-xl font-bold text-white mb-0.5">Robins Resort · 3 Bedroom Condo #234</h1>
+                <p class="text-white/90 text-xs">Lake of the Ozarks · Robins Resort · Swipe for more photos</p>
+            </div>
+        </div>
+        <div class="hidden md:block relative cursor-pointer" @click="modalOpen = true; currentSlide = 0">
+            <img :src="propertyImages[0]" alt="Robins Resort 234 Condo" class="w-full h-screen object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">Robins Resort · 3 Bedroom Condo #234</h1>
+                <p class="text-xl opacity-90">Lake of the Ozarks · Robins Resort · Sleeps 8</p>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white border-b">
+        <div class="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><i data-lucide="users" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">Sleeps 8</p></div>
+                <div><i data-lucide="bed-double" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">3 Bedrooms</p></div>
+                <div><i data-lucide="bath" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">2 Bathrooms</p></div>
+                <div><i data-lucide="star" class="h-8 w-8 mx-auto text-accent-500 mb-2 fill-current"></i><p class="font-semibold">4.9 ★ (50 reviews)</p></div>
+            </div>
+        </div>
+    </section>
+    <section class="py-10 sm:py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2 space-y-16">
+                    <div>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
+                        <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
+                            <template x-for="(img, index) in propertyImages" :key="index">
+                                <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Robins Resort 234 condo photo" loading="lazy">
+                            </template>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-3xl font-bold mb-6">About this space</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-4">Robins Resort #234 is a 3 bedroom condo at Lake of the Ozarks that sleeps up to 8 guests. Enjoy being right at the resort with pool access, docks, and easy lake days built in.</p>
+                        <p class="text-lg text-gray-600 leading-relaxed">SOB Rentals – contact Sheila for availability and booking.</p>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-3xl font-bold mb-6">What this place offers</h2>
+                        <ul class="grid md:grid-cols-2 gap-4">
+                            <li class="flex items-start space-x-3"><i data-lucide="wifi" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Free WiFi</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="tv" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>TV</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="utensils" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Fully equipped kitchen</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="washing-machine" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Washer & dryer</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="parking-circle" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Resort parking</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-3xl font-bold mb-6">House rules</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3"><i data-lucide="clock" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Check-in after 4:00 PM</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="clock" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Checkout: 10:00 AM</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="ban" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>No smoking</span></li>
+                            <li class="flex items-start space-x-3"><i data-lucide="users" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Max guests: 8</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="font-serif text-3xl font-bold mb-6">Where you'll be</h2>
+                        <p class="text-lg text-gray-600">Robins Resort · Lake of the Ozarks. Lakeside resort with condos close to the docks, pool, and everything that makes a lake trip easy and fun.</p>
+                    </div>
+                </div>
+                <div class="lg:sticky top-24 self-start">
+                    <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
+                        <div class="text-center">
+                            <p class="text-green-600 font-bold text-xl mb-6">Call for Availability</p>
+                            <a href="mailto:sobrentals@yahoo.com?subject=Book%20Robins%20Resort%20234%20Condo" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg inline-flex items-center justify-center space-x-2">
+                                <span>Contact to Book</span>
+                                <i data-lucide="arrow-right" class="h-5 w-5"></i>
+                            </a>
+                            <p class="mt-4 text-sm text-gray-500">You won't be charged yet</p>
+                            <a href="https://www.vrbo.com/4748598" class="mt-4 block text-accent-500 hover:underline font-medium">Or book through VRBO</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div x-show="modalOpen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" @click="modalOpen = false" @keydown.escape.window="modalOpen = false" @keydown.arrow-left.window="if (modalOpen) prev()" @keydown.arrow-right.window="if (modalOpen) next()">
+        <div class="relative max-w-7xl w-full h-full select-none" @click.stop @touchstart.passive="onTouchStart($event)" @touchmove.passive="onTouchMove($event)" @touchend="onTouchEnd()">
+            <button @click="modalOpen = false" class="absolute top-8 right-8 text-white z-10"><i data-lucide="x" class="h-12 w-12"></i></button>
+            <img :src="propertyImages[currentSlide]" alt="Robins Resort 234 condo photo" class="w-full h-full object-contain">
+            <button @click="currentSlide = (currentSlide - 1 + propertyImages.length) % propertyImages.length" class="absolute left-8 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-4"><i data-lucide="chevron-left" class="h-12 w-12"></i></button>
+            <button @click="currentSlide = (currentSlide + 1) % propertyImages.length" class="absolute right-8 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-4"><i data-lucide="chevron-right" class="h-12 w-12"></i></button>
+        </div>
+    </div>
+    <footer class="bg-gray-900 text-gray-300 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-12">
+                <div class="col-span-2">
+                    <div class="flex items-center space-x-3 mb-6"><img src="../../soblogo.jpg" alt="SOB Rentals Logo" class="h-12 w-auto object-contain"></div>
+                    <p class="text-gray-400 mb-6 max-w-md">SOB Rentals at Lake of the Ozarks. Creating unforgettable memories with stunning properties and exceptional service.</p>
+                </div>
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="../../index.html#home" class="hover:text-accent-400 transition-colors">Home</a></li>
+                        <li><a href="../../properties.html" class="hover:text-accent-400 transition-colors">Properties</a></li>
+                        <li><a href="../../index.html#about" class="hover:text-accent-400 transition-colors">About Us</a></li>
+                        <li><a href="../../index.html#contact" class="hover:text-accent-400 transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500 mb-4 md:mb-0">© 2026 SOB Rentals · Proudly managing premier vacation properties across the Lake of the Ozarks</p>
+                <div class="flex items-center space-x-2 text-sm text-gray-500"><i data-lucide="phone" class="h-4 w-4"></i><a href="tel:+16183638065" class="hover:text-white transition-colors">(618) 363-8065</a></div>
+            </div>
+        </div>
+    </footer>
+    <script>
+    lucide.createIcons();
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) { navbar.classList.add('nav-scrolled', 'text-gray-800'); navbar.classList.remove('bg-transparent', 'text-white'); }
+      else { navbar.classList.remove('nav-scrolled', 'text-gray-800'); navbar.classList.add('bg-transparent', 'text-white'); }
+    });
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
+    </script>
+</body>
+</html>
+
