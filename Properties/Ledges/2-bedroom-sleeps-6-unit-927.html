@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parkside Place · 2 Bedroom Condo B101 (Sleeps 6) | SOB Rentals</title>
-    <meta name="description" content="Parkside Place 2 bedroom condo B101 at Lake of the Ozarks. Sleeps 6 with open living area, full kitchen, and lake-area convenience.">
+    <title>Ledges · 2 Bedroom Condo 927 (Sleeps 6) – Coming Soon | SOB Rentals</title>
+    <meta name="description" content="Ledges Unit 927 at Lake of the Ozarks – Coming Soon. 2BR condo, sleeps 6, from $300/night. Contact SOB Rentals for availability.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="../../property-page.js"></script>
@@ -65,9 +65,9 @@
         </div>
     </nav>
     <div class="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32">
-        <a href="../../properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">
+        <a href="./properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">
             <i data-lucide="arrow-left" class="h-4 w-4"></i>
-            <span>Back to All Properties</span>
+            <span>Back to Ledges</span>
         </a>
     </div>
     <section class="relative">
@@ -75,21 +75,21 @@
             <div class="flex overflow-x-auto no-scrollbar mobile-carousel snap-x snap-mandatory h-[42vh] min-h-[240px] max-h-[420px] touch-pan-x" style="-webkit-overflow-scrolling: touch;">
                 <template x-for="(img, index) in propertyImages" :key="index">
                     <div class="flex-shrink-0 w-full snap-center" @click="modalOpen = true; currentSlide = index">
-                        <img :src="img" :alt="'Parkside Place B101 condo photo ' + (index + 1)" class="w-full h-full object-cover">
+                        <img :src="img" :alt="'Ledges 927 placeholder ' + (index + 1)" class="w-full h-full object-cover">
                     </div>
                 </template>
             </div>
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent pt-12 pb-4 px-6 pointer-events-none">
-                <h1 class="font-serif text-xl font-bold text-white mb-0.5">Parkside Place · 2 Bedroom Condo B101</h1>
-                <p class="text-white/90 text-xs">Lake of the Ozarks · Parkside Place Condos · Swipe for more photos</p>
+                <h1 class="font-serif text-xl font-bold text-white mb-0.5">Ledges · 2 Bedroom Condo 927</h1>
+                <p class="text-white/90 text-xs">Coming Soon · Sleeps 6 · From $300/night</p>
             </div>
         </div>
         <div class="hidden md:block relative cursor-pointer" @click="modalOpen = true; currentSlide = 0">
-            <img :src="propertyImages[0]" alt="Parkside Place B101 Condo" class="w-full h-screen object-cover">
+            <img :src="propertyImages[0]" alt="Ledges 927 Coming Soon" class="w-full h-screen object-cover">
             <div class="absolute inset-0 hero-gradient"></div>
             <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">Parkside Place · 2 Bedroom Condo B101</h1>
-                <p class="text-xl opacity-90">Lake of the Ozarks · Parkside Place Condos · Sleeps 6</p>
+                <h1 class="font-serif text-5xl md:text-6xl font-bold mb-2">Ledges · 2 Bedroom Condo 927</h1>
+                <p class="text-xl opacity-90">Coming Soon: 2BR Condo, Sleeps 6, from $300/night</p>
             </div>
         </div>
     </section>
@@ -98,8 +98,8 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div><i data-lucide="users" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">Sleeps 6</p></div>
                 <div><i data-lucide="bed-double" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">2 Bedrooms</p></div>
-                <div><i data-lucide="bath" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">2 Bathrooms</p></div>
-                <div><i data-lucide="star" class="h-8 w-8 mx-auto text-accent-500 mb-2 fill-current"></i><p class="font-semibold">4.9 ★ (50 reviews)</p></div>
+                <div><i data-lucide="bath" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">2 Baths</p></div>
+                <div><i data-lucide="calendar" class="h-8 w-8 mx-auto text-accent-500 mb-2"></i><p class="font-semibold">Available Soon</p></div>
             </div>
         </div>
     </section>
@@ -109,51 +109,27 @@
                 <div class="lg:col-span-2 space-y-16">
                     <div>
                         <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
-                        <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-4">
                             <template x-for="(img, index) in propertyImages" :key="index">
-                                <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Parkside Place B101 condo photo" loading="lazy">
+                                <img :src="img" @click="modalOpen = true; currentSlide = index" class="w-full h-32 sm:h-40 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity" alt="Ledges 927" loading="lazy">
                             </template>
                         </div>
                     </div>
                     <div>
-                        <h2 class="font-serif text-3xl font-bold mb-6">About this space</h2>
-                        <p class="text-lg text-gray-600 leading-relaxed mb-4">Parkside Place B101 is a 2 bedroom condo at Lake of the Ozarks that sleeps up to 6 guests. It offers a comfortable living area, full kitchen, and easy access to the lake and surrounding attractions.</p>
-                        <p class="text-lg text-gray-600 leading-relaxed">SOB Rentals – contact Sheila for availability and booking.</p>
-                    </div>
-                    <div>
-                        <h2 class="font-serif text-3xl font-bold mb-6">What this place offers</h2>
-                        <ul class="grid md:grid-cols-2 gap-4">
-                            <li class="flex items-start space-x-3"><i data-lucide="wifi" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Free WiFi</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="tv" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>TV</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="utensils" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Fully equipped kitchen</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="washing-machine" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Washer & dryer</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="parking-circle" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Free parking</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="font-serif text-3xl font-bold mb-6">House rules</h2>
-                        <ul class="space-y-4">
-                            <li class="flex items-start space-x-3"><i data-lucide="clock" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Check-in after 4:00 PM</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="clock" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Checkout: 10:00 AM</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="ban" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>No smoking</span></li>
-                            <li class="flex items-start space-x-3"><i data-lucide="users" class="h-5 w-5 text-accent-500 mt-0.5"></i><span>Max guests: 6</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h2 class="font-serif text-3xl font-bold mb-6">Where you'll be</h2>
-                        <p class="text-lg text-gray-600">Parkside Place Condos · Lake of the Ozarks. Conveniently located for enjoying the lake, nearby parks, and Osage Beach amenities.</p>
+                        <h2 class="font-serif text-3xl font-bold mb-6">Coming Soon</h2>
+                        <p class="text-lg text-gray-600 leading-relaxed mb-4">Ledges Unit 927 will be a 2 bedroom condo at Lake of the Ozarks sleeping 6, with an estimated rate from $300/night. Full details and real photos will be added when the unit is ready for booking.</p>
+                        <p class="text-lg text-gray-600 leading-relaxed">SOB Rentals – contact Sheila to be notified when 927 is available.</p>
                     </div>
                 </div>
                 <div class="lg:sticky top-24 self-start">
                     <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
                         <div class="text-center">
-                            <p class="text-green-600 font-bold text-xl mb-6">Call for Availability</p>
-                            <a href="mailto:sobrentals@yahoo.com?subject=Book%20Parkside%20Place%20B101%20Condo" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg inline-flex items-center justify-center space-x-2">
-                                <span>Contact to Book</span>
+                            <p class="text-amber-600 font-bold text-xl mb-6">Available Soon</p>
+                            <a href="mailto:sobrentals@yahoo.com?subject=Ledges%20927%20Notification" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg inline-flex items-center justify-center space-x-2">
+                                <span>Get Notified When Available</span>
                                 <i data-lucide="arrow-right" class="h-5 w-5"></i>
                             </a>
-                            <p class="mt-4 text-sm text-gray-500">You won't be charged yet</p>
-                            <a href="https://www.vrbo.com/3406133" class="mt-4 block text-accent-500 hover:underline font-medium">Or book through VRBO</a>
+                            <p class="mt-4 text-sm text-gray-500">2BR · Sleeps 6 · From $300/night</p>
                         </div>
                     </div>
                 </div>
@@ -163,7 +139,7 @@
     <div x-show="modalOpen" class="fixed inset-0 bg-black z-50 flex items-center justify-center" @click="modalOpen = false" @keydown.escape.window="modalOpen = false" @keydown.arrow-left.window="if (modalOpen) prev()" @keydown.arrow-right.window="if (modalOpen) next()">
         <div class="relative max-w-7xl w-full h-full select-none" @click.stop @touchstart.passive="onTouchStart($event)" @touchmove.passive="onTouchMove($event)" @touchend="onTouchEnd()">
             <button @click="modalOpen = false" class="absolute top-8 right-8 text-white z-10"><i data-lucide="x" class="h-12 w-12"></i></button>
-            <img :src="propertyImages[currentSlide]" alt="Parkside Place B101 condo photo" class="w-full h-full object-contain">
+            <img :src="propertyImages[currentSlide]" alt="Ledges 927" class="w-full h-full object-contain">
             <button @click="currentSlide = (currentSlide - 1 + propertyImages.length) % propertyImages.length" class="absolute left-8 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-4"><i data-lucide="chevron-left" class="h-12 w-12"></i></button>
             <button @click="currentSlide = (currentSlide + 1) % propertyImages.length" class="absolute right-8 top-1/2 -translate-y-1/2 text-white bg-black/50 hover:bg-black/70 rounded-full p-4"><i data-lucide="chevron-right" class="h-12 w-12"></i></button>
         </div>
@@ -205,4 +181,3 @@
     </script>
 </body>
 </html>
-
