@@ -65,9 +65,9 @@
         </div>
     </nav>
     <div class="container mx-auto px-4 sm:px-6 pt-24 sm:pt-32">
-        <a href="../../properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">
+        <a href="./properties.html" class="text-gray-600 hover:text-accent-500 flex items-center space-x-2 text-sm font-medium">
             <i data-lucide="arrow-left" class="h-4 w-4"></i>
-            <span>Back to All Properties</span>
+            <span>Back to Robins Resort</span>
         </a>
     </div>
     <section class="relative">
@@ -109,9 +109,9 @@
                 <div class="lg:col-span-2 space-y-16">
                     <div>
                         <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
-                        <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <template x-for="(img, index) in propertyImages" :key="index">
-                                <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Robins Resort 234 condo photo" loading="lazy">
+                                <img :src="img" @click="modalOpen = true; currentSlide = index" class="w-full max-w-full h-auto min-h-[12rem] object-cover rounded shadow-md cursor-pointer hover:opacity-90 transition-opacity" :alt="'Robins Resort #234 property view ' + (index + 1)" loading="lazy">
                             </template>
                         </div>
                     </div>
