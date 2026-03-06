@@ -6,7 +6,7 @@
         <title>3 Bedroom (Sleeps 8) - Unit 1035 | SOB Rentals - Lake of the Ozarks Luxury Rentals</title>         
         <meta name="description" content="3BR/2BA condo with private dock, pool access, and lakefront views. Sleeps 8, fully remodeled at Lake of the Ozarks."> 
         <!-- Preload the lead/hero image for faster LCP -->
-        <link rel="preload" href="https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img001.jpeg" as="image">
+        <link rel="preload" href="3 Bedroom (Sleeps 8) - Unit 1035/img007.jpeg" as="image">
         <!-- Tailwind CSS -->         
         <script src="https://cdn.tailwindcss.com"></script>         
         <!-- Lucide Icons -->         
@@ -56,49 +56,39 @@
   </style>         
     </head>     
     <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()"> 
-        <!-- Property Images Array - Full raw GitHub URLs for reliable loading -->
+        <!-- Property Images Array - 30 images, first 5: 007,008,009,010,011 -->
         <script>
     window.propertyImages = [
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img026.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img002.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img003.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img004.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img005.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img006.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img007.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img008.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img009.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img010.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img011.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img012.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img013.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img014.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img015.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img016.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img017.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img018.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img019.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img020.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img021.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img022.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img023.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img024.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img025.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img026.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img027.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img028.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img029.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img030.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img031.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img032.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img033.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img034.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img035.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img036.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img037.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img038.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img039.jpeg',
-      'https://raw.githubusercontent.com/t3kdesigns03/sobrentals/main/Properties/3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img040.jpeg'
+      "3 Bedroom (Sleeps 8) - Unit 1035/img007.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img008.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img009.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img010.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img011.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img001.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img002.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img003.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img004.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img005.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img006.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img012.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img013.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img014.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img015.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img016.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img017.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img018.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img019.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img020.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img021.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img022.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img023.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img024.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img025.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img026.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img027.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img028.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img029.jpeg",
+      "3 Bedroom (Sleeps 8) - Unit 1035/img030.jpeg"
     ];
   </script>         
         <!-- Navigation -->
@@ -201,7 +191,7 @@
                     <div class="lg:col-span-2 space-y-16"> 
                         <!-- Photo Gallery -->
                         <div>
-                            <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 40 Photos</h2>
+                            <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 30 Photos</h2>
                             <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
                                 <template x-for="(img, index) in propertyImages" :key="index">
                                     <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Property photo" loading="lazy">
