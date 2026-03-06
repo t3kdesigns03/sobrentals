@@ -68,7 +68,7 @@
   </style>         
     </head>     
     <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()"> 
-        <!-- Property Images Array - Full raw GitHub URLs for reliable loading -->
+        <!-- Property Images Array - relative paths to unit image folder -->
         <script>
     window.propertyImages = [
       "5 bedroom (Sleeps 12) - Unit 944/img032.jpeg",
@@ -103,8 +103,7 @@
       "5 bedroom (Sleeps 12) - Unit 944/img030.jpeg",
       "5 bedroom (Sleeps 12) - Unit 944/img031.jpeg",
       "5 bedroom (Sleeps 12) - Unit 944/img001.jpeg",
-      "5 bedroom (Sleeps 12) - Unit 944/img033.jpeg'
-
+      "5 bedroom (Sleeps 12) - Unit 944/img033.jpeg"
     ];
   </script>         
         <!-- Navigation -->
@@ -207,7 +206,7 @@
                     <div class="lg:col-span-2 space-y-16"> 
                         <!-- Photo Gallery -->
                         <div>
-                            <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 40 Photos</h2>
+                            <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 33 Photos</h2>
                             <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
                                 <template x-for="(img, index) in propertyImages" :key="index">
                                     <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Property photo" loading="lazy">
