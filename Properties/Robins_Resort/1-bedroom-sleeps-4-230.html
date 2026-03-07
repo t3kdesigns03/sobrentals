@@ -26,6 +26,7 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    <link rel="preload" as="image" href="1 bedroom - #230 (Sleeps 4)/001.jpeg">
 </head>
 <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()">
     <script>
@@ -108,7 +109,7 @@
             <div class="grid lg:grid-cols-3 gap-12">
                 <div class="lg:col-span-2 space-y-16">
                     <div>
-                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 22 Photos</h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <template x-for="(img, index) in propertyImages" :key="index">
                                 <img :src="img" @click="modalOpen = true; currentSlide = index" class="w-full max-w-full h-auto min-h-[12rem] object-cover rounded shadow-md cursor-pointer hover:opacity-90 transition-opacity" :alt="'Robins Resort #230 property view ' + (index + 1)" loading="lazy">
