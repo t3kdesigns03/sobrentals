@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palisades · 3 Bedroom Condo 202-3A (Sleeps 8) | SOB Rentals</title>
     <meta name="description" content="Palisades 3 bedroom condo 202-3A at Lake of the Ozarks. Sleeps 8 with beautiful lake views, open living space, and resort-style amenities.">
+    <link rel="preload" href="3 bedroom - 202-3A (Sleeps 8)/001.jpeg" as="image">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script defer src="../../property-page.js"></script>
@@ -30,11 +31,48 @@
 <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()">
     <script>
     window.propertyImages = [
-      "https://media.vrbo.com/lodging/92000000/91780000/91770700/91770674/7dd3c0e7.jpg",
-      "https://media.vrbo.com/lodging/92000000/91780000/91770700/91770674/65a77958.jpg",
-      "https://media.vrbo.com/lodging/92000000/91780000/91770700/91770674/2b7f436b.jpg",
-      "https://media.vrbo.com/lodging/92000000/91780000/91770700/91770674/02691f1e.jpg",
-      "https://media.vrbo.com/lodging/35000000/34150000/34141600/34141532/26533b2a.jpg"
+      "3 bedroom - 202-3A (Sleeps 8)/001.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/002.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/003.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/004.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/005.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/006.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/007.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/008.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/009.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/010.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/011.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/012.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/013.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/014.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/015.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/016.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/017.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/018.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/019.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/020.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/021.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/022.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/023.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/024.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/025.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/026.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/027.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/028.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/029.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/030.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/031.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/032.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/033.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/034.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/035.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/036.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/037.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/038.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/039.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/040.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/041.jpeg",
+      "3 bedroom - 202-3A (Sleeps 8)/042.jpeg"
     ];
     </script>
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-gradient-to-r from-sky-900 via-sky-800 to-sky-700 text-white py-6 shadow-md">
@@ -108,7 +146,7 @@
             <div class="grid lg:grid-cols-3 gap-12">
                 <div class="lg:col-span-2 space-y-16">
                     <div>
-                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 42 Photos</h2>
                         <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
                             <template x-for="(img, index) in propertyImages" :key="index">
                                 <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Palisades 202-3A condo photo" loading="lazy">
