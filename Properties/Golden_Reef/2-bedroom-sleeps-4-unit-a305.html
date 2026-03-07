@@ -26,15 +26,37 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    <link rel="preload" as="image" href="2 bedroom - Unit A305 (Sleeps 4)/016.jpeg">
 </head>
 <body class="font-sans text-gray-700 antialiased bg-white" x-data="propertyPage()" x-init="init()">
     <script>
     window.propertyImages = [
+      "2 bedroom - Unit A305 (Sleeps 4)/016.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/027.jpeg",
       "2 bedroom - Unit A305 (Sleeps 4)/002.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/017.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/018.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/003.jpeg",
       "2 bedroom - Unit A305 (Sleeps 4)/004.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/005.jpeg",
       "2 bedroom - Unit A305 (Sleeps 4)/006.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/007.jpeg",
       "2 bedroom - Unit A305 (Sleeps 4)/008.jpeg",
-      "2 bedroom - Unit A305 (Sleeps 4)/010.jpeg"
+      "2 bedroom - Unit A305 (Sleeps 4)/009.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/010.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/011.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/012.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/013.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/014.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/015.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/019.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/020.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/021.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/022.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/023.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/024.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/025.jpeg",
+      "2 bedroom - Unit A305 (Sleeps 4)/026.jpeg"
     ];
     </script>
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-gradient-to-r from-sky-900 via-sky-800 to-sky-700 text-white py-6 shadow-md">
@@ -108,7 +130,7 @@
             <div class="grid lg:grid-cols-3 gap-12">
                 <div class="lg:col-span-2 space-y-16">
                     <div>
-                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">Photo gallery</h2>
+                        <h2 class="font-serif text-2xl md:text-3xl font-bold mb-4 md:mb-6">All 26 Photos</h2>
                         <div class="flex overflow-x-auto no-scrollbar gap-3 md:gap-4 pb-4 -mx-6 px-6 md:mx-0 md:px-0 snap-x snap-mandatory md:snap-none" style="-webkit-overflow-scrolling: touch;">
                             <template x-for="(img, index) in propertyImages" :key="index">
                                 <img :src="img" @click="modalOpen = true; currentSlide = index" class="h-32 w-44 md:h-40 md:w-56 object-cover rounded-lg shadow-md cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0 snap-center" alt="Golden Reef A305 condo photo" loading="lazy">
