@@ -201,7 +201,7 @@
 
                 <div class="text-center mt-10">
                     <p class="text-gray-600 mb-4">More Harbor Point condos will be added as they are brought into the SOB Rentals portfolio.</p>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sobrentals@yahoo.com&su=Harbor%20Point%20Property%20Inquiry" class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2">
+                    <a id="book-link" href="#" class="btn-primary px-10 py-4 rounded-md font-semibold text-lg inline-flex items-center space-x-2">
                         <span>Contact Sheila About Harbor Point</span>
                         <i data-lucide="arrow-right" class="h-5 w-5"></i>
                     </a>
@@ -280,5 +280,20 @@
             history.replaceState(null, '', window.location.pathname + window.location.search);
         }
         </script>
-    </body>
+    
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const email = 'sobrentals@yahoo.com';
+  const subject = 'Harbor Point Property Inquiry';
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+  const link = document.getElementById('book-link');
+  if (link) {
+    link.href = isMobile ? mailto : gmail;
+    if (!isMobile) link.target = '_blank';
+  }
+});
+</script>
+</body>
 </html>
