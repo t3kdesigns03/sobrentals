@@ -188,7 +188,7 @@
                     <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
                         <div class="text-center">
                             <p class="text-green-600 font-bold text-xl mb-6">Call for Availability</p>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=sobrentals@yahoo.com&su=Book%20Palisades%20202-3A%20Condo" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg inline-flex items-center justify-center space-x-2">
+                            <a id="book-link" href="#" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg inline-flex items-center justify-center space-x-2">
                                 <span>Contact to Book</span>
                                 <i data-lucide="arrow-right" class="h-5 w-5"></i>
                             </a>
@@ -243,6 +243,21 @@
     mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => mobileMenu.classList.add('hidden')); });
     </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const email = 'sobrentals@yahoo.com';
+  const subject = 'Book Palisades 202-3A Condo';
+  const mailto = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+  const link = document.getElementById('book-link');
+  if (link) {
+    link.href = isMobile ? mailto : gmail;
+    if (!isMobile) link.target = '_blank';
+  }
+});
+</script>
 </body>
 </html>
 
