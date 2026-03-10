@@ -165,7 +165,7 @@
                     </div>                     
                     <div> 
                         <i data-lucide="star" class="h-8 w-8 mx-auto text-accent-500 mb-2 fill-current"></i> 
-                        <p class="font-semibold">4.9 ★ (50 reviews)</p> 
+                        <p class="font-semibold">5.0 ★</p> 
                     </div>                     
                 </div>                 
             </div>             
@@ -265,7 +265,7 @@
                                   <i data-lucide="arrow-right" class="h-5 w-5"></i>
                                 </a> 
                                 <p class="mt-4 text-sm text-gray-500">You won't be charged yet</p> 
-                                <a href="https://www.vrbo.com/5143353" class="mt-4 block text-accent-500 hover:underline font-medium">Or book through VRBO</a>
+                                <a id="check-avail" href="#" class="mt-4 block text-accent-500 hover:underline font-medium">Check Availability</a>
                             </div>                             
                         </div>                         
                     </div>                     
@@ -358,6 +358,24 @@ document.addEventListener('DOMContentLoaded', function() {
   if (link) {
     link.href = isMobile ? mailto : gmail;
     if (!isMobile) link.target = '_blank';
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const vrboUrl = 'https://www.vrbo.com/5143353';
+  const link = document.getElementById('check-avail');
+  if (link) {
+    if (isMobile) {
+      link.href = vrboUrl;
+    } else {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(vrboUrl, 'vrboPopup', 'width=800,height=600,scrollbars=yes,resizable=yes');
+      });
+    }
   }
 });
 </script>
