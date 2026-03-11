@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../properties-grid.css">
     <script>
     tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { primary: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }, accent: { 400: '#f97316', 500: '#ea580c', 600: '#c2410c' }, gold: { 400: '#fbbf24' } } } } }
     </script>
@@ -21,6 +20,42 @@
     .btn-primary { background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%); transition: all 0.3s ease; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
     html, body { overflow-x: hidden; max-width: 100vw; }
+    /* Inlined from properties-grid.css */
+    /* Shared property card grid behavior for location pages.
+       Goal: center incomplete last rows (e.g. 2 cards) on desktop without breaking
+       full rows, while keeping responsive 1→2→3 column scaling. */
+
+    .properties-grid {
+      /* Let Tailwind control gap/spacing; we only enforce column behavior. */
+      display: grid;
+    }
+
+    @media (min-width: 768px) {
+      .properties-grid {
+        /* auto-fit collapses empty tracks → last row can center */
+        /* min width keeps cards readable; 1fr lets them scale like Houses */
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+        justify-content: center !important;
+        grid-auto-rows: 1fr;
+      }
+    }
+
+    .properties-grid > * {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .properties-grid .property-card {
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .properties-grid .property-card > .relative.h-72 {
+      flex-shrink: 0;
+    }
     </style>
 </head>
 <body class="font-sans text-gray-700 antialiased bg-white">
