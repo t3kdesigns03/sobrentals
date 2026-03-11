@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../properties-grid.css">
         <script>
         tailwind.config = {
             theme: {
@@ -55,16 +56,6 @@
             .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
             .feature-icon { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
             html, body { overflow-x: hidden; max-width: 100vw; }
-            @media (min-width: 768px) {
-              .properties-grid {
-                grid-auto-rows: 1fr;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-              }
-              .properties-grid .property-card { min-width: 0; min-height: 0; width: 100%; max-width: 100%; }
-            }
-            @media (min-width: 1024px) {
-              .properties-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-            }
         </style>
     </head>
     <body class="font-sans text-gray-700 antialiased bg-white">
@@ -120,7 +111,7 @@
 
                 <!-- 1–2 Bedroom Ledges -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">1–2 Bedroom Getaways</h2>
-                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 properties-grid items-stretch">
+                <div class="grid grid-cols-1 gap-6 sm:gap-8 mb-12 properties-grid items-stretch min-w-0">
                     <!-- 1036 -->
                     <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
                         <div class="relative h-72 overflow-hidden shrink-0">
@@ -722,7 +713,7 @@
 
                 <!-- 3–4 Bedroom -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">3–4 Bedroom Family Havens</h2>
-                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 properties-grid items-stretch">
+                <div class="grid grid-cols-1 gap-6 sm:gap-8 mb-12 properties-grid items-stretch min-w-0">
                     <!-- 925 -->
                     <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
                         <div class="relative h-72 overflow-hidden shrink-0">
@@ -1274,7 +1265,7 @@
 
                 <!-- 5+ Bedroom -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">5+ Bedroom Ledges Retreats</h2>
-                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 properties-grid items-stretch">
+                <div class="grid grid-cols-1 gap-6 sm:gap-8 mb-8 properties-grid items-stretch min-w-0">
                     <!-- 944 -->
                     <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
                         <div class="relative h-72 overflow-hidden shrink-0">

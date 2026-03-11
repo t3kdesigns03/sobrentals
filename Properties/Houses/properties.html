@@ -10,6 +10,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../properties-grid.css">
         <script>
         tailwind.config = {
             theme: {
@@ -106,7 +107,7 @@
 
                 <!-- Featured Houses (single grid mirroring Ledges cards) -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">Featured Houses</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="grid grid-cols-1 gap-6 sm:gap-8 mb-12 properties-grid items-stretch min-w-0">
                     <!-- Deer Run -->
                     <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                         <div class="relative h-72 overflow-hidden">
