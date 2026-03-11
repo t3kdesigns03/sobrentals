@@ -1,0 +1,35 @@
+/* Shared property card grid behavior for location pages.
+   Goal: center incomplete last rows (e.g. 2 cards) on desktop without breaking
+   full rows, while keeping responsive 1→2→3 column scaling. */
+
+.properties-grid {
+  /* Let Tailwind control gap/spacing; we only enforce column behavior. */
+  display: grid;
+}
+
+@media (min-width: 768px) {
+  .properties-grid {
+    /* auto-fit collapses empty tracks → last row can center */
+    grid-template-columns: repeat(auto-fit, minmax(0, 320px)) !important;
+    justify-content: center !important;
+    grid-auto-rows: 1fr;
+  }
+}
+
+.properties-grid > * {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.properties-grid .property-card {
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.properties-grid .property-card > .relative.h-72 {
+  flex-shrink: 0;
+}
+
