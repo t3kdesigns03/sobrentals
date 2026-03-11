@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
-    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { primary: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }, accent: { 400: '#f97316', 500: '#ea580c', 600: '#c2410c' } } } } }
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { primary: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' }, accent: { 400: '#f97316', 500: '#ea580c', 600: '#c2410c' }, gold: { 400: '#fbbf24' } } } } }
     </script>
     <style>
     .nav-scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
@@ -76,10 +76,17 @@
                             <span class="flex items-center space-x-1"><i data-lucide="bed-double" class="h-5 w-5"></i><span>3 Beds</span></span>
                             <span class="flex items-center space-x-1"><i data-lucide="users" class="h-5 w-5"></i><span>Sleeps 8</span></span>
                         </div>
-                        <a href="./3-bedroom-sleeps-8-unit-516.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-1">
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i>
+                                    <span class="font-bold text-gray-900">5.0</span>
+                                </div>
+                                <a href="./3-bedroom-sleeps-8-unit-516.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
                             <span>View Details</span>
                             <i data-lucide="arrow-right" class="h-4 w-4"></i>
                         </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
@@ -94,10 +101,17 @@
                             <span class="flex items-center space-x-1"><i data-lucide="bed-double" class="h-5 w-5"></i><span>3 Beds</span></span>
                             <span class="flex items-center space-x-1"><i data-lucide="users" class="h-5 w-5"></i><span>Sleeps 6</span></span>
                         </div>
-                        <a href="./3-bedroom-sleeps-6-unit-517.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-1">
+                                    <i data-lucide="star" class="h-5 w-5 text-gold-400 fill-current"></i>
+                                    <span class="font-bold text-gray-900">5.0</span>
+                                </div>
+                                <a href="./3-bedroom-sleeps-6-unit-517.html" class="bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-semibold transition-all inline-flex items-center space-x-2">
                             <span>View Details</span>
                             <i data-lucide="arrow-right" class="h-4 w-4"></i>
                         </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
