@@ -54,6 +54,17 @@
             .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(234, 88, 12, 0.3); }
             .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
             .feature-icon { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); }
+            html, body { overflow-x: hidden; max-width: 100vw; }
+            @media (min-width: 768px) {
+              .properties-grid {
+                grid-auto-rows: 1fr;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+              }
+              .properties-grid .property-card { min-width: 0; min-height: 0; width: 100%; max-width: 100%; }
+            }
+            @media (min-width: 1024px) {
+              .properties-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            }
         </style>
     </head>
     <body class="font-sans text-gray-700 antialiased bg-white">
@@ -109,16 +120,16 @@
 
                 <!-- 1–2 Bedroom Ledges -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">1–2 Bedroom Getaways</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 properties-grid items-stretch">
                     <!-- 1036 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%204)%20-%20Unit%201036/img012.jpeg" alt="2 Bedroom (Sleeps 4) - Unit 1036" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 4) - Unit 1036</h4>
@@ -157,14 +168,14 @@
                     </div>
 
                     <!-- 1022 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%206)%20-%20Unit%201022/img015.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1022" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1022</h4>
@@ -203,14 +214,14 @@
                     </div>
 
                     <!-- 1037 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%206)%20-%20Unit%201037/img031.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1037" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1037</h4>
@@ -249,14 +260,14 @@
                     </div>
 
                     <!-- 623 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%206)%20-%20Unit%20623/img023.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 623" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 623</h4>
@@ -295,14 +306,14 @@
                     </div>
 
                     <!-- 918 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%206)%20-%20Unit%20918/img004.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 918" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 918</h4>
@@ -341,14 +352,14 @@
                     </div>
 
                     <!-- 1039 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%206)%20-%20Unit%201039/img031.jpeg" alt="2 Bedroom (Sleeps 6) - Unit 1039" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 6) - Unit 1039</h4>
@@ -387,14 +398,14 @@
                     </div>
 
                     <!-- 1033 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%207)%20-%20Unit%201033/img017.jpeg" alt="2 Bedroom (Sleeps 7) - Unit 1033" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 7) - Unit 1033</h4>
@@ -433,14 +444,14 @@
                     </div>
 
                     <!-- 1029 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%207)%20-%20Unit%201029/img001.jpeg" alt="2 Bedroom (Sleeps 7) - Unit 1029" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 7) - Unit 1029</h4>
@@ -479,14 +490,14 @@
                     </div>
 
                     <!-- 1012 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%208)%20-%20Unit%201012/img036.jpeg" alt="2 Bedroom (Sleeps 8) - Unit 1012" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 8) - Unit 1012</h4>
@@ -525,14 +536,14 @@
                     </div>
 
                     <!-- 10310 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%208)%20-%20Unit%2010310/img012.jpeg" alt="2 Bedroom (Sleeps 8) - Unit 10310" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 8) - Unit 10310</h4>
@@ -571,14 +582,14 @@
                     </div>
 
                     <!-- 1032 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%208)%20-%20Unit%201032/img046.jpeg" alt="2 Bedroom (Sleeps 8) - Unit 1032" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 8) - Unit 1032</h4>
@@ -617,14 +628,14 @@
                     </div>
 
                     <!-- 10210 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="1%20Bedroom%20(Sleeps%204)%20-%20Unit%2010210/img023.jpeg" alt="1 Bedroom (Sleeps 4) - Unit 10210" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 Bedroom (Sleeps 4) - Unit 10210</h4>
@@ -663,14 +674,14 @@
                     </div>
 
                     <!-- 927 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="2%20Bedroom%20(Sleeps%207)%20-%20Unit%20927/002.jpeg" alt="2 Bedroom (Sleeps 7) - Unit 927" class="property-image w-full h-full object-cover transition-transform duration-500" loading="lazy">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 Bedroom (Sleeps 7) - Unit 927</h4>
@@ -711,16 +722,16 @@
 
                 <!-- 3–4 Bedroom -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">3–4 Bedroom Family Havens</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 properties-grid items-stretch">
                     <!-- 925 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%2010)%20-%20Unit%20925/img027.jpeg" alt="3 Bedroom (Sleeps 10) - Unit 925" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 10) - Unit 925</h4>
@@ -759,14 +770,14 @@
                     </div>
 
                     <!-- 934 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%2010)%20-%20Unit%20934/img028.jpeg" alt="3 Bedroom (Sleeps 10) - Unit 934" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 10) - Unit 934</h4>
@@ -805,14 +816,14 @@
                     </div>
 
                     <!-- C31 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%207)%20-%20Unit%20C31/img010.jpeg" alt="3 Bedroom (Sleeps 7) - Unit C31" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 7) - Unit C31</h4>
@@ -851,14 +862,14 @@
                     </div>
 
                     <!-- 1035 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%208)%20-%20Unit%201035/img007.jpeg" alt="3 Bedroom (Sleeps 8) - Unit 1035" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 8) - Unit 1035</h4>
@@ -897,14 +908,14 @@
                     </div>
 
                     <!-- 1042 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%208)%20-%20Unit%201042/img030.jpeg" alt="3 Bedroom (Sleeps 8) - Unit 1042" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 8) - Unit 1042</h4>
@@ -943,14 +954,14 @@
                     </div>
 
                     <!-- 531 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%208)%20-%20Unit%20531/img020.jpeg" alt="3 Bedroom (Sleeps 8) - Unit 531" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 8) - Unit 531</h4>
@@ -989,14 +1000,14 @@
                     </div>
 
                     <!-- 614 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%208)%20-%20Unit%20614/img028.jpeg" alt="3 Bedroom (Sleeps 8) - Unit 614" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 8) - Unit 614</h4>
@@ -1035,14 +1046,14 @@
                     </div>
 
                     <!-- A44 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%208)%20-%20Unit%20A44/img010.jpeg" alt="3 Bedroom (Sleeps 8) - Unit A44" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 8) - Unit A44</h4>
@@ -1081,14 +1092,14 @@
                     </div>
 
                     <!-- 442 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="3%20Bedroom%20(Sleeps%209)%20-%20Unit%20442/img040.jpeg" alt="3 Bedroom (Sleeps 9) - Unit 442" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">3 Bedroom (Sleeps 9) - Unit 442</h4>
@@ -1126,14 +1137,14 @@
                     </div>
 
                     <!-- 10110 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="4%20bedroom%20(Sleeps%2012)%20-%20Unit%2010110/img014.jpeg" alt="4 Bedroom (Sleeps 12) - Unit 10110" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">4 Bedroom (Sleeps 12) - Unit 10110</h4>
@@ -1171,14 +1182,14 @@
                     </div>
 
                     <!-- 1017 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="4%20Bedroom%20(Sleeps%2012)%20-%20Unit%201017/img033.jpeg" alt="4 Bedroom (Sleeps 12) - Unit 1017" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">4 Bedroom (Sleeps 12) - Unit 1017</h4>
@@ -1216,14 +1227,14 @@
                     </div>
 
                     <!-- 941 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="4%20Bedroom%20(Sleeps%2012)%20-%20Unit%20941/img001.jpeg" alt="4 Bedroom (Sleeps 12) - Unit 941" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">4 Bedroom (Sleeps 12) - Unit 941</h4>
@@ -1263,16 +1274,16 @@
 
                 <!-- 5+ Bedroom -->
                 <h2 class="font-serif text-2xl font-semibold mb-4 text-gray-900">5+ Bedroom Ledges Retreats</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
+                <div class="grid grid-cols-1 min-w-0 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 properties-grid items-stretch">
                     <!-- 944 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="5%20bedroom%20(Sleeps%2012)%20-%20Unit%20944/img033.jpeg" alt="5 bedroom (Sleeps 12) - Unit 944" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">5 bedroom (Sleeps 12) - Unit 944</h4>
@@ -1310,14 +1321,14 @@
                     </div>
 
                     <!-- 10411 -->
-                    <div class="property-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <div class="relative h-72 overflow-hidden">
+                    <div class="property-card flex flex-col min-h-0 bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 min-w-0">
+                        <div class="relative h-72 overflow-hidden shrink-0">
                             <img src="5%20Bedroom%20(Sleeps%2012)%20-%20Unit%2010411/img007.jpeg" alt="5 Bedroom (Sleeps 12) - Unit 10411" class="property-image w-full h-full object-cover transition-transform duration-500">
                             <div class="absolute top-4 left-4 bg-blue-600 text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider cursor-pointer hover:bg-blue-700 transition-colors">
                                 CHECK AVAILABILITY
                             </div>
                         </div>
-                        <div class="p-6">
+                        <div class="p-6 flex-1 min-h-0 flex flex-col">
                             <div class="flex justify-between items-start mb-2">
                                 <div>
                                     <h4 class="font-serif text-2xl font-bold text-gray-900 mb-1">5 Bedroom (Sleeps 12) - Unit 10411</h4>
