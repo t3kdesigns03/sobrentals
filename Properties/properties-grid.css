@@ -10,7 +10,8 @@
 @media (min-width: 768px) {
   .properties-grid {
     /* auto-fit collapses empty tracks → last row can center */
-    grid-template-columns: repeat(auto-fit, minmax(0, 320px)) !important;
+    /* min width keeps cards readable; 1fr lets them scale like Houses */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
     justify-content: center !important;
     grid-auto-rows: 1fr;
   }
