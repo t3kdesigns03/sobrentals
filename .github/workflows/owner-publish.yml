@@ -1,0 +1,67 @@
+# Owner Studio — publish an APPROVED draft to the live site.
+# Triggered by the Worker (Approve link) via repository_dispatch (owner-publish).
+name: Owner Studio - Publish
+
+on:
+  repository_dispatch:
+    types: [owner-publish]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: owner-studio-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Pillow
+        run: pip install --quiet Pillow
+
+      - name: Bring in draft files
+        run: |
+          set -e
+          BRANCH="${{ github.event.client_payload.branch }}"
+          DRAFT="${{ github.event.client_payload.draftId }}"
+          echo "Draft: $DRAFT on $BRANCH"
+          git fetch origin "$BRANCH"
+          git checkout FETCH_HEAD -- "_owner_drafts/$DRAFT"
+          ls -la "_owner_drafts/$DRAFT"
+
+      - name: Run publish transform
+        run: |
+          set -e
+          DRAFT="${{ github.event.client_payload.draftId }}"
+          python3 owner-studio/publish/publish.py --repo . \
+            --manifest "_owner_drafts/$DRAFT/manifest.json"
+
+      - name: Commit to main + clean up draft
+        run: |
+          set -e
+          BRANCH="${{ github.event.client_payload.branch }}"
+          DRAFT="${{ github.event.client_payload.draftId }}"
+          # remove the staging dir so it never lands on main
+          rm -rf "_owner_drafts/$DRAFT"
+          git config user.name  "SOB Owner Studio"
+          git config user.email "owner-studio@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"; exit 0
+          fi
+          git commit -m "Owner Studio: publish ${{ github.event.client_payload.community }} / ${{ github.event.client_payload.unit }} ($DRAFT)"
+          git push origin HEAD:main
+          # discard the draft branch now that it's live
+          git push origin --delete "$BRANCH" || true

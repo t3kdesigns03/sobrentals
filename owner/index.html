@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>Owner Studio · SOB Rentals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = { theme: { extend: {
+      fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','serif'] },
+      colors: { accent: { 400:'#f97316', 500:'#ea580c', 600:'#c2410c' } } } } }
+  </script>
+  <style>
+    .btn-primary{background:linear-gradient(135deg,#ea580c 0%,#c2410c 100%);transition:all .3s ease}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(234,88,12,.3)}
+    .btn-primary:disabled{opacity:.5;transform:none;box-shadow:none;cursor:not-allowed}
+    .dropzone.drag{border-color:#ea580c;background:#fff7ed}
+    .thumb.dragging{opacity:.4}
+    input,select,textarea{outline:none}
+    input:focus,select:focus,textarea:focus{border-color:#ea580c;box-shadow:0 0 0 3px rgba(234,88,12,.15)}
+  </style>
+</head>
+<body class="font-sans text-gray-700 antialiased bg-gray-50 min-h-screen">
+
+  <!-- ===================== GATE ===================== -->
+  <div id="gate" class="min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+      <div class="text-center mb-6">
+        <img src="../final _triple_logo_horizontal.svg" alt="SOB Rentals" class="h-12 mx-auto mb-4 object-contain" onerror="this.style.display='none'">
+        <h1 class="font-serif text-3xl font-bold text-gray-900">Owner Studio</h1>
+        <p class="text-gray-500 mt-1">Private tool for SOB Rentals owners</p>
+      </div>
+      <label class="block text-sm font-semibold text-gray-700 mb-2">Passcode</label>
+      <input id="passcode" type="password" autocomplete="current-password"
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 mb-3" placeholder="Enter your passcode"
+        onkeydown="if(event.key==='Enter')doLogin()">
+      <p id="gateErr" class="text-red-600 text-sm mb-3 hidden"></p>
+      <button onclick="doLogin()" id="gateBtn"
+        class="btn-primary w-full py-3 rounded-lg text-white font-bold">Unlock</button>
+      <p class="text-xs text-gray-400 mt-4 text-center">Nothing you enter here goes live until Brandon approves it.</p>
+    </div>
+  </div>
+
+  <!-- ===================== STUDIO ===================== -->
+  <div id="studio" class="hidden">
+    <header class="bg-gray-900 text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="../final _triple_logo_horizontal.svg" alt="SOB Rentals" class="h-9 object-contain" onerror="this.style.display='none'">
+          <div>
+            <h1 class="font-serif text-xl font-bold leading-tight">Owner Studio</h1>
+            <p class="text-xs text-accent-400">Made for you, Sheila 🧡</p>
+          </div>
+        </div>
+        <button onclick="logout()" class="text-sm text-gray-300 hover:text-white flex items-center gap-1">
+          <i data-lucide="log-out" class="h-4 w-4"></i> Sign out</button>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+      <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800 flex gap-3">
+        <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5"></i>
+        <span>Add a new unit below and drag in the photos. When you submit, Brandon gets one email to review and approve it &mdash; <b>nothing appears on the website until he clicks Approve.</b></span>
+      </div>
+
+      <!-- 1. Community + unit -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 · Which community &amp; unit?</h2>
+        <p class="text-gray-500 text-sm mb-5">Pick the community from the list &mdash; these match the website exactly.</p>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Community</label>
+            <select id="f_community" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 bg-white">
+              <option value="">Select a community…</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Unit name / number</label>
+            <input id="f_unit" class="w-full border border-gray-300 rounded-lg px-3 py-2.5" placeholder="e.g. 231, E401, Redbud">
+          </div>
+        </div>
+        <div class="mt-4">
+          <label class="block text-sm font-semibold text-gray-700 mb-1">Listing title <span class="text-gray-400 font-normal">(optional — shown on the page header)</span></label>
+          <input id="f_title" class="w-full border border-gray-300 rounded-lg px-3 py-2.5" placeholder="e.g. Lakefront 1 Bedroom Condo">
+        </div>
+      </section>
+
+      <!-- 2. Import -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 · Paste a VRBO or Airbnb link</h2>
+        <p class="text-gray-500 text-sm mb-5">We'll try to fill in the details for you. If it doesn't grab everything, just type them in &mdash; that's totally fine.</p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input id="f_url" class="flex-1 border border-gray-300 rounded-lg px-3 py-2.5" placeholder="https://www.vrbo.com/… or https://www.airbnb.com/…">
+          <button onclick="doScrape()" id="scrapeBtn" class="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-semibold whitespace-nowrap flex items-center justify-center gap-2">
+            <i data-lucide="download" class="h-4 w-4"></i><span>Fetch details</span></button>
+        </div>
+        <p id="scrapeMsg" class="text-sm mt-3 hidden"></p>
+      </section>
+
+      <!-- 3. Specs -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5">3 · The basics</h2>
+        <div class="grid grid-cols-3 gap-4">
+          <div><label class="block text-sm font-semibold text-gray-700 mb-1">Bedrooms</label>
+            <input id="f_beds" type="number" min="1" max="10" value="1" class="w-full border border-gray-300 rounded-lg px-3 py-2.5"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 mb-1">Bathrooms</label>
+            <input id="f_baths" type="number" min="1" max="10" value="2" class="w-full border border-gray-300 rounded-lg px-3 py-2.5"></div>
+          <div><label class="block text-sm font-semibold text-gray-700 mb-1">Sleeps</label>
+            <input id="f_sleeps" type="number" min="1" max="30" value="4" class="w-full border border-gray-300 rounded-lg px-3 py-2.5"></div>
+        </div>
+      </section>
+
+      <!-- 4. Description + amenities -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5">4 · Description &amp; amenities</h2>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
+        <textarea id="f_desc" rows="6" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 mb-4"
+          placeholder="Tell guests about the space — the view, the dock, what's nearby…"></textarea>
+        <label class="block text-sm font-semibold text-gray-700 mb-2">Amenities</label>
+        <div id="amenChips" class="flex flex-wrap gap-2 mb-3"></div>
+        <div class="flex gap-2">
+          <input id="amenInput" class="flex-1 border border-gray-300 rounded-lg px-3 py-2" placeholder="Add an amenity and press Enter"
+            onkeydown="if(event.key==='Enter'){event.preventDefault();addAmenity(this.value);this.value=''}">
+          <button onclick="var i=document.getElementById('amenInput');addAmenity(i.value);i.value=''" class="bg-gray-100 hover:bg-gray-200 px-4 rounded-lg font-semibold text-gray-700">Add</button>
+        </div>
+      </section>
+
+      <!-- 5. Photos -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">5 · Photos</h2>
+        <p class="text-gray-500 text-sm mb-5">Drag your photos in. The first one (marked <span class="font-semibold text-accent-500">Cover</span>) is what guests see first &mdash; use <b>Make cover</b> on your favorite. JPEG works best.</p>
+        <div id="dropzone" class="dropzone border-2 border-dashed border-gray-300 rounded-xl p-10 text-center cursor-pointer transition">
+          <i data-lucide="image-plus" class="h-10 w-10 mx-auto text-gray-400 mb-3"></i>
+          <p class="text-gray-600 font-medium">Drag photos here, or <span class="text-accent-500 underline">browse</span></p>
+          <p class="text-xs text-gray-400 mt-1">Up to 40 photos</p>
+          <input id="fileInput" type="file" accept="image/*" multiple class="hidden">
+        </div>
+        <div id="thumbs" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mt-5"></div>
+      </section>
+
+      <!-- Submit -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <button onclick="submitDraft()" id="submitBtn" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg flex items-center justify-center gap-2">
+          <i data-lucide="send" class="h-5 w-5"></i><span>Submit for Brandon's approval</span></button>
+        <div id="progWrap" class="hidden mt-5">
+          <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div id="progBar" class="bg-accent-500 h-3 transition-all" style="width:0%"></div>
+          </div>
+          <p id="progMsg" class="text-sm text-gray-500 mt-2 text-center"></p>
+        </div>
+        <p id="submitErr" class="text-red-600 text-sm mt-3 hidden"></p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===================== DONE ===================== -->
+  <div id="done" class="hidden min-h-screen flex items-center justify-center px-4">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
+      <div class="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
+        <i data-lucide="check" class="h-8 w-8"></i></div>
+      <h1 class="font-serif text-3xl font-bold text-gray-900 mb-2">Submitted! 🎉</h1>
+      <p class="text-gray-600 mb-6">Brandon just got an email to review <b id="doneName"></b>. Once he approves it, the unit will show up on the website automatically. Nothing is live yet.</p>
+      <button onclick="location.reload()" class="btn-primary px-6 py-3 rounded-lg text-white font-bold">Add another unit</button>
+    </div>
+  </div>
+
+  <script>
+  /* =========================================================================
+     CONFIG — after you deploy the Worker, set WORKER_BASE to its URL.
+     You can also test without editing this file by opening
+     /owner/?worker=https://sob-owner-studio.YOURNAME.workers.dev  (remembered).
+     ========================================================================= */
+  let WORKER_BASE = "https://REPLACE-WITH-YOUR-WORKER.workers.dev";
+  try {
+    const q = new URLSearchParams(location.search).get("worker");
+    if (q) localStorage.setItem("sob_worker", q.replace(/\/+$/, ""));
+    const saved = localStorage.getItem("sob_worker");
+    if (saved) WORKER_BASE = saved;
+  } catch (_e) {}
+
+  const COMMUNITIES = ["Breakwater_Bay","Compass_Point","Golden_Reef","Grandview_Point",
+    "Harbor_Point","Heron_Bay","Houses","Indian_Point","Lands_End_Condos","Ledges",
+    "Palisades","Parkside_Place","Robins_Resort","SouthwoodShores","The_Knolls"];
+
+  let TOKEN = null;
+  let photos = [];        // {id, file, url, blob, name}
+  let coverId = null;
+  let amenities = [];
+  let dragId = null;
+  const $ = (id) => document.getElementById(id);
+  const icons = () => { try { lucide.createIcons(); } catch (_e) {} };
+
+  /* ---------- API ---------- */
+  async function api(path, body, isGet) {
+    const res = await fetch(WORKER_BASE + path, {
+      method: isGet ? "GET" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(TOKEN ? { "Authorization": "Bearer " + TOKEN } : {}),
+      },
+      body: isGet ? undefined : JSON.stringify(body || {}),
+    });
+    let data = null;
+    try { data = await res.json(); } catch (_e) {}
+    if (!res.ok) throw new Error((data && data.error) || ("Request failed (" + res.status + ")"));
+    return data;
+  }
+
+  /* ---------- gate ---------- */
+  async function doLogin() {
+    const pc = $("passcode").value.trim();
+    const err = $("gateErr"), btn = $("gateBtn");
+    err.classList.add("hidden");
+    if (WORKER_BASE.includes("REPLACE-WITH-YOUR-WORKER")) {
+      err.textContent = "This tool isn't connected yet — the Worker URL still needs to be set (see owner-studio/SETUP.md).";
+      err.classList.remove("hidden"); return;
+    }
+    if (!pc) return;
+    btn.disabled = true; btn.textContent = "Checking…";
+    try {
+      const r = await api("/api/login", { passcode: pc });
+      TOKEN = r.token;
+      $("gate").classList.add("hidden");
+      $("studio").classList.remove("hidden");
+      initStudio();
+    } catch (e) {
+      err.textContent = e.message || "Incorrect passcode";
+      err.classList.remove("hidden");
+    } finally { btn.disabled = false; btn.textContent = "Unlock"; }
+  }
+  function logout() { TOKEN = null; location.reload(); }
+
+  /* ---------- studio init ---------- */
+  function initStudio() {
+    const sel = $("f_community");
+    COMMUNITIES.forEach((c) => {
+      const o = document.createElement("option");
+      o.value = c; o.textContent = c.replace(/_/g, " ");
+      sel.appendChild(o);
+    });
+    const dz = $("dropzone"), fi = $("fileInput");
+    dz.addEventListener("click", () => fi.click());
+    fi.addEventListener("change", (e) => addFiles(e.target.files));
+    ["dragenter", "dragover"].forEach((ev) => dz.addEventListener(ev, (e) => {
+      e.preventDefault(); dz.classList.add("drag"); }));
+    ["dragleave", "drop"].forEach((ev) => dz.addEventListener(ev, (e) => {
+      e.preventDefault(); dz.classList.remove("drag"); }));
+    dz.addEventListener("drop", (e) => addFiles(e.dataTransfer.files));
+    icons();
+  }
+
+  /* ---------- scrape ---------- */
+  async function doScrape() {
+    const url = $("f_url").value.trim();
+    const msg = $("scrapeMsg"), btn = $("scrapeBtn");
+    if (!url) return;
+    msg.className = "text-sm mt-3 text-gray-500"; msg.textContent = "Fetching…"; msg.classList.remove("hidden");
+    btn.disabled = true;
+    try {
+      const r = await api("/api/scrape", { url });
+      if (r.title && !$("f_title").value) $("f_title").value = r.title;
+      if (r.description && !$("f_desc").value) $("f_desc").value = r.description;
+      if (r.beds) $("f_beds").value = r.beds;
+      if (r.baths) $("f_baths").value = r.baths;
+      if (r.sleeps) $("f_sleeps").value = r.sleeps;
+      (r.amenities || []).forEach(addAmenity);
+      if (r.ok) { msg.className = "text-sm mt-3 text-green-600"; msg.textContent = "Got it! Check the fields below and edit anything that looks off."; }
+      else { msg.className = "text-sm mt-3 text-amber-600"; msg.textContent = "Couldn't read that listing automatically — no problem, just fill in the details by hand. The link is saved with your submission."; }
+    } catch (e) {
+      msg.className = "text-sm mt-3 text-amber-600";
+      msg.textContent = "Couldn't reach that listing — just type the details in by hand.";
+    } finally { btn.disabled = false; }
+  }
+
+  /* ---------- amenities ---------- */
+  function addAmenity(name) {
+    name = (name || "").trim();
+    if (!name || amenities.includes(name)) return;
+    amenities.push(name); renderAmenities();
+  }
+  function removeAmenity(name) { amenities = amenities.filter((a) => a !== name); renderAmenities(); }
+  function renderAmenities() {
+    $("amenChips").innerHTML = amenities.map((a) =>
+      '<span class="inline-flex items-center gap-1 bg-orange-50 text-accent-600 border border-orange-200 rounded-full px-3 py-1 text-sm">' +
+      a.replace(/</g, "&lt;") +
+      ' <button onclick="removeAmenity(\'' + a.replace(/'/g, "\\'") + '\')" class="hover:text-red-500">&times;</button></span>').join("");
+  }
+
+  /* ---------- photos ---------- */
+  function addFiles(fileList) {
+    for (const file of fileList) {
+      if (!file.type.startsWith("image/")) continue;
+      if (photos.length >= 40) break;
+      const id = "p" + Date.now() + Math.random().toString(36).slice(2, 6);
+      const p = { id, file, url: URL.createObjectURL(file), name: file.name };
+      photos.push(p);
+      if (!coverId) coverId = id;
+    }
+    renderThumbs();
+  }
+  function makeCover(id) { coverId = id; renderThumbs(); }
+  function removePhoto(id) {
+    photos = photos.filter((p) => p.id !== id);
+    if (coverId === id) coverId = photos.length ? photos[0].id : null;
+    renderThumbs();
+  }
+  function renderThumbs() {
+    const el = $("thumbs");
+    el.innerHTML = photos.map((p) => {
+      const isCover = p.id === coverId;
+      return '<div class="thumb relative rounded-lg overflow-hidden border-2 ' +
+        (isCover ? "border-accent-500" : "border-transparent") + '" draggable="true" data-id="' + p.id + '">' +
+        '<img src="' + p.url + '" class="w-full h-28 object-cover pointer-events-none">' +
+        (isCover ? '<span class="absolute top-1 left-1 bg-accent-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">COVER</span>' : "") +
+        '<div class="absolute inset-x-0 bottom-0 bg-black/60 flex justify-between px-1 py-1">' +
+        (isCover ? '<span class="text-[10px] text-white/70 px-1">★</span>' :
+          '<button onclick="makeCover(\'' + p.id + '\')" class="text-[10px] text-white hover:text-accent-400 px-1">Make cover</button>') +
+        '<button onclick="removePhoto(\'' + p.id + '\')" class="text-[10px] text-white hover:text-red-400 px-1">Remove</button>' +
+        '</div></div>';
+    }).join("");
+    // drag reorder
+    el.querySelectorAll(".thumb").forEach((t) => {
+      t.addEventListener("dragstart", () => { dragId = t.dataset.id; t.classList.add("dragging"); });
+      t.addEventListener("dragend", () => { dragId = null; t.classList.remove("dragging"); });
+      t.addEventListener("dragover", (e) => e.preventDefault());
+      t.addEventListener("drop", (e) => {
+        e.preventDefault();
+        const from = photos.findIndex((p) => p.id === dragId);
+        const to = photos.findIndex((p) => p.id === t.dataset.id);
+        if (from < 0 || to < 0 || from === to) return;
+        const [m] = photos.splice(from, 1); photos.splice(to, 0, m); renderThumbs();
+      });
+    });
+    $("submitBtn").disabled = photos.length === 0;
+  }
+
+  /* ---------- downscale ---------- */
+  async function toJpegBase64(file, maxEdge, quality) {
+    try {
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, maxEdge / Math.max(bmp.width, bmp.height));
+      const w = Math.round(bmp.width * scale), h = Math.round(bmp.height * scale);
+      const canvas = document.createElement("canvas");
+      canvas.width = w; canvas.height = h;
+      canvas.getContext("2d").drawImage(bmp, 0, 0, w, h);
+      const blob = await new Promise((r) => canvas.toBlob(r, "image/jpeg", quality));
+      if (blob) return await blobToBase64(blob);
+    } catch (_e) { /* HEIC/unsupported — fall back to original bytes */ }
+    return await blobToBase64(file);
+  }
+  function blobToBase64(blob) {
+    return new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve(String(r.result).split(",")[1]);
+      r.onerror = reject; r.readAsDataURL(blob);
+    });
+  }
+
+  /* ---------- submit ---------- */
+  async function submitDraft() {
+    const err = $("submitErr"); err.classList.add("hidden");
+    const community = $("f_community").value;
+    const unit = $("f_unit").value.trim();
+    const missing = [];
+    if (!community) missing.push("community");
+    if (!unit) missing.push("unit name");
+    if (!photos.length) missing.push("at least one photo");
+    if (missing.length) {
+      err.textContent = "Please add: " + missing.join(", ") + ".";
+      err.classList.remove("hidden");
+      err.scrollIntoView({ behavior: "smooth", block: "center" }); return;
+    }
+    // cover first
+    const ordered = photos.slice();
+    const ci = ordered.findIndex((p) => p.id === coverId);
+    if (ci > 0) { const [c] = ordered.splice(ci, 1); ordered.unshift(c); }
+
+    const manifest = {
+      community, unit,
+      beds: parseInt($("f_beds").value, 10) || 1,
+      baths: parseInt($("f_baths").value, 10) || 1,
+      sleeps: parseInt($("f_sleeps").value, 10) || 2,
+      title: $("f_title").value.trim(),
+      description: $("f_desc").value.trim(),
+      amenities, sourceUrl: $("f_url").value.trim(),
+    };
+
+    const btn = $("submitBtn"); btn.disabled = true;
+    $("progWrap").classList.remove("hidden");
+    const setProg = (pct, m) => { $("progBar").style.width = pct + "%"; $("progMsg").textContent = m; };
+    try {
+      setProg(3, "Creating your draft…");
+      const start = await api("/api/draft/start", { ...manifest, photoCount: ordered.length });
+      const uploaded = [];
+      for (let i = 0; i < ordered.length; i++) {
+        setProg(5 + Math.round((i / ordered.length) * 85), "Uploading photo " + (i + 1) + " of " + ordered.length + "…");
+        const b64 = await toJpegBase64(ordered[i].file, 2560, 0.85);
+        const r = await api("/api/draft/photo", { draftId: start.draftId, index: i, contentBase64: b64 });
+        uploaded.push({ path: r.path, sha: r.sha });
+      }
+      setProg(94, "Notifying Brandon…");
+      await api("/api/draft/finish", {
+        draftId: start.draftId, branch: start.branch,
+        photos: uploaded, manifest, coverIndex: 0,
+      });
+      setProg(100, "Done!");
+      $("doneName").textContent = community.replace(/_/g, " ") + " · " + unit;
+      $("studio").classList.add("hidden");
+      $("done").classList.remove("hidden");
+    } catch (e) {
+      err.textContent = "Something went wrong: " + (e.message || e) + ". Your photos are safe — try Submit again.";
+      err.classList.remove("hidden");
+      btn.disabled = false;
+    }
+  }
+
+  window.doLogin = doLogin; window.logout = logout; window.doScrape = doScrape;
+  window.addAmenity = addAmenity; window.removeAmenity = removeAmenity;
+  window.makeCover = makeCover; window.removePhoto = removePhoto; window.submitDraft = submitDraft;
+  icons();
+  </script>
+</body>
+</html>

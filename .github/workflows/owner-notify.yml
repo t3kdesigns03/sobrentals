@@ -1,0 +1,73 @@
+# Owner Studio — email Brandon ONE approval message when Sheila submits a draft.
+# Triggered by the Worker via repository_dispatch (event_type: owner-draft).
+name: Owner Studio - Notify
+
+on:
+  repository_dispatch:
+    types: [owner-draft]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compose email
+        env:
+          PAYLOAD: ${{ toJSON(github.event.client_payload) }}
+        run: |
+          python3 - <<'PY' > email.html
+          import os, json, html
+          p = json.loads(os.environ["PAYLOAD"])
+          esc = lambda s: html.escape(str(s or ""))
+          thumbs = "".join(
+            f'<a href="{esc(p.get("previewUrl",""))}"><img src="{esc(u)}" '
+            f'style="width:96px;height:74px;object-fit:cover;border-radius:6px;margin:2px" alt=""></a>'
+            for u in p.get("thumbUrls", []))
+          doc = f"""<div style="font-family:Segoe UI,Arial,sans-serif;max-width:600px;margin:auto;color:#0f172a">
+            <div style="background:#0f172a;color:#fff;padding:18px 22px;border-radius:12px 12px 0 0">
+              <div style="color:#f97316;font-size:12px;font-weight:700;letter-spacing:.5px">SOB RENTALS · OWNER STUDIO</div>
+              <div style="font-size:20px;font-weight:700;margin-top:4px">New unit awaiting your approval</div>
+            </div>
+            <div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 12px 12px;padding:22px">
+              <h2 style="margin:0 0 4px">{esc(p.get("community","").replace("_"," "))} · {esc(p.get("unit"))}</h2>
+              <p style="color:#475569;margin:0 0 14px;font-weight:600">
+                {esc(p.get("beds"))} Bed &nbsp;·&nbsp; {esc(p.get("baths"))} Bath &nbsp;·&nbsp;
+                Sleeps {esc(p.get("sleeps"))} &nbsp;·&nbsp; {esc(p.get("photoCount"))} photos</p>
+              {"<p style='font-weight:600;margin:0 0 6px'>"+esc(p.get("title"))+"</p>" if p.get("title") else ""}
+              <p style="color:#334155;line-height:1.6;margin:0 0 16px">{esc(p.get("descExcerpt"))}</p>
+              <div style="margin:0 0 18px">{thumbs}</div>
+              <div style="margin:0 0 22px">
+                <a href="{esc(p.get("previewUrl",""))}" style="color:#ea580c;font-weight:600">▶ Open full preview</a>
+                {" &nbsp; · &nbsp; <a href='"+esc(p.get("sourceUrl"))+"' style='color:#64748b'>source listing</a>" if p.get("sourceUrl") else ""}
+              </div>
+              <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%"><tr>
+                <td style="padding-right:6px"><a href="{esc(p.get("approveUrl",""))}"
+                  style="display:block;text-align:center;background:#16a34a;color:#fff;text-decoration:none;
+                  padding:14px;border-radius:8px;font-weight:700">✓ Approve &amp; publish</a></td>
+                <td style="padding-left:6px"><a href="{esc(p.get("rejectUrl",""))}"
+                  style="display:block;text-align:center;background:#ef4444;color:#fff;text-decoration:none;
+                  padding:14px;border-radius:8px;font-weight:700">✕ Reject</a></td>
+              </tr></table>
+              <p style="color:#94a3b8;font-size:12px;margin:18px 0 0">
+                Approve writes the photos + page + card and pushes it live. Reject discards the draft.
+                Links expire in ~7 days. Nothing is on the website until you Approve.</p>
+            </div></div>"""
+          print(doc)
+          PY
+          {
+            echo "EMAIL_HTML<<EMAIL_EOF"
+            cat email.html
+            echo "EMAIL_EOF"
+          } >> "$GITHUB_ENV"
+
+      - name: Send via Gmail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          from: SOB Owner Studio <${{ secrets.GMAIL_USERNAME }}>
+          to: ${{ secrets.MAIL_TO }}
+          subject: "Owner Studio: approve ${{ github.event.client_payload.community }} / ${{ github.event.client_payload.unit }}?"
+          html_body: ${{ env.EMAIL_HTML }}

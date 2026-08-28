@@ -1,0 +1,5 @@
+# SOB Rentals
+User-agent: *
+Disallow: /owner/
+Disallow: /_owner_drafts/
+Sitemap: https://sobrentals.com/sitemap.xml

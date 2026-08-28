@@ -1,0 +1,22 @@
+# Cloudflare Worker for SOB Rentals "Owner Studio"
+# Name-scoped so it can NEVER collide with the spydernetwork Workers.
+# Uses the default *.workers.dev URL (no custom route -> zero overlap with
+# spydernetwork.com routes). If you later want studio.sobrentals.com, add a
+# [[routes]] block for THAT hostname only.
+
+name = "sob-owner-studio"
+main = "worker.js"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+# Non-secret config. Secrets (GITHUB_TOKEN, OWNER_HASH, SIGNING_SECRET) are set
+# with `wrangler secret put` -- see SETUP.md. Never put those here.
+[vars]
+GH_OWNER   = "t3kdesigns03"
+GH_REPO    = "sobrentals"
+GH_BRANCH  = "main"
+OWNER_SALT = "ULQfWFVW9LdEHHGMLXTHBw=="
+# Comma-separated origins allowed to call the API.
+ALLOWED_ORIGINS = "https://sobrentals.com,https://www.sobrentals.com,https://t3kdesigns03.github.io,http://localhost:8080,http://127.0.0.1:8080"
+# Public base of the live site (used to build preview links).
+SITE_BASE = "https://sobrentals.com"
