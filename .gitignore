@@ -1,3 +1,5 @@
 # Avoid committing NPM/Astro artifacts on static branch
 node_modules/
 .astro/
+owner-studio/worker/wrangler-account.json
+owner-studio/worker/.wrangler/
