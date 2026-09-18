@@ -15,7 +15,7 @@ workers_dev = true
 GH_OWNER   = "t3kdesigns03"
 GH_REPO    = "sobrentals"
 GH_BRANCH  = "main"
-OWNER_SALT = "ULQfWFVW9LdEHHGMLXTHBw=="
+OWNER_SALT = "wpsSlgOCLUPb7fwSZhAStg=="
 # Comma-separated origins allowed to call the API.
 ALLOWED_ORIGINS = "https://sobrentals.com,https://www.sobrentals.com,https://t3kdesigns03.github.io,http://localhost:8080,http://127.0.0.1:8080"
 # Public base of the live site (used to build preview links).
