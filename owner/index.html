@@ -14,51 +14,80 @@
   <script>
     tailwind.config = { theme: { extend: {
       fontFamily: { sans: ['Inter','sans-serif'], serif: ['Playfair Display','serif'] },
-      colors: { accent: { 400:'#f97316', 500:'#ea580c', 600:'#c2410c' } } } } }
+      colors: {
+        accent: { 400:'#fb923c', 500:'#ea580c', 600:'#c2410c' },
+        lake:   { 400:'#22d3ee', 500:'#06b6d4', 600:'#0891b2', 700:'#0e7490', 900:'#164e63' },
+        sand:   { 50:'#fdf8f1', 100:'#faf1e4', 200:'#f3e7d3' }
+      } } } }
   </script>
   <style>
-    .btn-primary{background:linear-gradient(135deg,#ea580c 0%,#c2410c 100%);transition:all .3s ease}
-    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(234,88,12,.3)}
+    body{background:linear-gradient(165deg,#fdf8f1 0%,#f4f8f7 55%,#eef6f5 100%);background-attachment:fixed}
+    .btn-primary{background:linear-gradient(135deg,#f97316 0%,#ea580c 55%,#c2410c 100%);transition:all .25s ease;box-shadow:0 6px 18px rgba(234,88,12,.22)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(234,88,12,.34)}
     .btn-primary:disabled{opacity:.5;transform:none;box-shadow:none;cursor:not-allowed}
-    .dropzone.drag{border-color:#ea580c;background:#fff7ed}
+    .btn-lake{background:linear-gradient(135deg,#0891b2 0%,#0e7490 100%);transition:all .25s ease;box-shadow:0 6px 18px rgba(14,116,144,.22)}
+    .btn-lake:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(14,116,144,.32)}
+    /* login hero — sunset over the lake */
+    .hero-bg{background:
+      radial-gradient(120% 80% at 78% 8%, rgba(251,191,36,.55) 0%, rgba(251,146,60,.28) 30%, transparent 60%),
+      linear-gradient(180deg,#0e7490 0%,#0891b2 30%,#38bdf8 55%,#fcd9a8 100%);
+      position:relative;overflow:hidden}
+    .hero-bg::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:120px;
+      background:radial-gradient(120% 100% at 50% 100%, rgba(255,255,255,.35), transparent 70%)}
+    .glass{background:rgba(255,255,255,.94);backdrop-filter:blur(6px)}
+    /* studio banner */
+    .brand-header{background:linear-gradient(115deg,#164e63 0%,#0e7490 42%,#c2410c 128%)}
+    .card{transition:transform .2s ease, box-shadow .2s ease}
+    .card-hover:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(15,60,72,.12)}
+    .num-badge{background:linear-gradient(135deg,#0891b2,#0e7490);color:#fff}
+    .dropzone{transition:all .2s ease}
+    .dropzone.drag{border-color:#ea580c;background:#fff7ed;transform:scale(1.01)}
     .thumb.dragging{opacity:.4}
-    input,select,textarea{outline:none}
-    input:focus,select:focus,textarea:focus{border-color:#ea580c;box-shadow:0 0 0 3px rgba(234,88,12,.15)}
+    .fade-in{animation:fade .35s ease both}
+    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    input,select,textarea{outline:none;transition:border-color .15s ease, box-shadow .15s ease}
+    input:focus,select:focus,textarea:focus{border-color:#0891b2;box-shadow:0 0 0 3px rgba(8,145,178,.15)}
+    .m-photo img,.thumb img{transition:transform .3s ease}
+    .m-photo:hover img,.thumb:hover img{transform:scale(1.06)}
   </style>
 </head>
-<body class="font-sans text-gray-700 antialiased bg-gray-50 min-h-screen">
+<body class="font-sans text-gray-700 antialiased min-h-screen">
 
   <!-- ===================== GATE ===================== -->
-  <div id="gate" class="min-h-screen flex items-center justify-center px-4">
-    <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+  <div id="gate" class="hero-bg min-h-screen flex items-center justify-center px-4">
+    <div class="relative z-10 w-full max-w-md glass rounded-3xl shadow-2xl border border-white/60 p-8">
       <div class="text-center mb-6">
         <img src="../final _triple_logo_horizontal.svg" alt="SOB Rentals" class="h-12 mx-auto mb-4 object-contain" onerror="this.style.display='none'">
-        <h1 class="font-serif text-3xl font-bold text-gray-900">Owner Studio</h1>
-        <p class="text-gray-500 mt-1">Private tool for SOB Rentals owners</p>
+        <span class="inline-flex items-center gap-1.5 text-xs font-semibold text-lake-700 bg-lake-400/15 border border-lake-400/30 rounded-full px-3 py-1 mb-3">
+          <i data-lucide="lock" class="h-3.5 w-3.5"></i> Private owner tool</span>
+        <h1 class="font-serif text-4xl font-bold text-gray-900">Owner Studio</h1>
+        <p class="text-gray-500 mt-1">Manage your Lake of the Ozarks listings</p>
       </div>
       <label class="block text-sm font-semibold text-gray-700 mb-2">Passcode</label>
       <input id="passcode" type="password" autocomplete="current-password"
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 mb-3" placeholder="Enter your passcode"
+        class="w-full border border-gray-300 rounded-xl px-4 py-3 mb-3" placeholder="Enter your passcode"
         onkeydown="if(event.key==='Enter')doLogin()">
       <p id="gateErr" class="text-red-600 text-sm mb-3 hidden"></p>
       <button onclick="doLogin()" id="gateBtn"
-        class="btn-primary w-full py-3 rounded-lg text-white font-bold">Unlock</button>
-      <p class="text-xs text-gray-400 mt-4 text-center">Nothing you enter here goes live until Brandon approves it.</p>
+        class="btn-primary w-full py-3.5 rounded-xl text-white font-bold text-lg">Unlock</button>
+      <p class="text-xs text-gray-500 mt-4 text-center flex items-center justify-center gap-1.5">
+        <i data-lucide="shield-check" class="h-3.5 w-3.5 text-lake-600"></i>
+        Nothing you enter goes live until Brandon approves it.</p>
     </div>
   </div>
 
   <!-- ===================== STUDIO ===================== -->
   <div id="studio" class="hidden">
-    <header class="bg-gray-900 text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <header class="brand-header text-white shadow-lg">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <img src="../final _triple_logo_horizontal.svg" alt="SOB Rentals" class="h-9 object-contain" onerror="this.style.display='none'">
+          <img src="../final _triple_logo_horizontal.svg" alt="SOB Rentals" class="h-10 object-contain drop-shadow" onerror="this.style.display='none'">
           <div>
-            <h1 class="font-serif text-xl font-bold leading-tight">Owner Studio</h1>
-            <p class="text-xs text-accent-400">Made for you, Sheila 🧡</p>
+            <h1 class="font-serif text-2xl font-bold leading-tight">Owner Studio</h1>
+            <p class="text-xs text-amber-200 font-medium">Made for you, Sheila 🧡</p>
           </div>
         </div>
-        <button onclick="logout()" class="text-sm text-gray-300 hover:text-white flex items-center gap-1">
+        <button onclick="logout()" class="text-sm text-white/80 hover:text-white flex items-center gap-1.5 bg-white/10 hover:bg-white/20 rounded-full px-4 py-2 transition">
           <i data-lucide="log-out" class="h-4 w-4"></i> Sign out</button>
       </div>
     </header>
@@ -66,26 +95,29 @@
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-6">
 
       <!-- mode tabs -->
-      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex gap-2">
+      <div class="bg-white rounded-2xl shadow-md border border-sand-200 p-2 flex gap-2 sticky top-3 z-20">
         <button id="tabAdd" onclick="switchTab('add')"
           class="flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2">
           <i data-lucide="plus-circle" class="h-5 w-5"></i> Add a unit</button>
         <button id="tabManage" onclick="switchTab('manage')"
-          class="flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2">
+          class="flex-1 py-3 rounded-xl font-semibold text-gray-500 hover:bg-sand-100 flex items-center justify-center gap-2">
           <i data-lucide="settings-2" class="h-5 w-5"></i> Manage listings</button>
       </div>
 
       <!-- ============ ADD PANE ============ -->
-      <div id="addPane" class="space-y-6">
-      <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800 flex gap-3">
-        <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5"></i>
+      <div id="addPane" class="space-y-6 fade-in">
+      <div class="bg-gradient-to-r from-sand-100 to-amber-50 border border-sand-200 rounded-2xl p-4 text-sm text-amber-900 flex gap-3">
+        <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5 text-accent-500"></i>
         <span>Add a new unit below and drag in the photos. When you submit, Brandon gets one email to review and approve it &mdash; <b>nothing appears on the website until he clicks Approve.</b></span>
       </div>
 
       <!-- 1. Community + unit -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 · Which community &amp; unit?</h2>
-        <p class="text-gray-500 text-sm mb-5">Pick the community from the list &mdash; these match the website exactly.</p>
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+          <h2 class="font-serif text-2xl font-bold text-gray-900">Which community &amp; unit?</h2>
+        </div>
+        <p class="text-gray-500 text-sm mb-5 sm:pl-12">Pick the community from the list &mdash; these match the website exactly.</p>
         <div class="grid sm:grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-semibold text-gray-700 mb-1">Community</label>
@@ -105,20 +137,26 @@
       </section>
 
       <!-- 2. Import -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">2 · Paste a VRBO or Airbnb link</h2>
-        <p class="text-gray-500 text-sm mb-5">We'll try to fill in the details for you. If it doesn't grab everything, just type them in &mdash; that's totally fine.</p>
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+          <h2 class="font-serif text-2xl font-bold text-gray-900">Paste a VRBO or Airbnb link</h2>
+        </div>
+        <p class="text-gray-500 text-sm mb-5 sm:pl-12">We'll try to fill in the details for you. If it doesn't grab everything, just type them in &mdash; that's totally fine.</p>
         <div class="flex flex-col sm:flex-row gap-3">
           <input id="f_url" class="flex-1 border border-gray-300 rounded-lg px-3 py-2.5" placeholder="https://www.vrbo.com/… or https://www.airbnb.com/…">
-          <button onclick="doScrape()" id="scrapeBtn" class="bg-gray-900 hover:bg-gray-800 text-white px-5 py-2.5 rounded-lg font-semibold whitespace-nowrap flex items-center justify-center gap-2">
+          <button onclick="doScrape()" id="scrapeBtn" class="btn-lake text-white px-5 py-2.5 rounded-lg font-semibold whitespace-nowrap flex items-center justify-center gap-2">
             <i data-lucide="download" class="h-4 w-4"></i><span>Fetch details</span></button>
         </div>
         <p id="scrapeMsg" class="text-sm mt-3 hidden"></p>
       </section>
 
       <!-- 3. Specs -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5">3 · The basics</h2>
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+          <h2 class="font-serif text-2xl font-bold text-gray-900">The basics</h2>
+        </div>
         <div class="grid grid-cols-3 gap-4">
           <div><label class="block text-sm font-semibold text-gray-700 mb-1">Bedrooms</label>
             <input id="f_beds" type="number" min="1" max="10" value="1" class="w-full border border-gray-300 rounded-lg px-3 py-2.5"></div>
@@ -130,8 +168,11 @@
       </section>
 
       <!-- 4. Description + amenities -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-5">4 · Description &amp; amenities</h2>
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">4</span>
+          <h2 class="font-serif text-2xl font-bold text-gray-900">Description &amp; amenities</h2>
+        </div>
         <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
         <textarea id="f_desc" rows="6" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 mb-4"
           placeholder="Tell guests about the space — the view, the dock, what's nearby…"></textarea>
@@ -140,16 +181,19 @@
         <div class="flex gap-2">
           <input id="amenInput" class="flex-1 border border-gray-300 rounded-lg px-3 py-2" placeholder="Add an amenity and press Enter"
             onkeydown="if(event.key==='Enter'){event.preventDefault();addAmenity(this.value);this.value=''}">
-          <button onclick="var i=document.getElementById('amenInput');addAmenity(i.value);i.value=''" class="bg-gray-100 hover:bg-gray-200 px-4 rounded-lg font-semibold text-gray-700">Add</button>
+          <button onclick="var i=document.getElementById('amenInput');addAmenity(i.value);i.value=''" class="bg-lake-700 hover:bg-lake-900 text-white px-4 rounded-lg font-semibold transition">Add</button>
         </div>
       </section>
 
       <!-- 5. Photos -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">5 · Photos</h2>
-        <p class="text-gray-500 text-sm mb-5">Drag your photos in. The first one (marked <span class="font-semibold text-accent-500">Cover</span>) is what guests see first &mdash; use <b>Make cover</b> on your favorite. JPEG works best.</p>
-        <div id="dropzone" class="dropzone border-2 border-dashed border-gray-300 rounded-xl p-10 text-center cursor-pointer transition">
-          <i data-lucide="image-plus" class="h-10 w-10 mx-auto text-gray-400 mb-3"></i>
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <div class="flex items-center gap-3 mb-1">
+          <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">5</span>
+          <h2 class="font-serif text-2xl font-bold text-gray-900">Photos</h2>
+        </div>
+        <p class="text-gray-500 text-sm mb-5 sm:pl-12">Drag your photos in. The first one (marked <span class="font-semibold text-accent-500">Cover</span>) is what guests see first &mdash; use <b>Make cover</b> on your favorite. JPEG works best.</p>
+        <div id="dropzone" class="dropzone border-2 border-dashed border-lake-400/50 rounded-2xl p-10 text-center cursor-pointer bg-lake-400/5">
+          <i data-lucide="image-plus" class="h-10 w-10 mx-auto text-lake-500 mb-3"></i>
           <p class="text-gray-600 font-medium">Drag photos here, or <span class="text-accent-500 underline">browse</span></p>
           <p class="text-xs text-gray-400 mt-1">Up to 40 photos</p>
           <input id="fileInput" type="file" accept="image/*" multiple class="hidden">
@@ -158,12 +202,12 @@
       </section>
 
       <!-- Submit -->
-      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-        <button onclick="submitDraft()" id="submitBtn" class="btn-primary w-full py-4 rounded-lg text-white font-bold text-lg flex items-center justify-center gap-2">
+      <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+        <button onclick="submitDraft()" id="submitBtn" class="btn-primary w-full py-4 rounded-xl text-white font-bold text-lg flex items-center justify-center gap-2">
           <i data-lucide="send" class="h-5 w-5"></i><span>Submit for Brandon's approval</span></button>
         <div id="progWrap" class="hidden mt-5">
-          <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-            <div id="progBar" class="bg-accent-500 h-3 transition-all" style="width:0%"></div>
+          <div class="w-full bg-sand-200 rounded-full h-3 overflow-hidden">
+            <div id="progBar" class="btn-primary h-3 transition-all" style="width:0%"></div>
           </div>
           <p id="progMsg" class="text-sm text-gray-500 mt-2 text-center"></p>
         </div>
@@ -172,50 +216,61 @@
       </div><!-- /addPane -->
 
       <!-- ============ MANAGE PANE ============ -->
-      <div id="managePane" class="hidden space-y-6">
-        <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800 flex gap-3">
-          <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5"></i>
+      <div id="managePane" class="hidden space-y-6 fade-in">
+        <div class="bg-gradient-to-r from-lake-400/10 to-sand-100 border border-lake-400/25 rounded-2xl p-4 text-sm text-lake-900 flex gap-3">
+          <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5 text-lake-600"></i>
           <span>Manage a unit that's already on the website. Pick it below, then set a new cover photo or remove it if it sold. <b>Every change still goes to Brandon for approval — nothing changes on the site until he clicks Approve.</b></span>
         </div>
 
         <!-- 1. community -->
-        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-          <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 · Which community?</h2>
-          <p class="text-gray-500 text-sm mb-5">Pick the community, then choose the unit.</p>
+        <section class="card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+          <div class="flex items-center gap-3 mb-1">
+            <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">1</span>
+            <h2 class="font-serif text-2xl font-bold text-gray-900">Which community?</h2>
+          </div>
+          <p class="text-gray-500 text-sm mb-5 sm:pl-12">Pick the community, then choose the unit.</p>
           <select id="m_community" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 bg-white">
             <option value="">Select a community…</option>
           </select>
         </section>
 
         <!-- 2. unit list -->
-        <section id="m_unitsSection" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-          <h2 class="font-serif text-2xl font-bold text-gray-900 mb-4">2 · Pick the unit</h2>
+        <section id="m_unitsSection" class="hidden card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">2</span>
+            <h2 class="font-serif text-2xl font-bold text-gray-900">Pick the unit</h2>
+          </div>
           <p id="m_unitsMsg" class="text-sm text-gray-500 hidden"></p>
           <div id="m_units" class="grid sm:grid-cols-2 gap-3"></div>
         </section>
 
         <!-- 3. actions for chosen unit -->
-        <section id="m_actionSection" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <section id="m_actionSection" class="hidden card bg-white rounded-2xl shadow-sm border border-sand-200 p-6">
           <div class="flex items-start justify-between gap-3 mb-5">
-            <div>
-              <p class="text-xs uppercase tracking-wide text-accent-500 font-bold">Selected unit</p>
-              <h2 id="m_unitName" class="font-serif text-2xl font-bold text-gray-900"></h2>
+            <div class="flex items-center gap-3">
+              <span class="num-badge h-9 w-9 rounded-full flex items-center justify-center font-bold shrink-0">3</span>
+              <div>
+                <p class="text-xs uppercase tracking-wide text-lake-600 font-bold">Selected unit</p>
+                <h2 id="m_unitName" class="font-serif text-2xl font-bold text-gray-900"></h2>
+              </div>
             </div>
-            <button onclick="clearUnit()" class="text-sm text-gray-400 hover:text-gray-700 flex items-center gap-1 whitespace-nowrap">
+            <button onclick="clearUnit()" class="text-sm text-gray-400 hover:text-lake-700 flex items-center gap-1 whitespace-nowrap">
               <i data-lucide="chevron-left" class="h-4 w-4"></i> change unit</button>
           </div>
 
           <!-- action toggle -->
-          <div class="bg-gray-100 rounded-xl p-1 flex gap-1 mb-6">
-            <button id="m_tabCover" onclick="showAction('cover')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900">Change cover photo</button>
-            <button id="m_tabRemove" onclick="showAction('remove')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500">Remove (sold)</button>
+          <div class="bg-sand-100 rounded-xl p-1 flex gap-1 mb-6">
+            <button id="m_tabCover" onclick="showAction('cover')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900 flex items-center justify-center gap-2">
+              <i data-lucide="image" class="h-4 w-4"></i> Change cover photo</button>
+            <button id="m_tabRemove" onclick="showAction('remove')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500 flex items-center justify-center gap-2">
+              <i data-lucide="trash-2" class="h-4 w-4"></i> Remove (sold)</button>
           </div>
 
           <!-- cover panel -->
           <div id="m_coverPanel">
             <p class="text-gray-500 text-sm mb-4">Tap the photo you want as the display / cover image. It'll show first on the unit's page and on every listing card.</p>
             <div id="m_photos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
-            <button onclick="submitCover()" id="m_coverBtn" disabled class="btn-primary w-full mt-6 py-3.5 rounded-lg text-white font-bold flex items-center justify-center gap-2">
+            <button onclick="submitCover()" id="m_coverBtn" disabled class="btn-primary w-full mt-6 py-3.5 rounded-xl text-white font-bold flex items-center justify-center gap-2">
               <i data-lucide="send" class="h-5 w-5"></i><span>Submit cover change for approval</span></button>
           </div>
 
@@ -230,13 +285,13 @@
                 class="h-4 w-4 rounded border-gray-300 text-accent-500">
               Yes, this property has sold — take it off the site.
             </label>
-            <button onclick="submitRemove()" id="m_removeBtn" disabled class="w-full py-3.5 rounded-lg text-white font-bold flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
+            <button onclick="submitRemove()" id="m_removeBtn" disabled class="w-full py-3.5 rounded-xl text-white font-bold flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
               <i data-lucide="trash-2" class="h-5 w-5"></i><span>Submit removal for approval</span></button>
           </div>
 
           <div id="m_progWrap" class="hidden mt-5">
-            <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-              <div class="bg-accent-500 h-3 animate-pulse" style="width:100%"></div>
+            <div class="w-full bg-sand-200 rounded-full h-3 overflow-hidden">
+              <div class="btn-primary h-3 animate-pulse" style="width:100%"></div>
             </div>
             <p id="m_progMsg" class="text-sm text-gray-500 mt-2 text-center"></p>
           </div>
@@ -245,16 +300,19 @@
       </div><!-- /managePane -->
 
     </main>
+    <footer class="max-w-4xl mx-auto px-6 py-8 text-center text-xs text-gray-400">
+      SOB Rentals · Owner Studio — Lake of the Ozarks
+    </footer>
   </div>
 
   <!-- ===================== DONE ===================== -->
   <div id="done" class="hidden min-h-screen flex items-center justify-center px-4">
-    <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
+    <div class="w-full max-w-lg glass rounded-3xl shadow-2xl border border-white/60 p-8 text-center fade-in">
       <div class="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
         <i data-lucide="check" class="h-8 w-8"></i></div>
       <h1 id="doneTitle" class="font-serif text-3xl font-bold text-gray-900 mb-2">Submitted! 🎉</h1>
       <p id="doneMsg" class="text-gray-600 mb-6"></p>
-      <button onclick="location.reload()" class="btn-primary px-6 py-3 rounded-lg text-white font-bold">Back to Owner Studio</button>
+      <button onclick="location.reload()" class="btn-primary px-6 py-3 rounded-xl text-white font-bold">Back to Owner Studio</button>
     </div>
   </div>
 
@@ -352,10 +410,10 @@
     $("managePane").classList.toggle("hidden", add);
     $("tabAdd").className = add
       ? "flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2"
-      : "flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2";
+      : "flex-1 py-3 rounded-xl font-semibold text-gray-500 hover:bg-sand-100 flex items-center justify-center gap-2";
     $("tabManage").className = !add
       ? "flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2"
-      : "flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2";
+      : "flex-1 py-3 rounded-xl font-semibold text-gray-500 hover:bg-sand-100 flex items-center justify-center gap-2";
     if (name === "manage" && !manageReady) initManage();
     icons();
   }
@@ -392,7 +450,7 @@
   function removeAmenity(name) { amenities = amenities.filter((a) => a !== name); renderAmenities(); }
   function renderAmenities() {
     $("amenChips").innerHTML = amenities.map((a) =>
-      '<span class="inline-flex items-center gap-1 bg-orange-50 text-accent-600 border border-orange-200 rounded-full px-3 py-1 text-sm">' +
+      '<span class="inline-flex items-center gap-1 bg-lake-400/10 text-lake-700 border border-lake-400/30 rounded-full px-3 py-1 text-sm">' +
       a.replace(/</g, "&lt;") +
       ' <button onclick="removeAmenity(\'' + a.replace(/'/g, "\\'") + '\')" class="hover:text-red-500">&times;</button></span>').join("");
   }
@@ -419,8 +477,8 @@
     const el = $("thumbs");
     el.innerHTML = photos.map((p) => {
       const isCover = p.id === coverId;
-      return '<div class="thumb relative rounded-lg overflow-hidden border-2 ' +
-        (isCover ? "border-accent-500" : "border-transparent") + '" draggable="true" data-id="' + p.id + '">' +
+      return '<div class="thumb relative rounded-xl overflow-hidden border-2 ' +
+        (isCover ? "border-accent-500" : "border-transparent") + ' shadow-sm" draggable="true" data-id="' + p.id + '">' +
         '<img src="' + p.url + '" class="w-full h-28 object-cover pointer-events-none">' +
         (isCover ? '<span class="absolute top-1 left-1 bg-accent-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">COVER</span>' : "") +
         '<div class="absolute inset-x-0 bottom-0 bg-black/60 flex justify-between px-1 py-1">' +
@@ -556,8 +614,8 @@
       msg.classList.add("hidden");
       const el = $("m_units");
       el.innerHTML = mUnits.map((u, i) =>
-        '<button data-i="' + i + '" class="m-unit text-left border border-gray-200 rounded-lg px-4 py-3 hover:border-accent-500 hover:bg-orange-50 transition font-medium text-gray-800 flex items-center justify-between gap-2">' +
-        '<span>' + htmlEsc(u.label) + '</span><i data-lucide="chevron-right" class="h-4 w-4 text-gray-400"></i></button>').join("");
+        '<button data-i="' + i + '" class="m-unit text-left border border-sand-200 rounded-xl px-4 py-3.5 hover:border-lake-500 hover:bg-lake-400/5 transition font-medium text-gray-800 flex items-center justify-between gap-2 shadow-sm card-hover">' +
+        '<span class="flex items-center gap-2"><i data-lucide="home" class="h-4 w-4 text-lake-500"></i>' + htmlEsc(u.label) + '</span><i data-lucide="chevron-right" class="h-4 w-4 text-gray-400"></i></button>').join("");
       el.querySelectorAll(".m-unit").forEach((b) =>
         b.addEventListener("click", () => pickUnit(mUnits[+b.dataset.i].folder)));
       icons();
@@ -599,8 +657,8 @@
     if (!mPhotos.length) { grid.innerHTML = '<p class="text-gray-400 text-sm col-span-full">No photos found for this unit.</p>'; return; }
     grid.innerHTML = mPhotos.map((p, i) => {
       const sel = p.name === mCover;
-      return '<button data-i="' + i + '" class="m-photo relative rounded-lg overflow-hidden border-2 ' +
-        (sel ? "border-accent-500" : "border-transparent") + '">' +
+      return '<button data-i="' + i + '" class="m-photo relative rounded-xl overflow-hidden border-2 shadow-sm ' +
+        (sel ? "border-accent-500 ring-2 ring-accent-500/30" : "border-transparent") + '">' +
         '<img src="' + htmlEsc(p.url) + '" loading="lazy" class="w-full h-28 object-cover pointer-events-none">' +
         (sel ? '<span class="absolute top-1 left-1 bg-accent-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">COVER</span>' : "") +
         '</button>';
@@ -615,10 +673,11 @@
     mAction = a;
     $("m_coverPanel").classList.toggle("hidden", a !== "cover");
     $("m_removePanel").classList.toggle("hidden", a !== "remove");
-    const on = "flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900";
-    const off = "flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500";
+    const on = "flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900 flex items-center justify-center gap-2";
+    const off = "flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500 flex items-center justify-center gap-2";
     $("m_tabCover").className = a === "cover" ? on : off;
     $("m_tabRemove").className = a === "remove" ? on : off;
+    icons();
   }
 
   function mProg(show, msg) {
