@@ -64,6 +64,19 @@
     </header>
 
     <main class="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-6">
+
+      <!-- mode tabs -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-2 flex gap-2">
+        <button id="tabAdd" onclick="switchTab('add')"
+          class="flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2">
+          <i data-lucide="plus-circle" class="h-5 w-5"></i> Add a unit</button>
+        <button id="tabManage" onclick="switchTab('manage')"
+          class="flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2">
+          <i data-lucide="settings-2" class="h-5 w-5"></i> Manage listings</button>
+      </div>
+
+      <!-- ============ ADD PANE ============ -->
+      <div id="addPane" class="space-y-6">
       <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800 flex gap-3">
         <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5"></i>
         <span>Add a new unit below and drag in the photos. When you submit, Brandon gets one email to review and approve it &mdash; <b>nothing appears on the website until he clicks Approve.</b></span>
@@ -156,6 +169,81 @@
         </div>
         <p id="submitErr" class="text-red-600 text-sm mt-3 hidden"></p>
       </section>
+      </div><!-- /addPane -->
+
+      <!-- ============ MANAGE PANE ============ -->
+      <div id="managePane" class="hidden space-y-6">
+        <div class="bg-orange-50 border border-orange-200 rounded-xl p-4 text-sm text-orange-800 flex gap-3">
+          <i data-lucide="info" class="h-5 w-5 shrink-0 mt-0.5"></i>
+          <span>Manage a unit that's already on the website. Pick it below, then set a new cover photo or remove it if it sold. <b>Every change still goes to Brandon for approval — nothing changes on the site until he clicks Approve.</b></span>
+        </div>
+
+        <!-- 1. community -->
+        <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <h2 class="font-serif text-2xl font-bold text-gray-900 mb-1">1 · Which community?</h2>
+          <p class="text-gray-500 text-sm mb-5">Pick the community, then choose the unit.</p>
+          <select id="m_community" class="w-full border border-gray-300 rounded-lg px-3 py-2.5 bg-white">
+            <option value="">Select a community…</option>
+          </select>
+        </section>
+
+        <!-- 2. unit list -->
+        <section id="m_unitsSection" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <h2 class="font-serif text-2xl font-bold text-gray-900 mb-4">2 · Pick the unit</h2>
+          <p id="m_unitsMsg" class="text-sm text-gray-500 hidden"></p>
+          <div id="m_units" class="grid sm:grid-cols-2 gap-3"></div>
+        </section>
+
+        <!-- 3. actions for chosen unit -->
+        <section id="m_actionSection" class="hidden bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+          <div class="flex items-start justify-between gap-3 mb-5">
+            <div>
+              <p class="text-xs uppercase tracking-wide text-accent-500 font-bold">Selected unit</p>
+              <h2 id="m_unitName" class="font-serif text-2xl font-bold text-gray-900"></h2>
+            </div>
+            <button onclick="clearUnit()" class="text-sm text-gray-400 hover:text-gray-700 flex items-center gap-1 whitespace-nowrap">
+              <i data-lucide="chevron-left" class="h-4 w-4"></i> change unit</button>
+          </div>
+
+          <!-- action toggle -->
+          <div class="bg-gray-100 rounded-xl p-1 flex gap-1 mb-6">
+            <button id="m_tabCover" onclick="showAction('cover')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900">Change cover photo</button>
+            <button id="m_tabRemove" onclick="showAction('remove')" class="flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500">Remove (sold)</button>
+          </div>
+
+          <!-- cover panel -->
+          <div id="m_coverPanel">
+            <p class="text-gray-500 text-sm mb-4">Tap the photo you want as the display / cover image. It'll show first on the unit's page and on every listing card.</p>
+            <div id="m_photos" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3"></div>
+            <button onclick="submitCover()" id="m_coverBtn" disabled class="btn-primary w-full mt-6 py-3.5 rounded-lg text-white font-bold flex items-center justify-center gap-2">
+              <i data-lucide="send" class="h-5 w-5"></i><span>Submit cover change for approval</span></button>
+          </div>
+
+          <!-- remove panel -->
+          <div id="m_removePanel" class="hidden">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-4 text-sm text-red-700 mb-4 flex gap-3">
+              <i data-lucide="alert-triangle" class="h-5 w-5 shrink-0 mt-0.5"></i>
+              <span>This takes the unit off the website — the collection page, the homepage, and any featured spots. The page and its photos stay saved in case it needs to come back. Brandon approves it before anything changes.</span>
+            </div>
+            <label class="flex items-center gap-2 text-sm text-gray-700 mb-4 cursor-pointer">
+              <input type="checkbox" id="m_removeConfirm" onchange="document.getElementById('m_removeBtn').disabled=!this.checked"
+                class="h-4 w-4 rounded border-gray-300 text-accent-500">
+              Yes, this property has sold — take it off the site.
+            </label>
+            <button onclick="submitRemove()" id="m_removeBtn" disabled class="w-full py-3.5 rounded-lg text-white font-bold flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition">
+              <i data-lucide="trash-2" class="h-5 w-5"></i><span>Submit removal for approval</span></button>
+          </div>
+
+          <div id="m_progWrap" class="hidden mt-5">
+            <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+              <div class="bg-accent-500 h-3 animate-pulse" style="width:100%"></div>
+            </div>
+            <p id="m_progMsg" class="text-sm text-gray-500 mt-2 text-center"></p>
+          </div>
+          <p id="m_err" class="text-red-600 text-sm mt-3 hidden"></p>
+        </section>
+      </div><!-- /managePane -->
+
     </main>
   </div>
 
@@ -164,9 +252,9 @@
     <div class="w-full max-w-lg bg-white rounded-2xl shadow-xl border border-gray-100 p-8 text-center">
       <div class="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
         <i data-lucide="check" class="h-8 w-8"></i></div>
-      <h1 class="font-serif text-3xl font-bold text-gray-900 mb-2">Submitted! 🎉</h1>
-      <p class="text-gray-600 mb-6">Brandon just got an email to review <b id="doneName"></b>. Once he approves it, the unit will show up on the website automatically. Nothing is live yet.</p>
-      <button onclick="location.reload()" class="btn-primary px-6 py-3 rounded-lg text-white font-bold">Add another unit</button>
+      <h1 id="doneTitle" class="font-serif text-3xl font-bold text-gray-900 mb-2">Submitted! 🎉</h1>
+      <p id="doneMsg" class="text-gray-600 mb-6"></p>
+      <button onclick="location.reload()" class="btn-primary px-6 py-3 rounded-lg text-white font-bold">Back to Owner Studio</button>
     </div>
   </div>
 
@@ -195,6 +283,7 @@
   let dragId = null;
   const $ = (id) => document.getElementById(id);
   const icons = () => { try { lucide.createIcons(); } catch (_e) {} };
+  const htmlEsc = (s) => String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 
   /* ---------- API ---------- */
   async function api(path, body, isGet) {
@@ -255,6 +344,22 @@
     icons();
   }
 
+  /* ---------- mode tabs ---------- */
+  let manageReady = false;
+  function switchTab(name) {
+    const add = name === "add";
+    $("addPane").classList.toggle("hidden", !add);
+    $("managePane").classList.toggle("hidden", add);
+    $("tabAdd").className = add
+      ? "flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2"
+      : "flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2";
+    $("tabManage").className = !add
+      ? "flex-1 py-3 rounded-xl font-semibold text-white btn-primary flex items-center justify-center gap-2"
+      : "flex-1 py-3 rounded-xl font-semibold text-gray-600 hover:bg-gray-100 flex items-center justify-center gap-2";
+    if (name === "manage" && !manageReady) initManage();
+    icons();
+  }
+
   /* ---------- scrape ---------- */
   async function doScrape() {
     const url = $("f_url").value.trim();
@@ -292,7 +397,7 @@
       ' <button onclick="removeAmenity(\'' + a.replace(/'/g, "\\'") + '\')" class="hover:text-red-500">&times;</button></span>').join("");
   }
 
-  /* ---------- photos ---------- */
+  /* ---------- photos (add) ---------- */
   function addFiles(fileList) {
     for (const file of fileList) {
       if (!file.type.startsWith("image/")) continue;
@@ -362,7 +467,7 @@
     });
   }
 
-  /* ---------- submit ---------- */
+  /* ---------- submit (add) ---------- */
   async function submitDraft() {
     const err = $("submitErr"); err.classList.add("hidden");
     const community = $("f_community").value;
@@ -410,9 +515,9 @@
         photos: uploaded, manifest, coverIndex: 0,
       });
       setProg(100, "Done!");
-      $("doneName").textContent = community.replace(/_/g, " ") + " · " + unit;
-      $("studio").classList.add("hidden");
-      $("done").classList.remove("hidden");
+      showDone("Submitted! 🎉",
+        "Brandon just got an email to review <b>" + htmlEsc(community.replace(/_/g, " ") + " · " + unit) +
+        "</b>. Once he approves it, the unit will show up on the website automatically. Nothing is live yet.");
     } catch (e) {
       err.textContent = "Something went wrong: " + (e.message || e) + ". Your photos are safe — try Submit again.";
       err.classList.remove("hidden");
@@ -420,9 +525,162 @@
     }
   }
 
+  /* ================= MANAGE ================= */
+  let mUnits = [], mFolder = null, mPhotos = [], mCover = null, mAction = "cover";
+
+  function initManage() {
+    const sel = $("m_community");
+    if (sel.options.length <= 1) {
+      COMMUNITIES.forEach((c) => {
+        const o = document.createElement("option");
+        o.value = c; o.textContent = c.replace(/_/g, " ");
+        sel.appendChild(o);
+      });
+      sel.addEventListener("change", () => loadUnits(sel.value));
+    }
+    manageReady = true;
+  }
+
+  async function loadUnits(c) {
+    $("m_actionSection").classList.add("hidden");
+    clearUnitState();
+    if (!c) { $("m_unitsSection").classList.add("hidden"); return; }
+    $("m_unitsSection").classList.remove("hidden");
+    const msg = $("m_unitsMsg");
+    msg.textContent = "Loading units…"; msg.className = "text-sm text-gray-500";
+    $("m_units").innerHTML = "";
+    try {
+      const r = await api("/api/units?community=" + encodeURIComponent(c), null, true);
+      mUnits = r.units || [];
+      if (!mUnits.length) { msg.textContent = "No units found in this community yet."; return; }
+      msg.classList.add("hidden");
+      const el = $("m_units");
+      el.innerHTML = mUnits.map((u, i) =>
+        '<button data-i="' + i + '" class="m-unit text-left border border-gray-200 rounded-lg px-4 py-3 hover:border-accent-500 hover:bg-orange-50 transition font-medium text-gray-800 flex items-center justify-between gap-2">' +
+        '<span>' + htmlEsc(u.label) + '</span><i data-lucide="chevron-right" class="h-4 w-4 text-gray-400"></i></button>').join("");
+      el.querySelectorAll(".m-unit").forEach((b) =>
+        b.addEventListener("click", () => pickUnit(mUnits[+b.dataset.i].folder)));
+      icons();
+    } catch (e) {
+      msg.classList.remove("hidden");
+      msg.className = "text-sm text-red-600";
+      msg.textContent = "Couldn't load units: " + (e.message || e);
+    }
+  }
+
+  function clearUnitState() { mFolder = null; mPhotos = []; mCover = null; }
+  function clearUnit() {
+    $("m_actionSection").classList.add("hidden");
+    clearUnitState();
+    $("m_unitsSection").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  async function pickUnit(folder) {
+    mFolder = folder; mCover = null;
+    $("m_unitName").textContent = $("m_community").value.replace(/_/g, " ") + " · " + folder;
+    $("m_actionSection").classList.remove("hidden");
+    $("m_err").classList.add("hidden");
+    showAction("cover");
+    $("m_actionSection").scrollIntoView({ behavior: "smooth", block: "start" });
+    const grid = $("m_photos");
+    grid.innerHTML = '<p class="text-gray-400 text-sm col-span-full">Loading photos…</p>';
+    try {
+      const r = await api("/api/photos?community=" + encodeURIComponent($("m_community").value) +
+        "&folder=" + encodeURIComponent(folder), null, true);
+      mPhotos = r.photos || [];
+      renderMPhotos();
+    } catch (e) {
+      grid.innerHTML = '<p class="text-red-500 text-sm col-span-full">Couldn\'t load photos: ' + htmlEsc(e.message || "") + '</p>';
+    }
+  }
+
+  function renderMPhotos() {
+    const grid = $("m_photos");
+    if (!mPhotos.length) { grid.innerHTML = '<p class="text-gray-400 text-sm col-span-full">No photos found for this unit.</p>'; return; }
+    grid.innerHTML = mPhotos.map((p, i) => {
+      const sel = p.name === mCover;
+      return '<button data-i="' + i + '" class="m-photo relative rounded-lg overflow-hidden border-2 ' +
+        (sel ? "border-accent-500" : "border-transparent") + '">' +
+        '<img src="' + htmlEsc(p.url) + '" loading="lazy" class="w-full h-28 object-cover pointer-events-none">' +
+        (sel ? '<span class="absolute top-1 left-1 bg-accent-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">COVER</span>' : "") +
+        '</button>';
+    }).join("");
+    grid.querySelectorAll(".m-photo").forEach((b) =>
+      b.addEventListener("click", () => pickCover(mPhotos[+b.dataset.i].name)));
+    $("m_coverBtn").disabled = !mCover;
+  }
+  function pickCover(name) { mCover = name; renderMPhotos(); }
+
+  function showAction(a) {
+    mAction = a;
+    $("m_coverPanel").classList.toggle("hidden", a !== "cover");
+    $("m_removePanel").classList.toggle("hidden", a !== "remove");
+    const on = "flex-1 py-2.5 rounded-lg font-semibold text-sm bg-white shadow text-gray-900";
+    const off = "flex-1 py-2.5 rounded-lg font-semibold text-sm text-gray-500";
+    $("m_tabCover").className = a === "cover" ? on : off;
+    $("m_tabRemove").className = a === "remove" ? on : off;
+  }
+
+  function mProg(show, msg) {
+    $("m_progWrap").classList.toggle("hidden", !show);
+    if (msg) $("m_progMsg").textContent = msg;
+  }
+
+  async function submitCover() {
+    const err = $("m_err"); err.classList.add("hidden");
+    if (!mFolder || !mCover) { err.textContent = "Pick a photo first."; err.classList.remove("hidden"); return; }
+    const btn = $("m_coverBtn"); btn.disabled = true;
+    mProg(true, "Sending the cover change to Brandon…");
+    try {
+      const chosen = mPhotos.find((p) => p.name === mCover) || {};
+      await api("/api/edit/cover", {
+        community: $("m_community").value, folder: mFolder,
+        coverPhoto: mCover, coverUrl: chosen.url || "",
+      });
+      showDone("Cover change sent! 🎉",
+        "Brandon just got an email to approve the new cover photo for <b>" + htmlEsc(mFolder) +
+        "</b>. Once he approves it, the photo updates across the site. Nothing has changed yet.");
+    } catch (e) {
+      err.textContent = "Something went wrong: " + (e.message || e); err.classList.remove("hidden");
+      btn.disabled = false; mProg(false);
+    }
+  }
+
+  async function submitRemove() {
+    const err = $("m_err"); err.classList.add("hidden");
+    if (!mFolder) return;
+    if (!$("m_removeConfirm").checked) { err.textContent = "Please tick the box to confirm."; err.classList.remove("hidden"); return; }
+    const btn = $("m_removeBtn"); btn.disabled = true;
+    mProg(true, "Sending the removal request to Brandon…");
+    try {
+      const cover = (mPhotos[0] || {}).url || "";
+      await api("/api/edit/remove", {
+        community: $("m_community").value, folder: mFolder, coverUrl: cover,
+      });
+      showDone("Removal request sent 🗂️",
+        "Brandon just got an email to approve removing <b>" + htmlEsc(mFolder) +
+        "</b> from the site. Once he approves it, it's unlisted (the page and photos stay saved). Nothing has changed yet.");
+    } catch (e) {
+      err.textContent = "Something went wrong: " + (e.message || e); err.classList.remove("hidden");
+      btn.disabled = false; mProg(false);
+    }
+  }
+
+  /* ---------- done ---------- */
+  function showDone(title, msgHtml) {
+    $("doneTitle").textContent = title;
+    $("doneMsg").innerHTML = msgHtml;
+    $("studio").classList.add("hidden");
+    $("done").classList.remove("hidden");
+    icons();
+    window.scrollTo({ top: 0 });
+  }
+
   window.doLogin = doLogin; window.logout = logout; window.doScrape = doScrape;
   window.addAmenity = addAmenity; window.removeAmenity = removeAmenity;
   window.makeCover = makeCover; window.removePhoto = removePhoto; window.submitDraft = submitDraft;
+  window.switchTab = switchTab; window.showAction = showAction;
+  window.submitCover = submitCover; window.submitRemove = submitRemove; window.clearUnit = clearUnit;
   icons();
   </script>
 </body>

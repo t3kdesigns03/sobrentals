@@ -1,5 +1,6 @@
-# Owner Studio — email Brandon ONE approval message when Sheila submits a draft.
+# Owner Studio — email Brandon ONE approval message when Sheila submits a change.
 # Triggered by the Worker via repository_dispatch (event_type: owner-draft).
+# Handles all three actions: add / change_cover / remove.
 name: Owner Studio - Notify
 
 on:
@@ -18,17 +19,44 @@ jobs:
           import os, json, html
           p = json.loads(os.environ["PAYLOAD"])
           esc = lambda s: html.escape(str(s or ""))
-          thumbs = "".join(
-            f'<a href="{esc(p.get("previewUrl",""))}"><img src="{esc(u)}" '
-            f'style="width:96px;height:74px;object-fit:cover;border-radius:6px;margin:2px" alt=""></a>'
-            for u in p.get("thumbUrls", []))
-          doc = f"""<div style="font-family:Segoe UI,Arial,sans-serif;max-width:600px;margin:auto;color:#0f172a">
-            <div style="background:#0f172a;color:#fff;padding:18px 22px;border-radius:12px 12px 0 0">
-              <div style="color:#f97316;font-size:12px;font-weight:700;letter-spacing:.5px">SOB RENTALS · OWNER STUDIO</div>
-              <div style="font-size:20px;font-weight:700;margin-top:4px">New unit awaiting your approval</div>
-            </div>
-            <div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 12px 12px;padding:22px">
-              <h2 style="margin:0 0 4px">{esc(p.get("community","").replace("_"," "))} · {esc(p.get("unit"))}</h2>
+          action = p.get("action", "add")
+          comm = esc(p.get("community", "").replace("_", " "))
+          unit = esc(p.get("unit"))
+          approve = esc(p.get("approveUrl", ""))
+          reject = esc(p.get("rejectUrl", ""))
+          cover = esc(p.get("coverThumbUrl", ""))
+
+          # ---- action-specific banner + body ----
+          if action == "change_cover":
+            kicker = "COVER PHOTO CHANGE"
+            headline = "Cover photo change awaiting your approval"
+            inner = f"""
+              <h2 style="margin:0 0 4px">{comm} · {unit}</h2>
+              <p style="color:#475569;margin:0 0 14px;font-weight:600">Sheila picked a new display photo for this unit.</p>
+              {'<p style="font-weight:600;margin:0 0 8px">New cover photo</p><img src="'+cover+'" alt="new cover" style="width:320px;max-width:100%;height:auto;border-radius:10px;border:1px solid #e2e8f0">' if cover else ''}
+              <p style="color:#94a3b8;font-size:12px;margin:18px 0 0">
+                Approve sets this as the cover on the unit's page and on every listing card that features it.
+                Reject leaves the current cover unchanged. Nothing changes on the website until you Approve.</p>"""
+          elif action == "remove":
+            kicker = "REMOVE SOLD PROPERTY"
+            headline = "Remove a sold property from the site"
+            inner = f"""
+              <h2 style="margin:0 0 4px">{comm} · {unit}</h2>
+              <p style="color:#475569;margin:0 0 14px;font-weight:600">Sheila marked this unit as sold and wants it taken off the site.</p>
+              {'<img src="'+cover+'" alt="unit" style="width:320px;max-width:100%;height:auto;border-radius:10px;border:1px solid #e2e8f0">' if cover else ''}
+              <p style="color:#94a3b8;font-size:12px;margin:18px 0 0">
+                Approve unlists it from the collection page, the homepage, and any featured spots. The detail page and
+                its photos stay in the repository, so it can be brought back later. Reject leaves it live.
+                Nothing changes on the website until you Approve.</p>"""
+          else:  # add
+            kicker = "NEW UNIT"
+            headline = "New unit awaiting your approval"
+            thumbs = "".join(
+              f'<a href="{esc(p.get("previewUrl",""))}"><img src="{esc(u)}" '
+              f'style="width:96px;height:74px;object-fit:cover;border-radius:6px;margin:2px" alt=""></a>'
+              for u in p.get("thumbUrls", []))
+            inner = f"""
+              <h2 style="margin:0 0 4px">{comm} · {unit}</h2>
               <p style="color:#475569;margin:0 0 14px;font-weight:600">
                 {esc(p.get("beds"))} Bed &nbsp;·&nbsp; {esc(p.get("baths"))} Bath &nbsp;·&nbsp;
                 Sleeps {esc(p.get("sleeps"))} &nbsp;·&nbsp; {esc(p.get("photoCount"))} photos</p>
@@ -39,17 +67,26 @@ jobs:
                 <a href="{esc(p.get("previewUrl",""))}" style="color:#ea580c;font-weight:600">▶ Open full preview</a>
                 {" &nbsp; · &nbsp; <a href='"+esc(p.get("sourceUrl"))+"' style='color:#64748b'>source listing</a>" if p.get("sourceUrl") else ""}
               </div>
-              <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%"><tr>
-                <td style="padding-right:6px"><a href="{esc(p.get("approveUrl",""))}"
+              <p style="color:#94a3b8;font-size:12px;margin:0">
+                Approve writes the photos + page + card and pushes it live. Reject discards the draft.
+                Nothing is on the website until you Approve.</p>"""
+
+          doc = f"""<div style="font-family:Segoe UI,Arial,sans-serif;max-width:600px;margin:auto;color:#0f172a">
+            <div style="background:#0f172a;color:#fff;padding:18px 22px;border-radius:12px 12px 0 0">
+              <div style="color:#f97316;font-size:12px;font-weight:700;letter-spacing:.5px">SOB RENTALS · OWNER STUDIO · {kicker}</div>
+              <div style="font-size:20px;font-weight:700;margin-top:4px">{headline}</div>
+            </div>
+            <div style="border:1px solid #e2e8f0;border-top:none;border-radius:0 0 12px 12px;padding:22px">
+              {inner}
+              <table role="presentation" cellpadding="0" cellspacing="0" style="width:100%;margin-top:20px"><tr>
+                <td style="padding-right:6px"><a href="{approve}"
                   style="display:block;text-align:center;background:#16a34a;color:#fff;text-decoration:none;
-                  padding:14px;border-radius:8px;font-weight:700">✓ Approve &amp; publish</a></td>
-                <td style="padding-left:6px"><a href="{esc(p.get("rejectUrl",""))}"
+                  padding:14px;border-radius:8px;font-weight:700">✓ Approve</a></td>
+                <td style="padding-left:6px"><a href="{reject}"
                   style="display:block;text-align:center;background:#ef4444;color:#fff;text-decoration:none;
                   padding:14px;border-radius:8px;font-weight:700">✕ Reject</a></td>
               </tr></table>
-              <p style="color:#94a3b8;font-size:12px;margin:18px 0 0">
-                Approve writes the photos + page + card and pushes it live. Reject discards the draft.
-                Links expire in ~7 days. Nothing is on the website until you Approve.</p>
+              <p style="color:#94a3b8;font-size:12px;margin:14px 0 0">Links expire in ~7 days.</p>
             </div></div>"""
           print(doc)
           PY
@@ -69,5 +106,5 @@ jobs:
           password: ${{ secrets.GMAIL_APP_PASSWORD }}
           from: SOB Owner Studio <${{ secrets.GMAIL_USERNAME }}>
           to: ${{ secrets.MAIL_TO }}
-          subject: "Owner Studio: approve ${{ github.event.client_payload.community }} / ${{ github.event.client_payload.unit }}?"
+          subject: "Owner Studio: ${{ github.event.client_payload.action }} — ${{ github.event.client_payload.community }} / ${{ github.event.client_payload.unit }}?"
           html_body: ${{ env.EMAIL_HTML }}

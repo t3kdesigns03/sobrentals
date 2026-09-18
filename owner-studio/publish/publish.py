@@ -2,16 +2,30 @@
 """
 SOB Rentals — Owner Studio publish transform.
 
-Given an approved draft (manifest.json + photos), this:
-  1. detects the target community's existing conventions from the nearest sibling
-     (folder-name pattern, detail-filename pattern, img001 vs 001 prefix)
-  2. resizes/compresses photos (max edge 2000px, jpeg; rejects >10MB originals
-     that still won't compress under 10MB)
-  3. writes Properties/<Community>/<UnitFolder>/<001..>.jpeg
-  4. clones the nearest sibling detail page into a new detail .html
-  5. inserts ONE card into Properties/<Community>/properties.html
-     (skipped if the unit name contains TEST)
-  6. best-effort appends an entry to the root properties.json
+This one script handles every approved draft. The action is chosen by the
+manifest's "action" field:
+
+  "add"           (default) — a brand-new unit:
+        1. detects the target community's existing conventions from the nearest
+           sibling (folder-name pattern, detail-filename pattern, img001 vs 001)
+        2. resizes/compresses photos (max edge 2000px, jpeg; rejects >10MB
+           originals that still won't compress under 10MB)
+        3. writes Properties/<Community>/<UnitFolder>/<001..>.jpeg
+        4. clones the nearest sibling detail page into a new detail .html
+        5. inserts ONE card into Properties/<Community>/properties.html
+           (skipped if the unit name contains TEST)
+        6. best-effort appends an entry to the root properties.json
+
+  "change_cover"  — an existing unit: repoint the display/cover photo to the one
+        Sheila chose. Updates the detail page (moves the chosen photo to the
+        front of propertyImages + preload), the collection card, the root card,
+        and the apex index feature card — everywhere that unit's cover shows.
+
+  "remove"        — an existing SOLD unit: unlist it. Removes the unit's card
+        from the collection page, the root properties page, and the apex index
+        feature (plus its <option> in the apex dropdown). The detail page and
+        photo folder are LEFT in the repo (recoverable), matching how sold units
+        were retired before.
 
 It is the SAME script the Approve GitHub Action runs, and it can be run locally
 with no secrets/network to verify a draft end-to-end.
@@ -22,11 +36,6 @@ Usage:
 """
 import argparse, json, os, re, sys, glob, shutil
 from pathlib import Path
-
-try:
-    from PIL import Image, ImageOps
-except ImportError:
-    print("Pillow is required: pip install Pillow", file=sys.stderr); sys.exit(2)
 
 COMMUNITIES = ["Breakwater_Bay","Compass_Point","Golden_Reef","Grandview_Point",
   "Harbor_Point","Heron_Bay","Houses","Indian_Point","Lands_End_Condos","Ledges",
@@ -43,13 +52,17 @@ def community_label(c): return c.replace("_", " ")
 def slug_unit(u):
     return re.sub(r"[^a-z0-9]+", "-", u.strip().lower()).strip("-")
 
+def enc_path(p):
+    """Match the site's URL encoding: spaces -> %20, parens left as-is."""
+    return p.replace(" ", "%20")
+
 # ---- folder-name pattern parsing (returns beds, sleeps, unitid + spans) ----
 FOLDER_PATTERNS = [
     re.compile(r"(?i)^(?P<beds>\d+)\s*bedroom\s*-\s*sleeps\s*(?P<sleeps>\d+)\s*-\s*(?:unit\s+)?(?P<unitid>\S.*?)\s*$"),
     re.compile(r"(?i)^(?P<beds>\d+)\s*bedroom\s*-\s*(?:unit\s+)?(?P<unitid>.+?)\s*\(\s*sleeps\s*(?P<sleeps>\d+)\s*\)\s*$"),
     re.compile(r"(?i)^(?P<beds>\d+)\s*bedroom\s*\(\s*sleeps\s*(?P<sleeps>\d+)\s*\)\s*-\s*(?:unit\s+)?(?P<unitid>\S.*?)\s*$"),
 ]
-DETAIL_PATTERN = re.compile(r"(?i)^(?P<beds>\d+)-bedroom-sleeps-(?P<sleeps>\d+)-(?P<unitpfx>unit-)?(?P<unitid>.+)\.html$")
+DETAIL_PATTERN = re.compile(r"(?i)^(?P<beds>\d+)-bedroom-sleeps-(?P<sleeps>\d+)-(?P<unitpfx>unit-)?(?P<unitid>.+)\.html?$")
 
 def parse_folder(name):
     for pat in FOLDER_PATTERNS:
@@ -99,7 +112,7 @@ def pick_sibling(comm_dir, beds, sleeps):
 def find_detail_file(comm_dir, sib):
     """find the sibling's detail .html by matching beds/sleeps/unitid."""
     cands = []
-    for f in glob.glob(os.path.join(comm_dir, "*.html")):
+    for f in glob.glob(os.path.join(comm_dir, "*.htm")) + glob.glob(os.path.join(comm_dir, "*.html")):
         b = os.path.basename(f)
         if b.lower() in ("properties.html",): continue
         m = DETAIL_PATTERN.match(b)
@@ -120,6 +133,7 @@ def find_detail_file(comm_dir, sib):
 # ---------- image processing ----------
 def process_photo(src, dst):
     """Resize to <=MAX_EDGE, save jpeg. Returns True, or False if rejected."""
+    from PIL import Image, ImageOps
     orig_size = os.path.getsize(src)
     try:
         im = Image.open(src)
@@ -159,7 +173,7 @@ def build_detail(sib_text, ctx):
     noun = mnoun.group(1) if mnoun else ("Home" if ctx["community"] == "Houses" else "Condo")
     heading = f"{label} · {beds} Bedroom {noun} #{unit}"
 
-    # propertyImages array
+    # propertyImages array (raw folder — unchanged from the verified add path)
     arr = ",\n      ".join('"%s/%s%03d.jpeg"' % (folder, prefix, i) for i in range(1, n + 1))
     t = re.sub(r"window\.propertyImages\s*=\s*\[.*?\];",
                "window.propertyImages = [\n      " + arr + "\n    ];", t, flags=S)
@@ -207,7 +221,7 @@ def build_detail(sib_text, ctx):
         t = t.replace(f"{sib_unit} condo", f"{unit} condo").replace(f"{sib_unit} Condo", f"{unit} Condo")
     return t
 
-# ---------- card ----------
+# ---------- card location / extraction (shared by add / cover / remove) ----------
 def extract_first_card(html):
     start = html.find('<div class="property-card')
     if start < 0: return (None, None, None)
@@ -222,6 +236,63 @@ def extract_first_card(html):
             depth += 1
     return (None, None, None)
 
+def card_span_containing(html, needle):
+    """Return (start, end) of the <div class="property-card"> block whose HTML
+    contains `needle` (e.g. the unit's detail filename). None if not found."""
+    ni = html.find(needle)
+    if ni < 0:
+        # case-insensitive fallback
+        low = html.lower(); nl = needle.lower()
+        ni = low.find(nl)
+        if ni < 0:
+            return None
+    start = html.rfind('<div class="property-card', 0, ni + len(needle))
+    if start < 0:
+        return None
+    depth = 0
+    for m in re.finditer(r"</?div\b", html[start:], re.I):
+        if m.group().lower().startswith("</"):
+            depth -= 1
+            if depth == 0:
+                end = html.find(">", start + m.end()) + 1
+                # sanity: the needle must actually be inside this card
+                if start <= ni < end:
+                    return (start, end)
+                return None
+        else:
+            depth += 1
+    return None
+
+def expand_removal_span(html, start, end):
+    """Grow (start,end) to also swallow a preceding HTML comment (e.g.
+    <!-- 10210 -->) and the blank whitespace around the card, so removal leaves
+    no dangling comment or double blank lines."""
+    # include a preceding comment line if it sits just above the card
+    pre = html[:start]
+    mcomment = re.search(r"[ \t]*<!--[^>]*-->[ \t]*\n(\s*)$", pre)
+    if mcomment:
+        start = mcomment.start()
+    # trim one trailing newline block after the card
+    after = html[end:]
+    mws = re.match(r"[ \t]*\n\s*\n", after)
+    if mws:
+        end = end + mws.end() - 1  # keep a single newline
+    else:
+        mws = re.match(r"[ \t]*\n", after)
+        if mws:
+            end = end + mws.end()
+    # also drop leading whitespace on the card's own line
+    ls = html.rfind("\n", 0, start)
+    if ls >= 0 and html[ls + 1:start].strip() == "":
+        start = ls + 1
+    return start, end
+
+def set_card_cover(card_html, new_src):
+    """Replace the first <img ... src="..."> in a card with new_src."""
+    return re.sub(r'(<img\b[^>]*\bsrc=")[^"]*(")',
+                  lambda m: m.group(1) + new_src + m.group(2), card_html, count=1)
+
+# ---------- card build (add) ----------
 def build_card(sib_card, ctx):
     label, unit, beds, sleeps = ctx["label"], ctx["unit"], ctx["beds"], ctx["sleeps"]
     folder, prefix, new_detail = ctx["folder"], ctx["prefix"], ctx["new_detail"]
@@ -276,18 +347,186 @@ def append_json(repo, ctx):
     except Exception as e:
         log("  (properties.json not updated:", e, ")")
 
-# ---------- main ----------
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--repo", required=True)
-    ap.add_argument("--manifest", required=True)
-    ap.add_argument("--photos-dir")
-    ap.add_argument("--no-card", action="store_true")
-    ap.add_argument("--dry-run", action="store_true")
-    args = ap.parse_args()
+def remove_json(repo, community, unit):
+    jp = os.path.join(repo, "properties.json")
+    if not os.path.exists(jp): return
+    try:
+        data = json.load(open(jp, encoding="utf-8"))
+        want = slug_unit(f"{community}-{unit}")
+        before = len(data.get("properties", []))
+        data["properties"] = [p for p in data.get("properties", []) if p.get("id") != want]
+        if len(data["properties"]) != before:
+            data["count"] = len(data["properties"])
+            json.dump(data, open(jp, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+            log("  properties.json entry removed (count=%d)" % data["count"])
+    except Exception as e:
+        log("  (properties.json not updated:", e, ")")
 
-    repo = os.path.abspath(args.repo)
-    man = json.load(open(args.manifest, encoding="utf-8"))
+def set_json_cover(repo, community, unit, cover_rel):
+    jp = os.path.join(repo, "properties.json")
+    if not os.path.exists(jp): return
+    try:
+        data = json.load(open(jp, encoding="utf-8"))
+        want = slug_unit(f"{community}-{unit}")
+        for p in data.get("properties", []):
+            if p.get("id") == want:
+                p["cover"] = cover_rel
+                json.dump(data, open(jp, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+                log("  properties.json cover updated")
+                return
+    except Exception as e:
+        log("  (properties.json not updated:", e, ")")
+
+# ---------- resolve an existing unit from a manifest (cover/remove) ----------
+def resolve_unit(repo, community, folder):
+    """Given community + unit folder name, find its detail file + parsed specs."""
+    comm_dir = os.path.join(repo, "Properties", community)
+    info = parse_folder(folder)
+    if not info:
+        log("FATAL: could not parse unit folder:", repr(folder)); sys.exit(1)
+    det = find_detail_file(comm_dir, info)
+    if not det:
+        log("FATAL: no detail .html found for", folder); sys.exit(1)
+    det_name, det_m, det_path = det
+    return {"comm_dir": comm_dir, "folder": folder, "info": info,
+            "detail_name": det_name, "detail_path": det_path,
+            "unitid": info["unitid"], "beds": info["beds"], "sleeps": info["sleeps"]}
+
+def rewrite(path, old, new, dry_run):
+    if old == new:
+        return False
+    if dry_run:
+        return True
+    open(path, "w", encoding="utf-8", newline="\n").write(new)
+    return True
+
+# ---------- ACTION: change_cover ----------
+def do_change_cover(repo, man, dry_run):
+    community = man["community"]
+    folder = man["folder"]
+    cover = os.path.basename(str(man.get("coverPhoto") or "").strip())
+    if not cover:
+        log("FATAL: change_cover needs coverPhoto"); sys.exit(1)
+    u = resolve_unit(repo, community, folder)
+    label = community_label(community)
+    enc_folder = enc_path(folder)
+    coll_src = f"{enc_folder}/{cover}"                                  # collection page (folder-relative)
+    root_src = f"Properties/{community}/{enc_folder}/{cover}"           # root + apex (repo-relative)
+    changed = []
+
+    # 1) detail page — move chosen photo to propertyImages[0] + preload
+    dp = u["detail_path"]
+    t = open(dp, encoding="utf-8", errors="replace").read()
+    m = re.search(r"(window\.propertyImages\s*=\s*\[)(.*?)(\];)", t, re.S)
+    if not m:
+        log("  !! detail page has no propertyImages array — skipped")
+    else:
+        entries = re.findall(r"'([^']*)'|\"([^\"]*)\"", m.group(2))
+        entries = [a or b for (a, b) in entries]
+        idx = next((i for i, e in enumerate(entries) if os.path.basename(e) == cover), -1)
+        if idx < 0:
+            # not in array (shouldn't happen) — prepend it
+            entries.insert(0, coll_src)
+        else:
+            entries.insert(0, entries.pop(idx))
+        arr = ",\n      ".join('"%s"' % e for e in entries)
+        new_block = m.group(1) + "\n      " + arr + "\n    " + m.group(3)
+        t2 = t[:m.start()] + new_block + t[m.end():]
+        # preload (optional)
+        t2 = re.sub(r'(<link[^>]+rel="preload"[^>]+href=")[^"]*(")',
+                    lambda mm: mm.group(1) + coll_src + mm.group(2), t2, count=1)
+        if rewrite(dp, t, t2, dry_run):
+            changed.append(os.path.relpath(dp, repo))
+
+    # 2) collection page card
+    cp = os.path.join(u["comm_dir"], "properties.html")
+    if os.path.exists(cp):
+        ct = open(cp, encoding="utf-8", errors="replace").read()
+        span = card_span_containing(ct, u["detail_name"])
+        if span:
+            s, e = span
+            new_card = set_card_cover(ct[s:e], coll_src)
+            nt = ct[:s] + new_card + ct[e:]
+            if rewrite(cp, ct, nt, dry_run):
+                changed.append(os.path.relpath(cp, repo))
+        else:
+            log("  (collection card not found — skipped)")
+
+    # 3) root properties.html + 4) apex index.html
+    for rel in ("properties.html", "index.html"):
+        fp = os.path.join(repo, rel)
+        if not os.path.exists(fp): continue
+        ft = open(fp, encoding="utf-8", errors="replace").read()
+        needle = f"Properties/{community}/{u['detail_name']}"
+        span = card_span_containing(ft, needle) or card_span_containing(ft, u["detail_name"])
+        if span:
+            s, e = span
+            new_card = set_card_cover(ft[s:e], root_src)
+            nt = ft[:s] + new_card + ft[e:]
+            if rewrite(fp, ft, nt, dry_run):
+                changed.append(rel)
+        # else: unit isn't featured here — normal, skip quietly
+
+    # 5) properties.json cover (best-effort)
+    if not dry_run:
+        set_json_cover(repo, community, u["unitid"], root_src)
+
+    log("change_cover:", label, u["unitid"], "-> cover", cover)
+    log("  files changed:", ", ".join(changed) if changed else "(none)")
+    if not changed:
+        log("FATAL: nothing was changed — cover photo not found in any location"); sys.exit(1)
+
+# ---------- ACTION: remove (unlist) ----------
+def do_remove(repo, man, dry_run):
+    community = man["community"]
+    folder = man["folder"]
+    u = resolve_unit(repo, community, folder)
+    label = community_label(community)
+    changed = []
+
+    def strip_card(fp, needles):
+        if not os.path.exists(fp): return
+        ft = open(fp, encoding="utf-8", errors="replace").read()
+        span = None
+        for nd in needles:
+            span = card_span_containing(ft, nd)
+            if span: break
+        if not span:
+            return  # unit not listed here
+        s, e = span
+        s, e = expand_removal_span(ft, s, e)
+        nt = ft[:s] + ft[e:]
+        if rewrite(fp, ft, nt, dry_run):
+            changed.append(os.path.relpath(fp, repo))
+
+    # 1) collection page (folder-relative detail href)
+    strip_card(os.path.join(u["comm_dir"], "properties.html"), [u["detail_name"]])
+    # 2) root properties.html + 3) apex index.html (repo-relative detail href)
+    for rel in ("properties.html", "index.html"):
+        strip_card(os.path.join(repo, rel),
+                   [f"Properties/{community}/{u['detail_name']}", u["detail_name"]])
+
+    # 4) apex dropdown <option> (best-effort): match "<Label> <unit>"
+    apex = os.path.join(repo, "index.html")
+    if os.path.exists(apex):
+        at = open(apex, encoding="utf-8", errors="replace").read()
+        opt_re = re.compile(r"[ \t]*<option[^>]*>\s*" + re.escape(label) + r"\s+" +
+                            re.escape(u["unitid"]) + r"\b[^<]*</option>\s*\n?", re.I)
+        nt = opt_re.sub("", at, count=1)
+        if rewrite(apex, at, nt, dry_run) and "index.html" not in changed:
+            changed.append("index.html")
+
+    # 5) properties.json (best-effort)
+    if not dry_run:
+        remove_json(repo, community, u["unitid"])
+
+    log("remove (unlist):", label, u["unitid"], "(detail page + photos kept)")
+    log("  files changed:", ", ".join(changed) if changed else "(none)")
+    if not changed:
+        log("FATAL: unit was not listed anywhere — nothing removed"); sys.exit(1)
+
+# ---------- ACTION: add ----------
+def do_add(repo, man, args):
     community = man["community"]
     if community not in COMMUNITIES:
         log("FATAL: unknown community", community); sys.exit(1)
@@ -313,9 +552,7 @@ def main():
     prefix = img_prefix_of(sib["path"])
     log("nearest sibling:", sib["name"], "| img prefix:", repr(prefix))
 
-    # new folder name (span-replace sibling folder)
     folder = span_replace(sib["name"], sib["match"], {"beds": beds, "sleeps": sleeps, "unitid": unit})
-    # new detail filename (span-replace sibling detail filename)
     det = find_detail_file(comm_dir, sib)
     if not det:
         log("FATAL: no sibling detail .html in", community); sys.exit(1)
@@ -380,6 +617,31 @@ def main():
 
     log("LIVE URL (after Pages deploys):",
         f'https://sobrentals.com/Properties/{community}/{new_detail}')
+
+# ---------- main ----------
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--repo", required=True)
+    ap.add_argument("--manifest", required=True)
+    ap.add_argument("--photos-dir")
+    ap.add_argument("--no-card", action="store_true")
+    ap.add_argument("--dry-run", action="store_true")
+    args = ap.parse_args()
+
+    repo = os.path.abspath(args.repo)
+    man = json.load(open(args.manifest, encoding="utf-8"))
+    action = (man.get("action") or "add").strip()
+    if man.get("community") not in COMMUNITIES:
+        log("FATAL: unknown community", man.get("community")); sys.exit(1)
+
+    if action == "add":
+        do_add(repo, man, args)
+    elif action == "change_cover":
+        do_change_cover(repo, man, args.dry_run)
+    elif action == "remove":
+        do_remove(repo, man, args.dry_run)
+    else:
+        log("FATAL: unknown action", repr(action)); sys.exit(1)
     log("DONE.")
 
 if __name__ == "__main__":

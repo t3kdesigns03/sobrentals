@@ -1,15 +1,21 @@
 /*
  * SOB Rentals — Owner Studio Worker  (name: sob-owner-studio)
  * -----------------------------------------------------------------------------
- * Purpose: let Sheila submit a NEW unit (form + drag-drop photos) without any
- * GitHub token in the browser. The Worker holds the only credential and:
+ * Purpose: let Sheila manage her listings without any GitHub token in the
+ * browser. The Worker holds the only credential and:
  *   1. authenticates the owner passcode  (hashed, never plaintext in JS)
- *   2. best-effort scrapes a VRBO/Airbnb listing to pre-fill the form
- *   3. stores the submission as a DRAFT on an orphan-ish branch
- *      (owner-drafts/<id>) — nothing on main, nothing live
- *   4. fires a repository_dispatch so a GitHub Action emails Brandon
- *   5. Approve/Reject links (signed, ~7-day expiry) come back here; Approve
+ *   2. best-effort scrapes a VRBO/Airbnb listing to pre-fill the add form
+ *   3. ADD a new unit  — stores photos+manifest as a DRAFT branch
+ *   4. CHANGE COVER / REMOVE an existing unit — stores a small manifest-only
+ *      DRAFT branch (no photos to upload; the unit already exists on main)
+ *   5. lists communities' units + a unit's photos (for the "manage" picker)
+ *   6. fires a repository_dispatch so a GitHub Action emails Brandon
+ *   7. Approve/Reject links (signed, ~7-day expiry) come back here; Approve
  *      fires the publish Action, Reject deletes the draft branch.
+ *
+ * Every mutation (add / change_cover / remove) goes through the SAME
+ * approve-to-publish gate: nothing changes on the live site until Brandon
+ * clicks Approve. publish.py branches on manifest.action.
  *
  * Isolation: no custom route -> served from the default *.workers.dev host.
  * It therefore cannot overlap any spydernetwork.com route. Do not add a route
@@ -32,6 +38,7 @@ const b64urlToStr = (s) => {
   while (s.length % 4) s += "=";
   return atob(s);
 };
+const naturalCmp = (a, b) => String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
 
 async function sha256hex(str) {
   const d = await crypto.subtle.digest("SHA-256", enc.encode(str));
@@ -117,6 +124,7 @@ async function gh(env, path, method, body) {
   return data;
 }
 const repoPath = (env, sub) => `/repos/${env.GH_OWNER}/${env.GH_REPO}${sub}`;
+const ghContentPath = (seg) => seg.split("/").map(encodeURIComponent).join("/");
 
 /* ---------- auth ---------- */
 async function requireAuth(request, env) {
@@ -170,7 +178,39 @@ async function handleScrape(request, env) {
   return json(out);
 }
 
-/* ---------- draft: start / photo / finish ---------- */
+/* ---------- manage: list a community's units, and a unit's photos ---------- */
+async function handleUnits(request, env) {
+  const community = new URL(request.url).searchParams.get("community") || "";
+  if (!COMMUNITIES.includes(community)) return json({ ok: false, error: "unknown community" }, 400);
+  let list;
+  try {
+    list = await gh(env, repoPath(env, `/contents/Properties/${ghContentPath(community)}?ref=${env.GH_BRANCH}`));
+  } catch (e) { return json({ ok: false, error: "could not read community" }, 502); }
+  const units = (Array.isArray(list) ? list : [])
+    .filter((x) => x.type === "dir" && /\d+\s*bedroom/i.test(x.name))
+    .map((x) => ({ folder: x.name, label: x.name }))
+    .sort((a, b) => naturalCmp(a.folder, b.folder));
+  return json({ ok: true, community, units });
+}
+async function handlePhotos(request, env) {
+  const sp = new URL(request.url).searchParams;
+  const community = sp.get("community") || "";
+  const folder = sp.get("folder") || "";
+  if (!COMMUNITIES.includes(community)) return json({ ok: false, error: "unknown community" }, 400);
+  if (!folder) return json({ ok: false, error: "missing folder" }, 400);
+  let list;
+  try {
+    list = await gh(env, repoPath(env,
+      `/contents/Properties/${ghContentPath(community)}/${ghContentPath(folder)}?ref=${env.GH_BRANCH}`));
+  } catch (e) { return json({ ok: false, error: "could not read unit" }, 502); }
+  const photos = (Array.isArray(list) ? list : [])
+    .filter((x) => x.type === "file" && /\.(jpe?g|png|webp)$/i.test(x.name))
+    .map((x) => ({ name: x.name, url: x.download_url }))
+    .sort((a, b) => naturalCmp(a.name, b.name));
+  return json({ ok: true, community, folder, photos });
+}
+
+/* ---------- draft: start / photo / finish (ADD) ---------- */
 async function handleDraftStart(request, env) {
   const b = await request.json().catch(() => ({}));
   if (!COMMUNITIES.includes(b.community))
@@ -209,7 +249,7 @@ async function handleDraftFinish(request, env) {
   const brCommit = await gh(env, repoPath(env, `/git/commits/${brSha}`));
   const baseTree = brCommit.tree.sha;
 
-  const full = { ...manifest, draftId, branch, coverIndex: coverIndex || 0,
+  const full = { ...manifest, action: "add", draftId, branch, coverIndex: coverIndex || 0,
     photos: photos.map((p) => p.path), submittedAt: new Date().toISOString() };
   const previewHtml = buildPreview(full, env);
 
@@ -244,6 +284,7 @@ async function handleDraftFinish(request, env) {
   await gh(env, repoPath(env, "/dispatches"), "POST", {
     event_type: "owner-draft",
     client_payload: {
+      action: "add",
       draftId, branch,
       community: manifest.community, unit: manifest.unit,
       beds: manifest.beds, baths: manifest.baths, sleeps: manifest.sleeps,
@@ -255,6 +296,60 @@ async function handleDraftFinish(request, env) {
     },
   });
   return json({ ok: true, draftId });
+}
+
+/* ---------- edit drafts: change_cover / remove ---------- */
+async function createEditDraft(request, env, manifest, notify) {
+  const rnd = crypto.randomUUID().split("-")[0];
+  const draftId = `${Date.now().toString(36)}-${rnd}`;
+  const branch = `owner-drafts/${draftId}`;
+  const mainRef = await gh(env, repoPath(env, `/git/ref/heads/${env.GH_BRANCH}`));
+  await gh(env, repoPath(env, "/git/refs"), "POST",
+    { ref: `refs/heads/${branch}`, sha: mainRef.object.sha });
+
+  const full = { ...manifest, draftId, branch, submittedAt: new Date().toISOString() };
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(full, null, 2))));
+  await gh(env, repoPath(env, `/contents/_owner_drafts/${draftId}/manifest.json`), "PUT", {
+    message: `owner ${manifest.action}: ${manifest.community} / ${manifest.unit || manifest.folder} (${draftId})`,
+    content, branch,
+  });
+
+  const exp = Date.now() + 7 * 24 * 3600 * 1000;
+  const workerBase = new URL(request.url).origin;
+  const approveTok = await signToken({ draftId, branch, act: "approve", exp }, env.SIGNING_SECRET);
+  const rejectTok  = await signToken({ draftId, branch, act: "reject",  exp }, env.SIGNING_SECRET);
+  const approveUrl = `${workerBase}/api/approve?t=${encodeURIComponent(approveTok)}`;
+  const rejectUrl  = `${workerBase}/api/reject?t=${encodeURIComponent(rejectTok)}`;
+
+  await gh(env, repoPath(env, "/dispatches"), "POST", {
+    event_type: "owner-draft",
+    client_payload: { draftId, branch, approveUrl, rejectUrl, ...notify },
+  });
+  return json({ ok: true, draftId });
+}
+
+async function handleEditCover(request, env) {
+  const b = await request.json().catch(() => ({}));
+  if (!COMMUNITIES.includes(b.community)) return json({ ok: false, error: "unknown community" }, 400);
+  if (!b.folder || !b.coverPhoto) return json({ ok: false, error: "missing folder or photo" }, 400);
+  const coverPhoto = String(b.coverPhoto).split("/").pop();
+  const manifest = { action: "change_cover", community: b.community, folder: b.folder,
+    coverPhoto, unit: b.folder };
+  return createEditDraft(request, env, manifest, {
+    action: "change_cover", community: b.community, unit: b.folder,
+    coverPhoto, coverThumbUrl: b.coverUrl || "",
+  });
+}
+
+async function handleEditRemove(request, env) {
+  const b = await request.json().catch(() => ({}));
+  if (!COMMUNITIES.includes(b.community)) return json({ ok: false, error: "unknown community" }, 400);
+  if (!b.folder) return json({ ok: false, error: "missing folder" }, 400);
+  const manifest = { action: "remove", community: b.community, folder: b.folder, unit: b.folder };
+  return createEditDraft(request, env, manifest, {
+    action: "remove", community: b.community, unit: b.folder,
+    coverThumbUrl: b.coverUrl || "",
+  });
 }
 
 function buildPreview(m, env) {
@@ -298,7 +393,7 @@ async function handleApprove(request, env) {
     return htmlPage("Error", `<h1>Could not start publish</h1><p>${e.message}</p>`);
   }
   return htmlPage("Approved",
-    `<h1>Approved ✓</h1><p>Publishing <b>${p.draftId}</b> now. The unit will appear on sobrentals.com within a couple of minutes once Pages rebuilds. You can close this tab.</p>`);
+    `<h1>Approved ✓</h1><p>Applying <b>${p.draftId}</b> now. The change will appear on sobrentals.com within a couple of minutes once Pages rebuilds. You can close this tab.</p>`);
 }
 async function handleReject(request, env) {
   const t = new URL(request.url).searchParams.get("t");
@@ -311,7 +406,7 @@ async function handleReject(request, env) {
     if (e.status !== 422 && e.status !== 404)
       return htmlPage("Error", `<h1>Could not discard</h1><p>${e.message}</p>`);
   }
-  return htmlPage("Rejected", `<h1>Rejected ✕</h1><p>Draft <b>${p.draftId}</b> was discarded. Nothing was published.</p>`);
+  return htmlPage("Rejected", `<h1>Rejected ✕</h1><p>Draft <b>${p.draftId}</b> was discarded. Nothing was changed.</p>`);
 }
 
 /* ---------- login ---------- */
@@ -345,6 +440,13 @@ export default {
       if (request.method === "GET" && (p === "/" || p === "/health"))
         return htmlPage("Owner Studio API", "<h1>sob-owner-studio</h1><p>API is running. The owner tool lives at sobrentals.com/owner/.</p>");
 
+      // authed GET data endpoints (manage picker)
+      if (request.method === "GET" && (p === "/api/units" || p === "/api/photos")) {
+        if (!(await requireAuth(request, env))) return withCors(json({ ok: false, error: "unauthorized" }, 401));
+        if (p === "/api/units")  return withCors(await handleUnits(request, env));
+        if (p === "/api/photos") return withCors(await handlePhotos(request, env));
+      }
+
       if (request.method !== "POST") return withCors(json({ ok: false, error: "method" }, 405));
       if (p === "/api/login") return withCors(await handleLogin(request, env));
 
@@ -354,6 +456,8 @@ export default {
       if (p === "/api/draft/start")   return withCors(await handleDraftStart(request, env));
       if (p === "/api/draft/photo")   return withCors(await handleDraftPhoto(request, env));
       if (p === "/api/draft/finish")  return withCors(await handleDraftFinish(request, env));
+      if (p === "/api/edit/cover")    return withCors(await handleEditCover(request, env));
+      if (p === "/api/edit/remove")   return withCors(await handleEditRemove(request, env));
       return withCors(json({ ok: false, error: "not found" }, 404));
     } catch (e) {
       return withCors(json({ ok: false, error: e.message, detail: e.data || null }, e.status || 500));
